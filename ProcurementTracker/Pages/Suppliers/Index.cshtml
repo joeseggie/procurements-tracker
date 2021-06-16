@@ -2,22 +2,24 @@
 @model ProcurementTracker.Pages.Suppliers.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Suppliers";
 }
 
-<h1>Index</h1>
+<h1>Suppliers</h1>
+<hr />
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-light btn-outline-secondary">Add Supplier</a>
 </p>
-<table class="table">
+
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Contact)
+                @Html.DisplayNameFor(model => model.Supplier[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Supplier[0].Name)
+                @Html.DisplayNameFor(model => model.Supplier[0].Contact)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Supplier[0].Address)
@@ -29,10 +31,10 @@
 @foreach (var item in Model.Supplier) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Contact)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Contact)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
