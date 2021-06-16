@@ -1,2 +1,2 @@
-# procurements-tracker
+# Procurements Tracking Tool
 Procurements tracking tool
