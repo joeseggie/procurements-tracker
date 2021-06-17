@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcurementTracker.Data;
 
 namespace ProcurementTracker.Data.Migrations
 {
     [DbContext(typeof(ProcurementTrackerContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210617203902_Bid")]
+    partial class Bid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,9 +25,6 @@ namespace ProcurementTracker.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProcurementId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")
@@ -42,37 +41,9 @@ namespace ProcurementTracker.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProcurementId");
-
                     b.HasIndex("SupplierId");
 
                     b.ToTable("Bid");
-                });
-
-            modelBuilder.Entity("ProcurementTracker.Models.Procurement", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProcurementMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Procurement");
                 });
 
             modelBuilder.Entity("ProcurementTracker.Models.Supplier", b =>
@@ -97,22 +68,11 @@ namespace ProcurementTracker.Data.Migrations
 
             modelBuilder.Entity("ProcurementTracker.Models.Bid", b =>
                 {
-                    b.HasOne("ProcurementTracker.Models.Procurement", "Procurement")
-                        .WithMany("Bids")
-                        .HasForeignKey("ProcurementId");
-
                     b.HasOne("ProcurementTracker.Models.Supplier", "Supplier")
                         .WithMany("Bids")
                         .HasForeignKey("SupplierId");
 
-                    b.Navigation("Procurement");
-
                     b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("ProcurementTracker.Models.Procurement", b =>
-                {
-                    b.Navigation("Bids");
                 });
 
             modelBuilder.Entity("ProcurementTracker.Models.Supplier", b =>

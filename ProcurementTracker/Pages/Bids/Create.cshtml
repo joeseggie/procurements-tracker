@@ -1,0 +1,44 @@
+﻿@page
+@model ProcurementTracker.Pages.Bids.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bid</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Bid.Status" class="control-label"></label>
+                <input asp-for="Bid.Status" class="form-control" />
+                <span asp-validation-for="Bid.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bid.Submitted" class="control-label"></label>
+                <input asp-for="Bid.Submitted" class="form-control" />
+                <span asp-validation-for="Bid.Submitted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bid.ValidPeriod" class="control-label"></label>
+                <input asp-for="Bid.ValidPeriod" class="form-control" />
+                <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

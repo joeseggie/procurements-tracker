@@ -15,5 +15,20 @@ namespace ProcurementTracker.Data
         }
 
         public DbSet<ProcurementTracker.Models.Supplier> Supplier { get; set; }
+
+        public DbSet<ProcurementTracker.Models.Bid> Bid { get; set; }
+
+        public DbSet<ProcurementTracker.Models.Procurement> Procurement { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Bid>()
+                .HasOne(b => b.Supplier)
+                .WithMany(s => s.Bids);
+
+            modelBuilder.Entity<Bid>()
+                .HasOne(b => b.Procurement)
+                .WithMany(p => p.Bids);
+        }
     }
 }
