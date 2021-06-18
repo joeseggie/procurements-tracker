@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ProcurementTracker.Data.EntityTypeConfigurations;
 using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Data
@@ -22,13 +23,7 @@ namespace ProcurementTracker.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bid>()
-                .HasOne(b => b.Supplier)
-                .WithMany(s => s.Bids);
-
-            modelBuilder.Entity<Bid>()
-                .HasOne(b => b.Procurement)
-                .WithMany(p => p.Bids);
+            new BidEntityTypeConfiguration().Configure(modelBuilder.Entity<Bid>());
         }
     }
 }
