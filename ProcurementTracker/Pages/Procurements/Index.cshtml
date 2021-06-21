@@ -2,15 +2,16 @@
 @model ProcurementTracker.Pages.Procurements.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Procurements";
 }
 
-<h1>Index</h1>
+<h1>Procurements</h1>
+<hr />
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-light btn-outline-secondary">Add Procurement</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>

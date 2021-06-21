@@ -5,10 +5,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Procurement</h4>
+<h1>Add Procurement</h1>
 <hr />
+
+<p>
+    <a asp-page="Index" class="btn btn-light btn-outline-secondary">Back to Procurements List</a>
+</p>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -30,23 +32,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="Procurement.ProcurementMethod" class="control-label"></label>
-                <input asp-for="Procurement.ProcurementMethod" class="form-control" />
+                <select asp-for="Procurement.ProcurementMethod" asp-items="Model.ProcurementMethods" class="form-control" ></select>
                 <span asp-validation-for="Procurement.ProcurementMethod" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Procurement.Status" class="control-label"></label>
-                <input asp-for="Procurement.Status" class="form-control" />
+                <select asp-for="Procurement.Status" asp-items="Model.ProcurementStatuses" class="form-control" ></select>
                 <span asp-validation-for="Procurement.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

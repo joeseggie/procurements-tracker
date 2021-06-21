@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
+using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Procurements
 {
@@ -26,6 +27,8 @@ namespace ProcurementTracker.Pages.Procurements
 
         [BindProperty]
         public Procurement Procurement { get; set; }
+        public List<SelectListItem> ProcurementStatuses { get; set; } = ChoicesList.Create<ProcurementStatus>();
+        public List<SelectListItem> ProcurementMethods { get; set; } = ChoicesList.Create<ProcurementMethod>();
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
