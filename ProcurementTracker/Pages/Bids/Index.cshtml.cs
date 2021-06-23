@@ -21,6 +21,9 @@ namespace ProcurementTracker.Pages.Bids
 
         public IList<Bid> Bid { get;set; }
 
+        [BindProperty(SupportsGet = true)]
+        public Guid Procurement { get; set; }
+
         public async Task OnGetAsync()
         {
             Bid = await _context.Bid.ToListAsync();

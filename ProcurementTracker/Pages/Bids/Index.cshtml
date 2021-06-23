@@ -1,14 +1,15 @@
-﻿@page
+﻿@page "procurement/{procurement:guid}"
 @model ProcurementTracker.Pages.Bids.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Procurement Bids</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="../procurements/details" asp-route-id="@Model.Procurement" class="btn btn-light btn-outline-secondary">Back to Procurement</a>
+    <a asp-page="Create" class="btn btn-light btn-outline-secondary">Add Bid</a>
 </p>
 <table class="table">
     <thead>
