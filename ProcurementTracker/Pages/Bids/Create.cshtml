@@ -1,22 +1,26 @@
-﻿@page
+﻿@page "procurement/{procurement}"
 @model ProcurementTracker.Pages.Bids.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Bid";
 }
 
-<h1>Create</h1>
-
-<h4>Bid</h4>
+<h1>Add Bid</h1>
+<h4>Procurement: @Model.Procurement</h4>
 <hr />
+
+<p>
+    <a asp-page="./Index" asp-route-procurement="@Model.Procurement" class="btn btn-light btn-outline-secondary">Back to Procurement Bids</a>
+</p>
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Bid.Status" class="control-label"></label>
-                <input asp-for="Bid.Status" class="form-control" />
-                <span asp-validation-for="Bid.Status" class="text-danger"></span>
+                <label asp-for="Bid.QuotedFee" class="control-label"></label>
+                <input asp-for="Bid.QuotedFee" class="form-control" />
+                <span asp-validation-for="Bid.QuotedFee" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bid.Submitted" class="control-label"></label>
@@ -29,14 +33,10 @@
                 <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

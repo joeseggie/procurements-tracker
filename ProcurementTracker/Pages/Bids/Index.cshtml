@@ -2,18 +2,25 @@
 @model ProcurementTracker.Pages.Bids.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Procurement Bids";
 }
 
 <h1>Procurement Bids</h1>
+<hr />
 
 <p>
     <a asp-page="../procurements/details" asp-route-id="@Model.Procurement" class="btn btn-light btn-outline-secondary">Back to Procurement</a>
-    <a asp-page="Create" class="btn btn-light btn-outline-secondary">Add Bid</a>
+    <a asp-page="Create" asp-route-procurement="@Model.Procurement" class="btn btn-light btn-outline-secondary">Add Bid</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Bid[0].Supplier.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bid[0].QuotedFee)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bid[0].Status)
             </th>
@@ -29,6 +36,12 @@
     <tbody>
 @foreach (var item in Model.Bid) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuotedFee)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>

@@ -27,6 +27,9 @@ namespace ProcurementTracker.Pages.Bids
         [BindProperty]
         public Bid Bid { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public Guid Procurement { get; set; }
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
