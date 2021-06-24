@@ -22,11 +22,14 @@ namespace ProcurementTracker.Pages.Bids
         public IList<Bid> Bid { get;set; }
 
         [BindProperty(SupportsGet = true)]
-        public Guid Procurement { get; set; }
+        public Guid ProcurementId { get; set; }
 
         public async Task OnGetAsync()
         {
-            Bid = await _context.Bid.ToListAsync();
+            Bid = await _context.Bid
+                                .Where(b => b.Procurement.Id == ProcurementId)
+                                .Include(b => b.Supplier)
+                                .ToListAsync();
         }
     }
 }

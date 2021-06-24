@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProcurementTracker.Data;
+using ProcurementTracker.Models.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,8 @@ namespace ProcurementTracker
             {
                 options.Conventions.AddPageRoute("/Procurements/Index", "");
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
+            services.AddTransient<ISupplierManager, SupplierManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
