@@ -65,7 +65,7 @@ namespace ProcurementTracker.Pages.Bids
             _context.Bid.Add(Bid);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("Details", new { id = Bid.Id });
+            return RedirectToPage("Details", new { id = Bid.Id, procurementid = ProcurementId });
         }
     }
 }

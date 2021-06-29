@@ -1,4 +1,4 @@
-﻿@page "procurement/{procurementid:guid}"
+﻿@page
 @model ProcurementTracker.Pages.Bids.IndexModel
 
 @{
@@ -53,9 +53,14 @@
                 @Html.DisplayFor(modelItem => item.ValidPeriod)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                @{
+                        var routeData = new Dictionary<string, string>
+                        {
+                            {"id", item.Id.ToString()},
+                            {"procurementid", @Model.ProcurementId.ToString()}
+                        };
+                }
+                <a asp-page="./Details" asp-all-route-data="@routeData">Details</a>
             </td>
         </tr>
 }
