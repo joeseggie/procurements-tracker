@@ -15,7 +15,7 @@ namespace ProcurementTracker.Models
         [DataType(DataType.Date)]
         public DateTime Submitted { get; set; }
 
-        [Display(Name = "Valid Period")]
+        [Display(Name = "Valid Period (Days)")]
         public int ValidPeriod { get; set; }
         public Supplier Supplier { get; set; }
         public Procurement Procurement { get; set; }
