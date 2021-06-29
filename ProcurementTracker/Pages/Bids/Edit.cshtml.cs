@@ -23,19 +23,26 @@ namespace ProcurementTracker.Pages.Bids
         [BindProperty]
         public Bid Bid { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public Guid ProcurementId { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(Guid? id, Guid? procurementid)
         {
-            if (id == null)
+            if (id == null || procurementid == null)
             {
                 return NotFound();
             }
 
-            Bid = await _context.Bid.FirstOrDefaultAsync(m => m.Id == id);
+            Bid = await _context.Bid
+                                .Include(m => m.Supplier)
+                                .Include(m => m.Procurement)
+                                .FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
 
             if (Bid == null)
             {
                 return NotFound();
             }
+
+            ProcurementId = Guid.Parse(procurementid.ToString());
             return Page();
         }
 
@@ -66,7 +73,7 @@ namespace ProcurementTracker.Pages.Bids
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details", new { id = Bid.Id, procurementid = Bid.Procurement.Id});
         }
 
         private bool BidExists(Guid id)

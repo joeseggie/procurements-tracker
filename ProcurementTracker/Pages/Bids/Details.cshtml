@@ -16,7 +16,7 @@
 
 <p>
     <a asp-page="./Index" asp-all-route-data="@procurementsRouteData" class="btn btn-light btn-outline-secondary">Back to Procurement Bids</a>
-    <a asp-page="./Edit" asp-route-id="@Model.Bid.Id" class="btn btn-light btn-outline-secondary">Edit</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Bid.Id" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">Edit</a>
 </p>
 
 <div>
