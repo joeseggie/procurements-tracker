@@ -25,7 +25,9 @@
             @Html.DisplayNameFor(model => model.Bid.Supplier.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Bid.Supplier.Name)
+            <a asp-page="/Suppliers/Details" asp-route-id="@Model.Bid.Supplier.Id">
+                @Html.DisplayFor(model => model.Bid.Supplier.Name)
+            </a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Bid.QuotedFee)

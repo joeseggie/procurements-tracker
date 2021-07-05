@@ -11,7 +11,7 @@ namespace ProcurementTracker.Models
         public Guid Id { get; set; }
         public string Contact { get; set; }
 
-        [Display(Name = "Supplier")]
+        [Display(Name = "Service Provider")]
         public string Name { get; set; }
         public string Address { get; set; }
 
