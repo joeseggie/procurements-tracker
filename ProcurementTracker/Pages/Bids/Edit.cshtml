@@ -4,11 +4,15 @@
 @{
     ViewData["Title"] = "Edit";
 
-    var routeData = new Dictionary<string, string>
+    var routeData = new Dictionary<string, string>()
     {
-        {"id", Model.Bid.Id.ToString()},
-        {"procurementid", Model.Bid.Procurement.Id.ToString()}
+        {"id", Model.Bid.Id.ToString()}
     };
+
+    if(Model.HasProcurementFilter)
+    {
+        routeData.Add("procurementid", Model.Bid.Procurement.Id.ToString());
+    }
 }
 
 <h1>Edit Bid Details</h1>
