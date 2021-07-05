@@ -23,26 +23,37 @@ namespace ProcurementTracker.Pages.Bids
         [BindProperty]
         public Bid Bid { get; set; }
 
-        public Guid ProcurementId { get; set; }
+        public bool HasProcurementFilter { get; set; } = false;
 
         public async Task<IActionResult> OnGetAsync(Guid? id, Guid? procurementid)
         {
-            if (id == null || procurementid == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            Bid = await _context.Bid
-                                .Include(m => m.Supplier)
-                                .Include(m => m.Procurement)
-                                .FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
+            if (procurementid == null)
+            {
+                Bid = await _context.Bid
+                                    .Include(m => m.Supplier)
+                                    .Include(m => m.Procurement)
+                                    .FirstOrDefaultAsync(m => m.Id == id); 
+            }
+            else
+            {
+                Bid = await _context.Bid
+                                    .Include(m => m.Supplier)
+                                    .Include(m => m.Procurement)
+                                    .FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
+                
+                HasProcurementFilter = true;
+            }
 
             if (Bid == null)
             {
                 return NotFound();
             }
 
-            ProcurementId = Guid.Parse(procurementid.ToString());
             return Page();
         }
 

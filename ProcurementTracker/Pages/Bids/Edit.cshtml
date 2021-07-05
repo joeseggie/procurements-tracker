@@ -7,12 +7,12 @@
     var routeData = new Dictionary<string, string>
     {
         {"id", Model.Bid.Id.ToString()},
-        {"procurementid", Model.ProcurementId.ToString()}
+        {"procurementid", Model.Bid.Procurement.Id.ToString()}
     };
 }
 
 <h1>Edit Bid Details</h1>
-<h4>Procurement: @Model.ProcurementId</h4>
+<h4>Procurement: @Model.Bid.Procurement.Id</h4>
 <hr />
 
 <div>
