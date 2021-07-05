@@ -1,0 +1,23 @@
+﻿@{
+    if (Model.ShowProcurementBidActions)
+    {
+        <h4>Procurement: @Model.ProcurementId</h4>
+        <hr />
+        <p>
+            <a asp-page="../procurements/details"
+               asp-route-id="@Model.ProcurementId"
+               class="btn btn-light btn-outline-secondary">
+                Back to Procurement
+            </a>
+            <a asp-page="Create"
+               asp-route-procurementid="@Model.ProcurementId"
+               class="btn btn-light btn-outline-secondary">
+                Add Bid
+            </a>
+        </p>
+    }
+    else
+    {
+        <hr />
+    }
+}

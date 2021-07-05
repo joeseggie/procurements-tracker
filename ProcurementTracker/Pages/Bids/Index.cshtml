@@ -6,13 +6,9 @@
 }
 
 <h1>Bids</h1>
-<h4>Procurement: @Model.ProcurementId</h4>
-<hr />
 
-<p>
-    <a asp-page="../procurements/details" asp-route-id="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">Back to Procurement</a>
-    <a asp-page="Create" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">Add Bid</a>
-</p>
+<partial name="_ButtonBackToProcurement" />
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -35,34 +31,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Bid) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuotedFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Submitted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValidPeriod)
-            </td>
-            <td>
-                @{
+        @foreach (var item in Model.Bid)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuotedFee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Submitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValidPeriod)
+                </td>
+                <td>
+                    @{
                         var routeData = new Dictionary<string, string>
                         {
-                            {"id", item.Id.ToString()},
-                            {"procurementid", @Model.ProcurementId.ToString()}
+                        {"id", item.Id.ToString()},
+                        {"procurementid", @Model.ProcurementId.ToString()}
                         };
-                }
-                <a asp-page="./Details" asp-all-route-data="@routeData">Details</a>
-            </td>
-        </tr>
-}
+                    }
+                    <a asp-page="./Details" asp-all-route-data="@routeData">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
