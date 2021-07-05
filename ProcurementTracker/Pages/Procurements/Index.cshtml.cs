@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
+using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Procurements
 {
@@ -24,6 +25,20 @@ namespace ProcurementTracker.Pages.Procurements
         public async Task OnGetAsync()
         {
             Procurement = await _context.Procurement.ToListAsync();
+        }
+
+        public string GetRowColorCode(string procurementStatus)
+        {
+            string colorCode = procurementStatus switch
+            {
+                "ABANDONED" => "table-secondary",
+                "CLOSED" => "table-success",
+                "IN PROGRESS" => "table-warning",
+                "NOT STARTED" => "table-danger",
+                _ => "table-default",
+            };
+
+            return colorCode;
         }
     }
 }

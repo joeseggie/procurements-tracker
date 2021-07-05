@@ -11,7 +11,7 @@
 <p>
     <a asp-page="Create" class="btn btn-light btn-outline-secondary"><i class="fas fa-plus-square"></i> Add Procurement</a>
 </p>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-default">
     <thead>
         <tr>
             <th>
@@ -29,21 +29,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Procurement) {
-        <tr>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProcurementMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Procurement)
+        {
+            <tr class="@Model.GetRowColorCode(item.Status)">
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProcurementMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
