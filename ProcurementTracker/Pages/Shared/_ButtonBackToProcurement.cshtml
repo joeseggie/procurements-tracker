@@ -1,0 +1,14 @@
+﻿@{
+    if (Model.HideProcurementSpecifics)
+    {
+        <a asp-page="../procurements/details" asp-route-id="@Model.ProcurementId" hidden class="btn btn-light btn-outline-secondary">
+            Back to Procurement
+        </a>
+    }
+    else
+    {
+        <a asp-page="../procurements/details" asp-route-id="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">
+            Back to Procurement
+        </a>
+    }
+}

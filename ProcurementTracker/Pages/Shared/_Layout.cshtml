@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ProcurementTracker</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -17,19 +18,30 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <!--<ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Suppliers/Index">Service Providers</a>
                         </li>
-                    </ul>
+                    </ul>-->
                     <!--<partial name="_LoginPartial" />-->
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container-fluid">
-        <main role="main" class="pb-3">
-            @RenderBody()
+    <div class="container-fluid full-height">
+        <main class="main h-100">
+            <div class="row h-100">
+                <div class="col-2 menu">
+                    <nav class="nav flex-column">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Procurements/Index"><i class="fas fa-shopping-basket"></i> Procurements</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Bids/Index"><i class="fas fa-box-open"></i> Bids</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Suppliers/Index"><i class="fas fa-shipping-fast"></i> Service Providers</a>
+                    </nav>
+                </div>
+                <div class="col-10">
+                    @RenderBody()
+                </div>
+            </div>
         </main>
     </div>
 
