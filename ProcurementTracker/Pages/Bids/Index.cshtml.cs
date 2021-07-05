@@ -23,19 +23,21 @@ namespace ProcurementTracker.Pages.Bids
 
         public Guid ProcurementId { get; set; }
 
-        public bool ShowProcurementBidActions { get; set; } = false;
+        public bool HasProcurementFilter { get; set; } = false;
 
         public async Task OnGetAsync(Guid? procurementid)
         {
             Bid = await _context.Bid
                           .Include(b => b.Supplier)
+                          .Include(b => b.Procurement)
                           .ToListAsync();
+
             if (procurementid != null && Guid.TryParse(procurementid.ToString(), out Guid suppliedProcurementId))
             {
                 ProcurementId = suppliedProcurementId;
                 Bid = Bid.Where(b => b.Procurement?.Id == ProcurementId)
-                          .ToList();
-                ShowProcurementBidActions = true;
+                         .ToList();
+                HasProcurementFilter = true;
             }
         }
     }

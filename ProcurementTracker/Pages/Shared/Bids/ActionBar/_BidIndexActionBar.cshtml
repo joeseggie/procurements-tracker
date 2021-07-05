@@ -1,5 +1,5 @@
 ﻿@{
-    if (Model.ShowProcurementBidActions)
+    if (Model.HasProcurementFilter)
     {
         <h4>Procurement: @Model.ProcurementId</h4>
         <hr />
@@ -7,12 +7,12 @@
             <a asp-page="../procurements/details"
                asp-route-id="@Model.ProcurementId"
                class="btn btn-light btn-outline-secondary">
-                Back to Procurement
+                &laquo; Back to Procurement
             </a>
             <a asp-page="Create"
                asp-route-procurementid="@Model.ProcurementId"
                class="btn btn-light btn-outline-secondary">
-                Add Bid
+                <i class="fas fa-plus-square"></i> Add Bid
             </a>
         </p>
     }

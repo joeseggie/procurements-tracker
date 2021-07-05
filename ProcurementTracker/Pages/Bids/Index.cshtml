@@ -7,7 +7,7 @@
 
 <h1>Bids</h1>
 
-<partial name="_ButtonBackToProcurement" />
+<partial name="Bids/ActionBar/_BidIndexActionBar" />
 
 <table class="table table-bordered table-striped">
     <thead>
@@ -51,11 +51,16 @@
                 </td>
                 <td>
                     @{
-                        var routeData = new Dictionary<string, string>
+                    Dictionary<string, string> routeData = new Dictionary<string, string>();
+                        if(Model.HasProcurementFilter)
                         {
-                        {"id", item.Id.ToString()},
-                        {"procurementid", @Model.ProcurementId.ToString()}
-                        };
+                            routeData.Add("id", item.Id.ToString());
+                            routeData.Add("procurementid", @item.Procurement.Id.ToString());
+                        }
+                        else
+                        {
+                            routeData.Add("id", item.Id.ToString());
+                        }
                     }
                     <a asp-page="./Details" asp-all-route-data="@routeData">Details</a>
                 </td>

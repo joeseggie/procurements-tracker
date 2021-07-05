@@ -1,0 +1,31 @@
+﻿@{
+
+    var procurementsRouteData = new Dictionary<string, string>();
+
+    if (Model.HasProcurementFilter)
+    {
+        procurementsRouteData.Add("procurementid", @Model.Bid.Procurement.Id.ToString());
+
+        <p>
+            <a asp-page="./Index"
+               asp-all-route-data="@procurementsRouteData"
+               class="btn btn-light btn-outline-secondary">&laquo; Back to Procurement Bids</a>
+
+            <a asp-page="./Edit"
+               asp-route-id="@Model.Bid.Id"
+               asp-route-procurementid="@Model.Bid.Procurement.Id"
+               class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            <a asp-page="./Index"
+               class="btn btn-light btn-outline-secondary">&laquo; Back to Bids</a>
+
+            <a asp-page="./Edit"
+               asp-route-id="@Model.Bid.Id"
+               class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
+        </p>
+    }
+}

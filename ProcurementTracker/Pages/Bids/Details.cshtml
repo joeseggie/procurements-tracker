@@ -3,21 +3,13 @@
 
 @{
     ViewData["Title"] = "Details";
-
-    var procurementsRouteData = new Dictionary<string, string>
-    {
-        {"procurementid", @Model.ProcurementId.ToString()}
-    };
 }
 
 <h1>Bid Details</h1>
-<h4>Procurement: @Model.ProcurementId</h4>
+<h4>Procurement: @Model.Bid.Procurement.Id</h4>
 <hr />
 
-<p>
-    <a asp-page="./Index" asp-all-route-data="@procurementsRouteData" class="btn btn-light btn-outline-secondary">Back to Procurement Bids</a>
-    <a asp-page="./Edit" asp-route-id="@Model.Bid.Id" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">Edit</a>
-</p>
+<partial name="Bids/ActionBar/_BidDetailsActionBar" />
 
 <div>
     <dl class="row">
