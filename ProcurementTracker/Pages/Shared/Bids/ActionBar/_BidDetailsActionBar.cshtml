@@ -9,7 +9,7 @@
         <p>
             <a asp-page="./Index"
                asp-all-route-data="@procurementsRouteData"
-               class="btn btn-light btn-outline-secondary">&laquo; Back to Procurement Bids</a>
+               class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Procurement Bids</a>
 
             <a asp-page="./Edit"
                asp-route-id="@Model.Bid.Id"
@@ -21,7 +21,7 @@
     {
         <p>
             <a asp-page="./Index"
-               class="btn btn-light btn-outline-secondary">&laquo; Back to Bids</a>
+               class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Bids</a>
 
             <a asp-page="./Edit"
                asp-route-id="@Model.Bid.Id"
