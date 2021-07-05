@@ -23,7 +23,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public Guid ProcurementId { get; set; }
 
-        public bool HideProcurementSpecifics { get; set; } = true;
+        public bool ShowProcurementBidActions { get; set; } = false;
 
         public async Task OnGetAsync(Guid? procurementid)
         {
@@ -35,7 +35,7 @@ namespace ProcurementTracker.Pages.Bids
                 ProcurementId = suppliedProcurementId;
                 Bid = Bid.Where(b => b.Procurement?.Id == ProcurementId)
                           .ToList();
-                HideProcurementSpecifics = false;
+                ShowProcurementBidActions = true;
             }
         }
     }

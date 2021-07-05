@@ -6,13 +6,9 @@
 }
 
 <h1>Bids</h1>
-<h4 hidden="@(Model.HideProcurementSpecifics ? "true" : "false")">Procurement: @Model.ProcurementId</h4>
-<hr />
 
-<p>
-    <partial name="_ButtonBackToProcurement" />
-    <a asp-page="Create" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary">Add Bid</a>
-</p>
+<partial name="_ButtonBackToProcurement" />
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
