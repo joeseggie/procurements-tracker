@@ -22,6 +22,7 @@ namespace ProcurementTracker.Pages.Bids
         public IList<Bid> Bid { get;set; }
 
         public Guid ProcurementId { get; set; }
+        public Procurement Procurement { get; set; }
 
         public bool HasProcurementFilter { get; set; } = false;
 
@@ -37,7 +38,9 @@ namespace ProcurementTracker.Pages.Bids
                 ProcurementId = suppliedProcurementId;
                 Bid = Bid.Where(b => b.Procurement?.Id == ProcurementId)
                          .ToList();
+
                 HasProcurementFilter = true;
+                Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == ProcurementId);
             }
         }
     }

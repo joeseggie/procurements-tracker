@@ -1,7 +1,7 @@
 ﻿@{
     if (Model.HasProcurementFilter)
     {
-        <h4>Procurement: @Model.ProcurementId</h4>
+        <h4>Procurement: @Model.Procurement.Description</h4>
         <hr />
         <p>
             <a asp-page="../procurements/details"

@@ -91,3 +91,10 @@ body{
 .full-height {
     height: calc(100% - 120px);
 }
+
+.action-bar{
+    padding: 5px 5px;
+    border: 1px solid #c9c9c9;
+    margin: 2px 2px;
+    border-radius: 5px;
+}

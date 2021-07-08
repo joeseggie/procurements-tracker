@@ -9,13 +9,26 @@
 <hr />
 <p>
     <a asp-page="./Index" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Procurements</a>
-    <a asp-page="./Edit" asp-route-id="@Model.Procurement.Id" class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Procurement.Id" class="btn btn-light btn-outline-secondary @(Model.DisableProcurementEdit ? "disabled" : null)"><i class="fas fa-edit"></i> Edit</a>
 </p>
 
-<p>
-    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id">Bids submitted</a>
-</p>
+<div class="row action-bar">
+    <form asp-page-handler="start" method="post" hidden="@Model.HideStartButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary btn-sm">Start</button>&nbsp;
+    </form>
+    <form asp-page-handler="close" method="post" hidden="@Model.HideCloseButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-success btn-sm">Close</button>&nbsp;
+    </form>
+    <form asp-page-handler="abandon" method="post" hidden="@Model.HideAbandonButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-secondary btn-sm">Abandon</button>&nbsp;
+    </form>
+    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id" class="btn btn-default btn-sm"><i class="fas fa-box-open"></i> Bids submitted</a>
+</div>
 
+<br />
 <div>
     <dl class="row">
         <dt class="col-sm-2">

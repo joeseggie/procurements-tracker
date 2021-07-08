@@ -31,14 +31,14 @@
     <div class="container-fluid full-height">
         <main class="main h-100">
             <div class="row h-100">
-                <div class="col-2 menu">
-                    <nav class="nav flex-column">
+                <div class="col-2 menu flex-column">
+                    <nav class="nav">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Procurements/Index"><i class="fas fa-shopping-basket"></i> Procurements</a>
                         <a class="nav-link text-dark" asp-area="" asp-page="/Bids/Index"><i class="fas fa-box-open"></i> Bids</a>
                         <a class="nav-link text-dark" asp-area="" asp-page="/Suppliers/Index"><i class="fas fa-shipping-fast"></i> Service Providers</a>
                     </nav>
                 </div>
-                <div class="col-10">
+                <div class="col-10 full-height">
                     @RenderBody()
                 </div>
             </div>
