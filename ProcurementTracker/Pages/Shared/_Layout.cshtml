@@ -28,17 +28,18 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid full-height">
-        <main class="main h-100">
-            <div class="row h-100">
-                <div class="col-2 menu flex-column">
+
+    <div class="container-fluid full-height" style="display: flex; flex-direction: column;">
+        <main class="main" style="flex-grow: 1; display: flex; flex-direction: column;">
+            <div class="row" style="flex-grow: 1">
+                <div class="col-2 menu">
                     <nav class="nav">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Procurements/Index"><i class="fas fa-shopping-basket"></i> Procurements</a>
                         <a class="nav-link text-dark" asp-area="" asp-page="/Bids/Index"><i class="fas fa-box-open"></i> Bids</a>
                         <a class="nav-link text-dark" asp-area="" asp-page="/Suppliers/Index"><i class="fas fa-shipping-fast"></i> Service Providers</a>
                     </nav>
                 </div>
-                <div class="col-10 full-height">
+                <div class="col-10">
                     @RenderBody()
                 </div>
             </div>
