@@ -30,6 +30,7 @@ namespace ProcurementTracker.Models
         public string ProcurementType { get; set; }
 
         [Display(Name = "Exchange Rate")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal ExchangeRate { get; set; }
 
         public string Currency { get; set; }
