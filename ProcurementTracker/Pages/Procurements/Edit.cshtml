@@ -18,19 +18,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Procurement.Id" />
             <div class="form-group">
+                <label asp-for="Procurement.Subject" class="control-label"></label>
+                <input asp-for="Procurement.Subject" class="form-control" />
+                <span asp-validation-for="Procurement.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Procurement.Description" class="control-label"></label>
                 <input asp-for="Procurement.Description" class="form-control" />
                 <span asp-validation-for="Procurement.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Procurement.Details" class="control-label"></label>
-                <input asp-for="Procurement.Details" class="form-control" />
-                <span asp-validation-for="Procurement.Details" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Procurement.Amount" class="control-label"></label>
-                <input asp-for="Procurement.Amount" class="form-control" />
-                <span asp-validation-for="Procurement.Amount" class="text-danger"></span>
+                <label asp-for="Procurement.EstimatedAmount" class="control-label"></label>
+                <input asp-for="Procurement.EstimatedAmount" class="form-control" />
+                <span asp-validation-for="Procurement.EstimatedAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Procurement.ProcurementMethod" class="control-label"></label>

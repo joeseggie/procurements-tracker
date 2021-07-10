@@ -15,10 +15,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].Description)
+                @Html.DisplayNameFor(model => model.Procurement[0].Subject)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].Amount)
+                @Html.DisplayNameFor(model => model.Procurement[0].EstimatedAmount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].ProcurementMethod)
@@ -33,10 +33,10 @@
         {
             <tr class="@Model.GetRowColorCode(item.Status)">
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
+                    @Html.DisplayFor(modelItem => item.EstimatedAmount)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProcurementMethod)
