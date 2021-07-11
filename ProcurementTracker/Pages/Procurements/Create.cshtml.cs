@@ -27,7 +27,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         [BindProperty]
         public Procurement Procurement { get; set; }
-        public List<SelectListItem> ProcurementStatuses { get; set; } = ChoicesList.Create<ProcurementStatus>();
+
         public List<SelectListItem> ProcurementMethods { get; set; } = ChoicesList.Create<ProcurementMethod>();
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -37,6 +37,8 @@ namespace ProcurementTracker.Pages.Procurements
             {
                 return Page();
             }
+
+            Procurement.Status = ProcurementStatus.NOT_STARTED.Value;
 
             _context.Procurement.Add(Procurement);
             await _context.SaveChangesAsync();
