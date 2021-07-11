@@ -40,5 +40,10 @@ namespace ProcurementTracker.Pages.Procurements
 
             return colorCode;
         }
+
+        public string DisplayProcurementPlan(bool isPlanned)
+        {
+            return isPlanned ? "PROCUREMENT PLAN" : "BUDGET";
+        }
     }
 }

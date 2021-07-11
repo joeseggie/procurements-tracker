@@ -15,6 +15,7 @@ namespace ProcurementTracker.Models
         public string Subject { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
+        [Display(Name = "Estimated Amount")]
         public decimal EstimatedAmount { get; set; }
 
         [Display(Name = "Procurement Method")]
@@ -35,8 +36,10 @@ namespace ProcurementTracker.Models
 
         public string Currency { get; set; }
 
+        [Display(Name = "Source of Funding")]
         public string FundingSource { get; set; }
 
+        [Display(Name = "Accounting Officers Approval Date")]
         public DateTime AccountingApprovalDate { get; set; }
 
         public DateTime CCApprovalDate { get; set; }
@@ -68,6 +71,9 @@ namespace ProcurementTracker.Models
         public DateTime ANRCCDate { get; set; }
 
         public DateTime BEBNoticeDate { get; set; }
+
+        [Display(Name = "Plan")]
+        public bool IsPlanned { get; set; }
 
         public List<Bid> Bids { get; set; }
     }

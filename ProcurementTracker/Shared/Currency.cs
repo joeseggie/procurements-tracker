@@ -16,9 +16,9 @@ namespace ProcurementTracker.Shared
 
         public static Currency UGANDA_SHILLING { get { return new Currency("UGX"); } }
 
-        public static Currency POUND_STERLING { get { return new Currency("POUND STERLING"); } }
+        public static Currency POUND_STERLING { get { return new Currency("GBP"); } }
 
-        public static Currency EURO { get { return new Currency("EURO"); } }
+        public static Currency EURO { get { return new Currency("EUR"); } }
 
         public static Currency JAPANESE_YEN { get { return new Currency("JPY"); } }
 

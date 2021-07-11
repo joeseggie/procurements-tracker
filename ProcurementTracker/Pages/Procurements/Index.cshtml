@@ -11,38 +11,44 @@
 <p>
     <a asp-page="Create" class="btn btn-light btn-outline-secondary"><i class="fas fa-plus-square"></i> Add Procurement</a>
 </p>
-<table class="table table-bordered table-sm">
+<table class="table table-sm table-striped table-bordered">
     <thead>
         <tr>
-            <th>
+            <th class="small">
                 @Html.DisplayNameFor(model => model.Procurement[0].Subject)
             </th>
-            <th>
+            <th class="small">
+                @Html.DisplayNameFor(model => model.Procurement[0].Status)
+            </th>
+            <th class="small">
                 @Html.DisplayNameFor(model => model.Procurement[0].EstimatedAmount)
             </th>
-            <th>
+            <th class="small">
                 @Html.DisplayNameFor(model => model.Procurement[0].ProcurementMethod)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].Status)
+            <th class="small">
+                @Html.DisplayNameFor(model => model.Procurement[0].IsPlanned)
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Procurement)
         {
-            <tr class="@Model.GetRowColorCode(item.Status)">
-                <td>
+            <tr>
+                <td class="small">
                     <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EstimatedAmount)
+                <td class="@Model.GetRowColorCode(item.Status) small">
+                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td>
+                <td class="small">
+                    @Html.DisplayFor(modelItem => item.Currency) @Html.DisplayFor(modelItem => item.EstimatedAmount)
+                </td>
+                <td class="small">
                     @Html.DisplayFor(modelItem => item.ProcurementMethod)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                <td class="small">
+                    @Model.DisplayProcurementPlan(item.IsPlanned)
                 </td>
             </tr>
         }

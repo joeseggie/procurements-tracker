@@ -14,6 +14,7 @@ namespace ProcurementTracker.Shared
             List<SelectListItem> result = type.GetProperties()
                                               .Where(p => p.Name != "Value")
                                               .Select(p => new SelectListItem(p.GetValue(null).ToString(), p.GetValue(null).ToString()))
+                                              .OrderBy(p => p.Text)
                                               .ToList();
 
             if (includeEmptyOption)
