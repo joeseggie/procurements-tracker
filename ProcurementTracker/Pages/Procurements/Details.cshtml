@@ -17,9 +17,9 @@
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
         <button class="btn btn-primary btn-sm">Start</button>&nbsp;
     </form>
-    <form asp-page-handler="close" method="post" hidden="@Model.HideCloseButton">
+    <form asp-page-handler="issuecontract" method="post" hidden="@Model.HideIssuContractButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
-        <button class="btn btn-success btn-sm">Close</button>&nbsp;
+        <button class="btn btn-success btn-sm">Issue Contract</button>&nbsp;
     </form>
     <form asp-page-handler="abandon" method="post" hidden="@Model.HideAbandonButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />

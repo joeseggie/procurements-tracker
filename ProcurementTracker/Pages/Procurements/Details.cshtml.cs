@@ -25,7 +25,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public bool HideStartButton { get; set; } = true;
 
-        public bool HideCloseButton { get; set; } = true;
+        public bool HideIssuContractButton { get; set; } = true;
 
         public bool HideAbandonButton { get; set; } = true;
 
@@ -54,23 +54,23 @@ namespace ProcurementTracker.Pages.Procurements
         {
             switch (status)
             {
-                case "NOT STARTED":
+                case "Not Started":
                     HideStartButton = false;
-                    HideCloseButton = true;
+                    HideIssuContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
-                case "IN PROGRESS":
+                case "Contract Signing":
                     HideStartButton = true;
-                    HideCloseButton = false;
+                    HideIssuContractButton = false;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
-                case "CLOSED":
-                case "ABANDONED":
+                case "Contract Issued":
+                case "Abandoned":
                 default:
                     HideStartButton = true;
-                    HideCloseButton = true;
+                    HideIssuContractButton = true;
                     HideAbandonButton = true;
                     DisableProcurementEdit = true;
                     break;
@@ -80,7 +80,7 @@ namespace ProcurementTracker.Pages.Procurements
         public async Task<IActionResult> OnPostAbandon(Guid id)
         {
             Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
-            if (Procurement != null && Procurement.Status != ProcurementStatus.CLOSED.Value)
+            if (Procurement != null && Procurement.Status != ProcurementStatus.CONTRACT_ISSUED.Value)
             {
                 Procurement.Status = ProcurementStatus.ABANDONED.Value;
                 _context.SaveChanges();
@@ -92,24 +92,24 @@ namespace ProcurementTracker.Pages.Procurements
         public async Task<IActionResult> OnPostStart(Guid id)
         {
             Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
-            if (Procurement != null && Procurement.Status == ProcurementStatus.NOTSTARTED.Value)
+            if (Procurement != null && Procurement.Status == ProcurementStatus.NOT_STARTED.Value)
             {
-                Procurement.Status = ProcurementStatus.INPROGRESS.Value;
+                Procurement.Status = ProcurementStatus.MARKET_PRICE_ASSESSMENT.Value;
                 _context.SaveChanges();
             }
 
             return RedirectToPage("Details", new { id = Procurement.Id });
         }
 
-        public async Task<IActionResult> OnPostClose(Guid id)
+        public async Task<IActionResult> OnPostIssueContract(Guid id)
         {
             Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
-            if (Procurement != null && Procurement.Status == ProcurementStatus.INPROGRESS.Value)
+            if (Procurement != null && Procurement.Status == ProcurementStatus.CONTRACT_SIGNING.Value)
             {
-                Procurement.Status = ProcurementStatus.CLOSED.Value;
+                Procurement.Status = ProcurementStatus.CONTRACT_ISSUED.Value;
                 _context.SaveChanges();
 
-                HideCloseButton = false;
+                HideIssuContractButton = false;
                 HideStartButton = true;
                 HideAbandonButton = false;
             }
