@@ -14,35 +14,35 @@ namespace ProcurementTracker.Shared
 
         public string Value { get; private set; }
 
-        public static ProcurementStatus NOT_STARTED { get { return new ProcurementStatus("Not Started"); } }
+        public static ProcurementStatus NOT_STARTED { get { return new ProcurementStatus("NOT STARTED"); } }
 
-        public static ProcurementStatus CONTRACT_SIGNING { get { return new ProcurementStatus("Contract Signing"); } }
+        public static ProcurementStatus CONTRACT_SIGNING { get { return new ProcurementStatus("CONTRACT SIGNING"); } }
 
-        public static ProcurementStatus ABANDONED { get { return new ProcurementStatus("Abandoned"); } }
+        public static ProcurementStatus ABANDONED { get { return new ProcurementStatus("ABANDONED"); } }
 
-        public static ProcurementStatus CONTRACT_ISSUED { get { return new ProcurementStatus("Contract Issued"); } }
+        public static ProcurementStatus CONTRACT_ISSUED { get { return new ProcurementStatus("CONTRACT ISSUED"); } }
 
-        public static ProcurementStatus MARKET_PRICE_ASSESSMENT { get { return new ProcurementStatus("Assessment of Market Price"); } }
+        public static ProcurementStatus MARKET_PRICE_ASSESSMENT { get { return new ProcurementStatus("ASSESSMENT OF MARKET PRICE"); } }
 
-        public static ProcurementStatus PROCUREMENT_REQUISITIONS { get { return new ProcurementStatus("Procurement Requisitions"); } }
+        public static ProcurementStatus PROCUREMENT_REQUISITIONS { get { return new ProcurementStatus("PROCUREMENT REQUISITIONS"); } }
 
-        public static ProcurementStatus FUNDS_AVAILABILITY_CONFIRMATION { get { return new ProcurementStatus("Confirmation of Availability of Funds"); } }
+        public static ProcurementStatus FUNDS_AVAILABILITY_CONFIRMATION { get { return new ProcurementStatus("CONFIRMATION OF AVAILABILITY OF FUNDS"); } }
 
-        public static ProcurementStatus BIDDING_DOCUMENTS_PREPARATION { get { return new ProcurementStatus("Review and Preparation of Bidding Documents"); } }
+        public static ProcurementStatus BIDDING_DOCUMENTS_PREPARATION { get { return new ProcurementStatus("REVIEW AND PREPARATION OF BIDDING DOCUMENTS"); } }
 
-        public static ProcurementStatus PMBDEV_APPROVAL { get { return new ProcurementStatus("Approval of Procurement Method, Bidding Documents and Evaluation Committee"); } }
+        public static ProcurementStatus PMBDEV_APPROVAL { get { return new ProcurementStatus("APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE"); } }
 
-        public static ProcurementStatus BIDS_INVITATION { get { return new ProcurementStatus("Advertising and Invitation of Bids"); } }
+        public static ProcurementStatus BIDS_INVITATION { get { return new ProcurementStatus("ADVERTISING AND INVITATION OF BIDS"); } }
 
-        public static ProcurementStatus BIDS_RECEIPT_AND_OPENING { get { return new ProcurementStatus("Receipt and Opening of Bids"); } }
+        public static ProcurementStatus BIDS_RECEIPT_AND_OPENING { get { return new ProcurementStatus("RECEIPT AND OPENING OF BIDS"); } }
 
-        public static ProcurementStatus BIDS_EVALUATION { get { return new ProcurementStatus("Evaluation of Bids"); } }
+        public static ProcurementStatus BIDS_EVALUATION { get { return new ProcurementStatus("EVALUATION OF BIDS"); } }
 
-        public static ProcurementStatus CONTRACT_AWARD { get { return new ProcurementStatus("Award of Contract"); } }
+        public static ProcurementStatus CONTRACT_AWARD { get { return new ProcurementStatus("AWARD OF CONTRACT"); } }
 
-        public static ProcurementStatus BEB_PRICE_REVIEW { get { return new ProcurementStatus("BEB Price Reassessment"); } }
+        public static ProcurementStatus BEB_PRICE_REVIEW { get { return new ProcurementStatus("BEB PRICE REASSESSMENT"); } }
 
-        public static ProcurementStatus ADMINISTRATIVE_REVIEW { get { return new ProcurementStatus("Administrative Review"); } }
+        public static ProcurementStatus ADMINISTRATIVE_REVIEW { get { return new ProcurementStatus("ADMINISTRATIVE REVIEW"); } }
 
         public override string ToString()
         {

@@ -30,6 +30,12 @@ namespace ProcurementTracker.Pages.Procurements
 
         public List<SelectListItem> ProcurementMethods { get; set; } = ChoicesList.Create<ProcurementMethod>();
 
+        public List<SelectListItem> Currencies { get; set; } = ChoicesList.Create<Currency>();
+
+        public List<SelectListItem> ProcurementTypes { get; set; } = ChoicesList.Create<ProcurementType>();
+
+        public List<SelectListItem> FundingSources { get; set; } = ChoicesList.Create<FundingSource>();
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
