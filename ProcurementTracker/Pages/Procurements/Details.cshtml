@@ -30,36 +30,223 @@
 
 <br />
 <div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Procurement.Subject)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Procurement.Subject)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Procurement.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Procurement.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Procurement.EstimatedAmount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Procurement.EstimatedAmount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Procurement.ProcurementMethod)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Procurement.ProcurementMethod)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Procurement.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Procurement.Status)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-9 details-content">
+            <section id="basic-data">
+                <p class="lead">Basic Data</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.Subject)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Subject)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.Description)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Description)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.Status)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Status)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.Quantity)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Quantity)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.ProcurementType)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.ProcurementType)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.Department)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Department)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.EstimatedAmount)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.Currency)
+                        @Html.DisplayFor(model => model.Procurement.EstimatedAmount)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.FundingSource)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.FundingSource)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.ProcurementMethod)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Procurement.ProcurementMethod)
+                    </dd>
+                </dl>
+            </section>
+            <section id="initiation-approvals">
+                <p class="lead">Initiation Approvals</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.AccountingApprovalDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.AccountingApprovalDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.CCApprovalDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.CCApprovalDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.CCSABDApprovalDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.CCSABDApprovalDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.PPQNoticeDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.PPQNoticeDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.PQPSClosingDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.PQPSClosingDate)
+                    </dd>
+                </dl>
+            </section>
+            <section id="request-eoi">
+                <p class="lead">Request for EoI</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.EOIInvitationDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.EOIInvitationDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.EOIClosingDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.EOIClosingDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.EOIShortlistApprovalDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.EOIShortlistApprovalDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.EOINotificationDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.EOINotificationDate)
+                    </dd>
+                </dl>
+            </section>
+            <section id="bidding-period">
+                <p class="lead">Bidding Period</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.BidInvitationDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.BidInvitationDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.BidClosingDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.BidClosingDate)
+                    </dd>
+                </dl>
+            </section>
+            <section>
+                <p class="lead">Evaluation of Bids</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.SERCCDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.SERCCDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.AERCCDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.AERCCDate)
+                    </dd>
+                </dl>
+            </section>
+            <section id="negotiations">
+                <p class="lead">Negotiations</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.NegotiationDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.NegotiationDate)
+                    </dd>
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.ANRCCDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.ANRCCDate)
+                    </dd>
+                </dl>
+            </section>
+            <section id="administrative-review">
+                <p class="lead">Administrative Review</p>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-6 pb-2">
+                        @Html.DisplayNameFor(model => model.Procurement.BEBNoticeDate)
+                    </dt>
+                    <dd class="col-sm-6 pb-2">
+                        @Html.DisplayFor(model => model.Procurement.BEBNoticeDate)
+                    </dd>
+                </dl>
+            </section>
+            <!--<section id="contract">
+                <p class="lead">Contract</p>
+                <hr />
+                &nbsp;
+            </section>-->
+        </div>
+        <div class="col-2 details-nav">
+            <div class="card">
+                <div class="card-header">
+                    Sections
+                </div>
+                <div class="card-body">
+                    <a href="#basic-data">Basic Data</a>
+                    <a href="#initiation-approvals">Initiation Approvals</a>
+                    <a href="#request-eoi">Request for EoI</a>
+                    <a href="#bidding-period">Bidding Period</a>
+                    <a href="#bids-evaluation">Bids Evaluation</a>
+                    <a href="#negotiations">Negotiations</a>
+                    <a href="#administrative-review">Administrative Review</a>
+                    <!--<a href="#contract">Contract</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -54,20 +54,20 @@ namespace ProcurementTracker.Pages.Procurements
         {
             switch (status)
             {
-                case "Not Started":
+                case "NOT STARTED":
                     HideStartButton = false;
                     HideIssuContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
-                case "Contract Signing":
+                case "CONTRACT SIGNING":
                     HideStartButton = true;
                     HideIssuContractButton = false;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
-                case "Contract Issued":
-                case "Abandoned":
+                case "CONTRACT ISSUED":
+                case "ABANDONED":
                 default:
                     HideStartButton = true;
                     HideIssuContractButton = true;

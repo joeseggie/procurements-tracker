@@ -24,6 +24,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task OnGetAsync()
         {
+            var connection = _context.Database.GetDbConnection().ConnectionString;
             Procurement = await _context.Procurement.ToListAsync();
         }
 
@@ -31,13 +32,13 @@ namespace ProcurementTracker.Pages.Procurements
         {
             string colorCode = procurementStatus switch
             {
-                "ABANDONED" => "table-secondary",
-                "CLOSED" => "table-success",
-                "IN PROGRESS" => "table-warning",
-                "NOT STARTED" => "table-danger",
+                "NOT STARTED" => "table-dark",
+                "ASSESSMENT OF MARKET PRICE" or "PROCUREMENT REQUISITIONS" or "CONFIRMATION OF AVAILABILITY OF FUNDS" or "REVIEW AND PREPARATION OF BIDDING DOCUMENTS" or "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE" => "table-info",
+                "ADVERTISING AND INVITATION OF BIDS" or "RECEIPT AND OPENING OF BIDS" or "EVALUATION OF BIDS" => "table-primary",
+                "AWARD OF CONTRACT" or "BEB PRICE REASSESSMENT" or "ADMINISTRATIVE REVIEW" or "CONTRACT SIGNING" => "table-warning",
+                "CONTRACT ISSUED" => "table-success",
                 _ => "table-default",
             };
-
             return colorCode;
         }
 

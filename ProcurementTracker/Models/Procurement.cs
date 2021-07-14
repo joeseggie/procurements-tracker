@@ -40,37 +40,52 @@ namespace ProcurementTracker.Models
         public string FundingSource { get; set; }
 
         [Display(Name = "Accounting Officers Approval Date")]
-        public DateTime AccountingApprovalDate { get; set; }
+        public DateTime? AccountingApprovalDate { get; set; }
 
-        public DateTime CCApprovalDate { get; set; }
+        [Display(Name = "Contracts Committee Approval Date")]
+        public DateTime? CCApprovalDate { get; set; }
 
-        public DateTime CCSABDApprovalDate { get; set; }
+        [Display(Name = "Contracts Committee Approval of Shortlists & Bidding Documents Date")]
+        public DateTime? CCSABDApprovalDate { get; set; }
 
-        public DateTime PPQNoticeDate { get; set; }
+        [Display(Name = "Publication of Pre-Qualification Notice Date")]
+        public DateTime? PPQNoticeDate { get; set; }
 
-        public DateTime PQPSClosingDate { get; set; }
+        [Display(Name = "Closing Date of Pre-Qualification Proposal Submission")]
+        public DateTime? PQPSClosingDate { get; set; }
 
-        public DateTime EOIInvitationDate { get; set; }
+        [Display(Name = "Invitation of Expressions of Interest Date")]
+        public DateTime? EOIInvitationDate { get; set; }
 
-        public DateTime EOIClosingDate { get; set; }
+        [Display(Name = "Closing Date")]
+        public DateTime? EOIClosingDate { get; set; }
 
-        public DateTime EOIShortlistApprovalDate { get; set; }
+        [Display(Name = "Approval of Shortlist Date")]
+        public DateTime? EOIShortlistApprovalDate { get; set; }
 
-        public DateTime EOINotificationDate { get; set; }
+        [Display(Name = "Notification Date")]
+        public DateTime? EOINotificationDate { get; set; }
 
-        public DateTime BidInvitationDate { get; set; }
+        [Display(Name = "Bid Invitation Date")]
+        public DateTime? BidInvitationDate { get; set; }
 
-        public DateTime BidClosingDate { get; set; }
+        [Display(Name = "Bid Closing Date")]
+        public DateTime? BidClosingDate { get; set; }
 
-        public DateTime SERCCDate { get; set; }
+        [Display(Name = "Submission of Evaluation Report to CC Date")]
+        public DateTime? SERCCDate { get; set; }
 
-        public DateTime AERCCDate { get; set; }
+        [Display(Name = "Approval of Evaluation Reports by Contracts Committee Date")]
+        public DateTime? AERCCDate { get; set; }
 
-        public DateTime NegotiationDate { get; set; }
+        [Display(Name = "Negotiation Date")]
+        public DateTime? NegotiationDate { get; set; }
 
-        public DateTime ANRCCDate { get; set; }
+        [Display(Name = "Approval of Negotiations Report Contracts Date")]
+        public DateTime? ANRCCDate { get; set; }
 
-        public DateTime BEBNoticeDate { get; set; }
+        [Display(Name = "Best Evaluated Bidder Notice Date")]
+        public DateTime? BEBNoticeDate { get; set; }
 
         [Display(Name = "Plan")]
         public bool IsPlanned { get; set; }
