@@ -1,0 +1,13 @@
+﻿@model ProcurementTracker.Pages.Procurements.EditModel
+
+<section>
+    <p class="h6">Administrative Review</p>
+    <hr />
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            <label asp-for="Procurement.BEBNoticeDate" class="control-label"></label>
+            <input asp-for="Procurement.BEBNoticeDate" class="form-control" type="date" />
+            <span asp-validation-for="Procurement.BEBNoticeDate" class="text-danger"></span>
+        </div>
+    </div>
+</section>

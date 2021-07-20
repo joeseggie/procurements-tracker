@@ -1,0 +1,18 @@
+﻿@model ProcurementTracker.Pages.Procurements.EditModel
+
+<section>
+    <p class="h6">Negotiations</p>
+    <hr />
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            <label asp-for="Procurement.NegotiationDate" class="control-label"></label>
+            <input asp-for="Procurement.NegotiationDate" class="form-control" type="date" />
+            <span asp-validation-for="Procurement.NegotiationDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col-sm-6">
+            <label asp-for="Procurement.ANRCCDate" class="control-label"></label>
+            <input asp-for="Procurement.ANRCCDate" class="form-control" type="date" />
+            <span asp-validation-for="Procurement.ANRCCDate" class="text-danger"></span>
+        </div>
+    </div>
+</section>
