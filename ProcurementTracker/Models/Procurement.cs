@@ -91,5 +91,22 @@ namespace ProcurementTracker.Models
         public bool IsPlanned { get; set; }
 
         public List<Bid> Bids { get; set; }
+
+        public string StatusColorCode
+        {
+            get
+            {
+                string colorCode = Status switch
+                {
+                    "NOT STARTED" => "dark",
+                    "ASSESSMENT OF MARKET PRICE" or "PROCUREMENT REQUISITIONS" or "CONFIRMATION OF AVAILABILITY OF FUNDS" or "REVIEW AND PREPARATION OF BIDDING DOCUMENTS" or "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE" => "info",
+                    "ADVERTISING AND INVITATION OF BIDS" or "RECEIPT AND OPENING OF BIDS" or "EVALUATION OF BIDS" => "primary",
+                    "AWARD OF CONTRACT" or "BEB PRICE REASSESSMENT" or "ADMINISTRATIVE REVIEW" or "CONTRACT SIGNING" => "warning",
+                    "CONTRACT ISSUED" => "success",
+                    _ => "default",
+                };
+                return colorCode;
+            }
+        }
     }
 }

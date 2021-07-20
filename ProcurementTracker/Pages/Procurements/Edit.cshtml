@@ -13,50 +13,194 @@
 </p>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-12">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Procurement.Id" />
+            <input type="hidden" asp-for="Procurement.Status" />
+
+            <p class="lead">Status: <span class="badge bg-@Model.Procurement.StatusColorCode text-white">@Model.Procurement.Status</span></p>
+            
+            <p class="h6">Basic Data</p>
+            <hr />
+
             <div class="form-group">
                 <label asp-for="Procurement.Subject" class="control-label"></label>
-                <input asp-for="Procurement.Subject" class="form-control" />
+                <input asp-for="Procurement.Subject" class="form-control col-sm-8" />
                 <span asp-validation-for="Procurement.Subject" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Procurement.Department" class="control-label"></label>
-                <input asp-for="Procurement.Department" class="form-control" />
-                <span asp-validation-for="Procurement.Department" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Procurement.Description" class="control-label"></label>
-                <input asp-for="Procurement.Description" class="form-control" />
+                <textarea asp-for="Procurement.Description" class="form-control col-sm-8" rows="3"></textarea>
                 <span asp-validation-for="Procurement.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Procurement.Currency" class="control-label"></label>
-                <input asp-for="Procurement.Currency" class="form-control" />
-                <span asp-validation-for="Procurement.Currency" class="text-danger"></span>
+                <label asp-for="Procurement.Department" class="control-label"></label>
+                <input asp-for="Procurement.Department" class="form-control col-sm-4" />
+                <span asp-validation-for="Procurement.Department" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Procurement.EstimatedAmount" class="control-label"></label>
-                <input asp-for="Procurement.EstimatedAmount" class="form-control" />
-                <span asp-validation-for="Procurement.EstimatedAmount" class="text-danger"></span>
+            <div class="form-row">
+                <div class="form-group col-sm-3">
+                    <label asp-for="Procurement.Quantity" class="control-label"></label>
+                    <input asp-for="Procurement.Quantity" type="number" class="form-control" />
+                    <span asp-validation-for="Procurement.Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label asp-for="Procurement.EstimatedAmount" class="control-label"></label>
+                    <input asp-for="Procurement.EstimatedAmount" type="number" class="form-control" />
+                    <span asp-validation-for="Procurement.EstimatedAmount" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Procurement.Currency" class="control-label"></label>
+                    <select asp-for="Procurement.Currency" asp-items="Model.Currencies" class="form-control"></select>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Procurement.ExchangeRate" class="control-label"></label>
-                <input asp-for="Procurement.ExchangeRate" class="form-control" />
-                <span asp-validation-for="Procurement.ExchangeRate" class="text-danger"></span>
+            <div class="form-row">
+                <div class="form-group col-sm-4">
+                    <label asp-for="Procurement.ProcurementType" class="control-label"></label>
+                    <select asp-for="Procurement.ProcurementType" asp-items="Model.ProcurementTypes" class="form-control"></select>
+                    <span asp-validation-for="Procurement.ProcurementType" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Procurement.FundingSource" class="control-label"></label>
+                    <select asp-for="Procurement.FundingSource" asp-items="Model.FundingSources" class="form-control"></select>
+                    <span asp-validation-for="Procurement.FundingSource" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label asp-for="Procurement.ProcurementMethod" class="control-label"></label>
+                    <select asp-for="Procurement.ProcurementMethod" asp-items="Model.ProcurementMethods" class="form-control"></select>
+                    <span asp-validation-for="Procurement.ProcurementMethod" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Procurement.ProcurementMethod" class="control-label"></label>
-                <select asp-for="Procurement.ProcurementMethod" class="form-control" asp-items="Model.ProcurementMethods"></select>
-                <span asp-validation-for="Procurement.ProcurementMethod" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Procurement.Status" class="control-label"></label>
-                <select asp-for="Procurement.Status" class="form-control" asp-items="Model.ProcurementStatuses" ></select>
-                <span asp-validation-for="Procurement.Status" class="text-danger"></span>
-            </div>
+            <section>
+                <p class="h6">Initiation Approvals</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.AccountingApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.AccountingApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.AccountingApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.CCApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.CCApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.CCApprovalDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.CCSABDApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.CCSABDApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.CCSABDApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PPQNoticeDate" class="control-label"></label>
+                        <input asp-for="Procurement.PPQNoticeDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PPQNoticeDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p class="h6">Request for EoI</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIInvitationDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIInvitationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIInvitationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIShortlistApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIShortlistApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIShortlistApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOINotificationDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOINotificationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOINotificationDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p class="h6">Bidding Period</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.BidInvitationDate" class="control-label"></label>
+                        <input asp-for="Procurement.BidInvitationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.BidInvitationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.BidClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.BidClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.BidClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p class="h6">Evaluation of Bids</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.SERCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.SERCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.SERCCDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.AERCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.AERCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.AERCCDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p class="h6">Negotiations</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.NegotiationDate" class="control-label"></label>
+                        <input asp-for="Procurement.NegotiationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.NegotiationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.ANRCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.ANRCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.ANRCCDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <p class="h6">Administrative Review</p>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.BEBNoticeDate" class="control-label"></label>
+                        <input asp-for="Procurement.BEBNoticeDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.BEBNoticeDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </section>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

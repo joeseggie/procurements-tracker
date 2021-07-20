@@ -38,7 +38,7 @@
                 <td class="small">
                     <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
                 </td>
-                <td class="@Model.GetRowColorCode(item.Status) small">
+                <td class="table-@item.StatusColorCode small">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td class="small">
