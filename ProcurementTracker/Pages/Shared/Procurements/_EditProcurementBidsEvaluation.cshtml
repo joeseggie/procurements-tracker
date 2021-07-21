@@ -1,6 +1,6 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section>
+<section class="@(Model.HideBidsEvaluationSection ? "d-none" : "") @(Model.DisableBidsEvaluationSection ? "disabled": "")">
     <p class="h6">Evaluation of Bids</p>
     <hr />
     <div class="form-row">

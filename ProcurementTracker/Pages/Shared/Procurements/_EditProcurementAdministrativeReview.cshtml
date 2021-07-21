@@ -1,6 +1,6 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section>
+<section class="@(Model.HideAdministrativeReview ? "d-none" : "") @(Model.DisableAdministrativeReview ? "disabled": "")">
     <p class="h6">Administrative Review</p>
     <hr />
     <div class="form-row">

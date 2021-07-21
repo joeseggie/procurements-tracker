@@ -1,6 +1,6 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section>
+<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "") @(Model.DisableInitiationAndEoIRequestSection ? "disabled": "")">
     <p class="h6">Initiation Approvals</p>
     <hr />
     <div class="form-row">
@@ -35,7 +35,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "") @(Model.DisableInitiationAndEoIRequestSection ? "disabled": "")">
     <p class="h6">Request for EoI</p>
     <hr />
     <div class="form-row">
