@@ -1,6 +1,6 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section>
+<section class="@(Model.HideBiddingPeriodSection ? "d-none" : "") @(Model.DisableBiddingPeriodSection ? "disabled": "")">
     <p class="h6">Bidding Period</p>
     <hr />
     <div class="form-row">

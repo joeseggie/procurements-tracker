@@ -1,6 +1,10 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section>
+@{
+    bool isHidden = Model.Procurement.Status != ProcurementStatus.NOT_STARTED.ToString();
+}
+
+<section class="@(Model.HideBasicDataSection ? "d-none" : "") @(Model.DisableBasicDataSection ? "disabled": "")">
     <p class="h6">Basic Data</p>
     <hr />
 

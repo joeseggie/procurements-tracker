@@ -34,6 +34,30 @@ namespace ProcurementTracker.Pages.Procurements
 
         public List<SelectListItem> FundingSources { get; set; } = ChoicesList.Create<FundingSource>();
 
+        public bool HideBasicDataSection { get; set; }
+
+        public bool DisableBasicDataSection { get; set; }
+
+        public bool HideInititationAndEoIRequestSection { get; set; }
+
+        public bool DisableInitiationAndEoIRequestSection { get; set; }
+
+        public bool HideBiddingPeriodSection { get; set; }
+
+        public bool DisableBiddingPeriodSection { get; set; }
+
+        public bool HideBidsEvaluationSection { get; set; }
+
+        public bool DisableBidsEvaluationSection { get; set; }
+
+        public bool HideNegotiationSection { get; set; }
+
+        public bool DisableNegotiationSection { get; set; }
+
+        public bool HideAdministrativeReview { get; set; }
+
+        public bool DisableAdministrativeReview { get; set; }
+
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
@@ -42,6 +66,8 @@ namespace ProcurementTracker.Pages.Procurements
             }
 
             Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+
+            HideOrDisabledSections();
 
             if (Procurement == null)
             {
@@ -83,6 +109,41 @@ namespace ProcurementTracker.Pages.Procurements
         private bool ProcurementExists(Guid id)
         {
             return _context.Procurement.Any(e => e.Id == id);
+        }
+
+        private void HideOrDisabledSections()
+        {
+            switch (Procurement.Status)
+            {
+                case "NOT STARTED":
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = false;
+                    HideInititationAndEoIRequestSection = true;
+                    DisableInitiationAndEoIRequestSection = false;
+                    HideBiddingPeriodSection = true;
+                    DisableBiddingPeriodSection = false;
+                    HideBidsEvaluationSection = true;
+                    DisableBidsEvaluationSection = false;
+                    HideNegotiationSection = true;
+                    DisableNegotiationSection = false;
+                    HideAdministrativeReview = true;
+                    DisableAdministrativeReview = false;
+                    break;
+                case "ASSESSMENT OF MARKET PRICE":
+                case "PROCUREMENT REQUISITIONS":
+                case "CONFIRMATION OF AVAILABILITY OF FUNDS":
+                case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
+                case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
+                    //HideBasicDataSection = false;
+                    //DisableBasicDataSection = true;
+                    //HideInititationAndEoIRequestSection = false;
+
+                    break;
+                default:
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = true;
+                    break;
+            }
         }
     }
 }
