@@ -134,10 +134,18 @@ namespace ProcurementTracker.Pages.Procurements
                 case "CONFIRMATION OF AVAILABILITY OF FUNDS":
                 case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
                 case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
-                    //HideBasicDataSection = false;
-                    //DisableBasicDataSection = true;
-                    //HideInititationAndEoIRequestSection = false;
-
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = false;
+                    HideInititationAndEoIRequestSection = false;
+                    DisableInitiationAndEoIRequestSection = false;
+                    HideBiddingPeriodSection = true;
+                    DisableBiddingPeriodSection = false;
+                    HideBidsEvaluationSection = true;
+                    DisableBidsEvaluationSection = false;
+                    HideNegotiationSection = true;
+                    DisableNegotiationSection = false;
+                    HideAdministrativeReview = true;
+                    DisableAdministrativeReview = false;
                     break;
                 default:
                     HideBasicDataSection = false;
