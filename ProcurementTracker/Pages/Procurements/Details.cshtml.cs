@@ -25,7 +25,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public bool HideStartButton { get; set; } = true;
 
-        public bool HideIssuContractButton { get; set; } = true;
+        public bool HideIssueContractButton { get; set; } = true;
 
         public bool HideAbandonButton { get; set; } = true;
 
@@ -56,7 +56,7 @@ namespace ProcurementTracker.Pages.Procurements
             {
                 case "NOT STARTED":
                     HideStartButton = false;
-                    HideIssuContractButton = true;
+                    HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
@@ -66,13 +66,20 @@ namespace ProcurementTracker.Pages.Procurements
                 case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
                 case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
                     HideStartButton = true;
-                    HideIssuContractButton = true;
+                    HideIssueContractButton = true;
+                    HideAbandonButton = false;
+                    DisableProcurementEdit = false;
+                    break;
+                case "ADVERTISING AND INVITATION OF BIDS":
+                case "RECEIPT AND OPENING OF BIDS":
+                    HideStartButton = true;
+                    HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
                 case "CONTRACT SIGNING":
                     HideStartButton = true;
-                    HideIssuContractButton = false;
+                    HideIssueContractButton = false;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
@@ -80,7 +87,7 @@ namespace ProcurementTracker.Pages.Procurements
                 case "ABANDONED":
                 default:
                     HideStartButton = true;
-                    HideIssuContractButton = true;
+                    HideIssueContractButton = true;
                     HideAbandonButton = true;
                     DisableProcurementEdit = true;
                     break;
@@ -119,7 +126,7 @@ namespace ProcurementTracker.Pages.Procurements
                 Procurement.Status = ProcurementStatus.CONTRACT_ISSUED.Value;
                 _context.SaveChanges();
 
-                HideIssuContractButton = false;
+                HideIssueContractButton = false;
                 HideStartButton = true;
                 HideAbandonButton = false;
             }

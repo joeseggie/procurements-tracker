@@ -1,72 +1,100 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "") @(Model.DisableInitiationAndEoIRequestSection ? "disabled": "")">
-    <p class="h6">Initiation Approvals</p>
-    <hr />
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.AccountingApprovalDate" class="control-label"></label>
-            <input asp-for="Procurement.AccountingApprovalDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.AccountingApprovalDate" class="text-danger"></span>
+@if (Model.DisableBasicDataSection)
+{
+    <input type="hidden" asp-for="Procurement.AccountingApprovalDate" />
+    <input type="hidden" asp-for="Procurement.CCApprovalDate" />
+    <input type="hidden" asp-for="Procurement.CCSABDApprovalDate" />
+    <input type="hidden" asp-for="Procurement.PPQNoticeDate" />
+    <input type="hidden" asp-for="Procurement.PQPSClosingDate" />
+    <input type="hidden" asp-for="Procurement.EOIInvitationDate" />
+    <input type="hidden" asp-for="Procurement.EOIClosingDate" />
+    <input type="hidden" asp-for="Procurement.EOIShortlistApprovalDate" />
+    <input type="hidden" asp-for="Procurement.EOINotificationDate" />
+    <input type="hidden" asp-for="Procurement.PQPSClosingDate" />
+}
+
+<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "")">
+    <fieldset disabled=@Model.DisableInitiationAndEoIRequestSection>
+        <p class="h6 pt-3">Initiation Approvals</p>
+        <hr />
+
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.AccountingApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.AccountingApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.AccountingApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.CCApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.CCApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.CCApprovalDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.CCSABDApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.CCSABDApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.CCSABDApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PPQNoticeDate" class="control-label"></label>
+                        <input asp-for="Procurement.PPQNoticeDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PPQNoticeDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.CCApprovalDate" class="control-label"></label>
-            <input asp-for="Procurement.CCApprovalDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.CCApprovalDate" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.CCSABDApprovalDate" class="control-label"></label>
-            <input asp-for="Procurement.CCSABDApprovalDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.CCSABDApprovalDate" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.PPQNoticeDate" class="control-label"></label>
-            <input asp-for="Procurement.PPQNoticeDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.PPQNoticeDate" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
-            <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
-        </div>
-    </div>
+    </fieldset>
 </section>
-<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "") @(Model.DisableInitiationAndEoIRequestSection ? "disabled": "")">
-    <p class="h6">Request for EoI</p>
-    <hr />
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.EOIInvitationDate" class="control-label"></label>
-            <input asp-for="Procurement.EOIInvitationDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.EOIInvitationDate" class="text-danger"></span>
+<section class="@(Model.HideInititationAndEoIRequestSection ? "d-none" : "")">
+    <fieldset disabled=@Model.DisableInitiationAndEoIRequestSection>
+        <p class="h6 pt-3">Request for EoI</p>
+        <hr />
+
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIInvitationDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIInvitationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIInvitationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOIShortlistApprovalDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOIShortlistApprovalDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOIShortlistApprovalDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.EOINotificationDate" class="control-label"></label>
+                        <input asp-for="Procurement.EOINotificationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.EOINotificationDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
+                        <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.EOIClosingDate" class="control-label"></label>
-            <input asp-for="Procurement.EOIClosingDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.EOIClosingDate" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.EOIShortlistApprovalDate" class="control-label"></label>
-            <input asp-for="Procurement.EOIShortlistApprovalDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.EOIShortlistApprovalDate" class="text-danger"></span>
-        </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.EOINotificationDate" class="control-label"></label>
-            <input asp-for="Procurement.EOINotificationDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.EOINotificationDate" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.PQPSClosingDate" class="control-label"></label>
-            <input asp-for="Procurement.PQPSClosingDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.PQPSClosingDate" class="text-danger"></span>
-        </div>
-    </div>
+    </fieldset>
 </section>

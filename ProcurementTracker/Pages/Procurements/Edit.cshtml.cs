@@ -147,6 +147,21 @@ namespace ProcurementTracker.Pages.Procurements
                     HideAdministrativeReview = true;
                     DisableAdministrativeReview = false;
                     break;
+                case "ADVERTISING AND INVITATION OF BIDS":
+                case "RECEIPT AND OPENING OF BIDS":
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = true;
+                    HideInititationAndEoIRequestSection = false;
+                    DisableInitiationAndEoIRequestSection = true;
+                    HideBiddingPeriodSection = false;
+                    DisableBiddingPeriodSection = false;
+                    HideBidsEvaluationSection = true;
+                    DisableBidsEvaluationSection = false;
+                    HideNegotiationSection = true;
+                    DisableNegotiationSection = false;
+                    HideAdministrativeReview = true;
+                    DisableAdministrativeReview = false;
+                    break;
                 default:
                     HideBasicDataSection = false;
                     DisableBasicDataSection = true;
