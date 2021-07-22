@@ -65,6 +65,7 @@ namespace ProcurementTracker.Pages.Procurements
                 case "EVALUATION OF BIDS":
                 case "BEB PRICE REASSESSMENT":
                 case "AWARD OF CONTRACT":
+                case "ADMINISTRATIVE REVIEW":
                     HideStartButton = true;
                     HideIssueContractButton = true;
                     HideAbandonButton = false;

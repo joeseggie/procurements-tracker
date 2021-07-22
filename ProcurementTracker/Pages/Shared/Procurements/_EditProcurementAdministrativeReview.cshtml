@@ -1,13 +1,25 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section class="@(Model.HideAdministrativeReview ? "d-none" : "") @(Model.DisableAdministrativeReview ? "disabled": "")">
-    <p class="h6">Administrative Review</p>
+@if (Model.DisableNegotiationSection)
+{
+    <input type="hidden" asp-for="Procurement.BEBNoticeDate" />
+}
+
+<section class="@(Model.HideAdministrativeReview ? "d-none" : "")">
+    <p class="h6 pt-3">Administrative Review</p>
     <hr />
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.BEBNoticeDate" class="control-label"></label>
-            <input asp-for="Procurement.BEBNoticeDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.BEBNoticeDate" class="text-danger"></span>
+
+    <fieldset disabled=@Model.DisableAdministrativeReview>
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.BEBNoticeDate" class="control-label"></label>
+                        <input asp-for="Procurement.BEBNoticeDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.BEBNoticeDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </section>
