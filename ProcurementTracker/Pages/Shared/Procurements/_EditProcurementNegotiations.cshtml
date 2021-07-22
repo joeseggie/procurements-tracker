@@ -1,18 +1,31 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section class="@(Model.HideNegotiationSection ? "d-none" : "") @(Model.DisableNegotiationSection ? "disabled": "")">
-    <p class="h6">Negotiations</p>
+@if (Model.DisableNegotiationSection)
+{
+    <input type="hidden" asp-for="Procurement.NegotiationDate" />
+    <input type="hidden" asp-for="Procurement.ANRCCDate" />
+}
+
+<section class="@(Model.HideNegotiationSection ? "d-none" : "")">
+    <p class="h6 pt-3">Negotiations</p>
     <hr />
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.NegotiationDate" class="control-label"></label>
-            <input asp-for="Procurement.NegotiationDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.NegotiationDate" class="text-danger"></span>
+
+    <fieldset disabled=@Model.DisableNegotiationSection>
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.NegotiationDate" class="control-label"></label>
+                        <input asp-for="Procurement.NegotiationDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.NegotiationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.ANRCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.ANRCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.ANRCCDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.ANRCCDate" class="control-label"></label>
-            <input asp-for="Procurement.ANRCCDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.ANRCCDate" class="text-danger"></span>
-        </div>
-    </div>
+    </fieldset>
 </section>

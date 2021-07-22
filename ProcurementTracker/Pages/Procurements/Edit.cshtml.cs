@@ -176,6 +176,21 @@ namespace ProcurementTracker.Pages.Procurements
                     HideAdministrativeReview = true;
                     DisableAdministrativeReview = false;
                     break;
+                case "AWARD OF CONTRACT":
+                case "BEB PRICE REASSESSMENT":
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = true;
+                    HideInititationAndEoIRequestSection = false;
+                    DisableInitiationAndEoIRequestSection = true;
+                    HideBiddingPeriodSection = false;
+                    DisableBiddingPeriodSection = true;
+                    HideBidsEvaluationSection = false;
+                    DisableBidsEvaluationSection = true;
+                    HideNegotiationSection = false;
+                    DisableNegotiationSection = false;
+                    HideAdministrativeReview = true;
+                    DisableAdministrativeReview = false;
+                    break;
                 default:
                     HideBasicDataSection = false;
                     DisableBasicDataSection = true;

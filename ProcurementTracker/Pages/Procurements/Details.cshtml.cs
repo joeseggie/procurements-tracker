@@ -55,29 +55,16 @@ namespace ProcurementTracker.Pages.Procurements
             switch (status)
             {
                 case "NOT STARTED":
-                    HideStartButton = false;
-                    HideIssueContractButton = true;
-                    HideAbandonButton = false;
-                    DisableProcurementEdit = false;
-                    break;
                 case "ASSESSMENT OF MARKET PRICE":
                 case "PROCUREMENT REQUISITIONS":
                 case "CONFIRMATION OF AVAILABILITY OF FUNDS":
                 case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
                 case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
-                    HideStartButton = true;
-                    HideIssueContractButton = true;
-                    HideAbandonButton = false;
-                    DisableProcurementEdit = false;
-                    break;
                 case "ADVERTISING AND INVITATION OF BIDS":
                 case "RECEIPT AND OPENING OF BIDS":
-                    HideStartButton = true;
-                    HideIssueContractButton = true;
-                    HideAbandonButton = false;
-                    DisableProcurementEdit = false;
-                    break;
                 case "EVALUATION OF BIDS":
+                case "BEB PRICE REASSESSMENT":
+                case "AWARD OF CONTRACT":
                     HideStartButton = true;
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
