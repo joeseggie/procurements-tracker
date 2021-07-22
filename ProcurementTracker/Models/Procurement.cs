@@ -99,6 +99,7 @@ namespace ProcurementTracker.Models
                 string colorCode = Status switch
                 {
                     "NOT STARTED" => "secondary",
+                    "ABANDONED" => "dark",
                     "ASSESSMENT OF MARKET PRICE" or "PROCUREMENT REQUISITIONS" or "CONFIRMATION OF AVAILABILITY OF FUNDS" or "REVIEW AND PREPARATION OF BIDDING DOCUMENTS" or "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE" => "info",
                     "ADVERTISING AND INVITATION OF BIDS" or "RECEIPT AND OPENING OF BIDS" or "EVALUATION OF BIDS" => "primary",
                     "AWARD OF CONTRACT" or "BEB PRICE REASSESSMENT" or "ADMINISTRATIVE REVIEW" or "CONTRACT SIGNING" => "warning",

@@ -75,7 +75,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideStartButton = true;
                     HideIssueContractButton = false;
                     HideAbandonButton = false;
-                    DisableProcurementEdit = false;
+                    DisableProcurementEdit = true;
                     break;
                 case "CONTRACT ISSUED":
                 case "ABANDONED":
