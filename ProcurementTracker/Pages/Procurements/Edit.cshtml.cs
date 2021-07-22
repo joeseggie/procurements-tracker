@@ -162,6 +162,20 @@ namespace ProcurementTracker.Pages.Procurements
                     HideAdministrativeReview = true;
                     DisableAdministrativeReview = false;
                     break;
+                case "EVALUATION OF BIDS":
+                    HideBasicDataSection = false;
+                    DisableBasicDataSection = true;
+                    HideInititationAndEoIRequestSection = false;
+                    DisableInitiationAndEoIRequestSection = true;
+                    HideBiddingPeriodSection = false;
+                    DisableBiddingPeriodSection = true;
+                    HideBidsEvaluationSection = false;
+                    DisableBidsEvaluationSection = false;
+                    HideNegotiationSection = true;
+                    DisableNegotiationSection = false;
+                    HideAdministrativeReview = true;
+                    DisableAdministrativeReview = false;
+                    break;
                 default:
                     HideBasicDataSection = false;
                     DisableBasicDataSection = true;

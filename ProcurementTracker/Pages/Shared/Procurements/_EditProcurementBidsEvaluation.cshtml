@@ -1,18 +1,31 @@
 ﻿@model ProcurementTracker.Pages.Procurements.EditModel
 
-<section class="@(Model.HideBidsEvaluationSection ? "d-none" : "") @(Model.DisableBidsEvaluationSection ? "disabled": "")">
-    <p class="h6">Evaluation of Bids</p>
+@if (Model.DisableBidsEvaluationSection)
+{
+    <input type="hidden" asp-for="Procurement.SERCCDate" />
+    <input type="hidden" asp-for="Procurement.AERCCDate" />
+}
+
+<section class="@(Model.HideBidsEvaluationSection ? "d-none" : "")">
+    <p class="h6 pt-3">Evaluation of Bids</p>
     <hr />
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.SERCCDate" class="control-label"></label>
-            <input asp-for="Procurement.SERCCDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.SERCCDate" class="text-danger"></span>
+
+    <fieldset disabled=@Model.DisableBidsEvaluationSection>
+        <div class="card bg-light">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.SERCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.SERCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.SERCCDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label asp-for="Procurement.AERCCDate" class="control-label"></label>
+                        <input asp-for="Procurement.AERCCDate" class="form-control" type="date" />
+                        <span asp-validation-for="Procurement.AERCCDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group col-sm-6">
-            <label asp-for="Procurement.AERCCDate" class="control-label"></label>
-            <input asp-for="Procurement.AERCCDate" class="form-control" type="date" />
-            <span asp-validation-for="Procurement.AERCCDate" class="text-danger"></span>
-        </div>
-    </div>
+    </fieldset>
 </section>

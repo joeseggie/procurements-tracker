@@ -77,6 +77,12 @@ namespace ProcurementTracker.Pages.Procurements
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
+                case "EVALUATION OF BIDS":
+                    HideStartButton = true;
+                    HideIssueContractButton = true;
+                    HideAbandonButton = false;
+                    DisableProcurementEdit = false;
+                    break;
                 case "CONTRACT SIGNING":
                     HideStartButton = true;
                     HideIssueContractButton = false;
