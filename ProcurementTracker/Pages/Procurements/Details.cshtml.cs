@@ -60,6 +60,16 @@ namespace ProcurementTracker.Pages.Procurements
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
                     break;
+                case "ASSESSMENT OF MARKET PRICE":
+                case "PROCUREMENT REQUISITIONS":
+                case "CONFIRMATION OF AVAILABILITY OF FUNDS":
+                case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
+                case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
+                    HideStartButton = true;
+                    HideIssuContractButton = true;
+                    HideAbandonButton = false;
+                    DisableProcurementEdit = false;
+                    break;
                 case "CONTRACT SIGNING":
                     HideStartButton = true;
                     HideIssuContractButton = false;
