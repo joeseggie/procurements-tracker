@@ -15,17 +15,17 @@
 <div class="row action-bar">
     <form asp-page-handler="start" method="post" hidden="@Model.HideStartButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
-        <button class="btn btn-primary btn-sm">Start</button>&nbsp;
+        <button class="btn btn-primary">Start Procurement</button>&nbsp;
     </form>
     <form asp-page-handler="issuecontract" method="post" hidden="@Model.HideIssueContractButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
-        <button class="btn btn-success btn-sm">Issue Contract</button>&nbsp;
+        <button class="btn btn-success">Issue Contract</button>&nbsp;
     </form>
     <form asp-page-handler="abandon" method="post" hidden="@Model.HideAbandonButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
-        <button class="btn btn-secondary btn-sm">Abandon</button>&nbsp;
+        <button class="btn btn-secondary">Abandon</button>&nbsp;
     </form>
-    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id" class="btn btn-default btn-sm"><i class="fas fa-box-open"></i> Bids submitted</a>
+    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id" class="btn btn-default"><i class="fas fa-box-open"></i> Bids submitted</a>
 </div>
 
 <br />

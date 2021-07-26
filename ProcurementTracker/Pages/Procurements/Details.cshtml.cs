@@ -55,6 +55,11 @@ namespace ProcurementTracker.Pages.Procurements
             switch (status)
             {
                 case "NOT STARTED":
+                    HideStartButton = false;
+                    HideIssueContractButton = true;
+                    HideAbandonButton = false;
+                    DisableProcurementEdit = false;
+                    break;
                 case "ASSESSMENT OF MARKET PRICE":
                 case "PROCUREMENT REQUISITIONS":
                 case "CONFIRMATION OF AVAILABILITY OF FUNDS":
