@@ -15,9 +15,53 @@
 <div class="row action-bar">
     <form asp-page-handler="start" method="post" hidden="@Model.HideStartButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
-        <button class="btn btn-primary">Start Procurement</button>&nbsp;
+        <button class="btn btn-primary">Start Market Price Assessment</button>&nbsp;
     </form>
-    <form asp-page-handler="issuecontract" method="post" hidden="@Model.HideIssueContractButton">
+    <form asp-page-handler="assessmarket" method="post" hidden="@Model.HideMarketAssessmentButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Get Procurement Requisitions</button>&nbsp;
+    </form>
+    <form asp-page-handler="procurementrequisitions" method="post" hidden="@Model.HideProcurementRequisitionsButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Confirm Funds Availability</button>&nbsp;
+    </form>
+    <form asp-page-handler="confirmfunds" method="post" hidden="@Model.HideFundsConfirmButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Review and Prepare Bidding Documents</button>&nbsp;
+    </form>
+    <form asp-page-handler="prepbiddingdocs" method="post" hidden="@Model.HidePrepBiddingDocsButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Approve Method, Bidding Documents and Evaluation Committee</button>&nbsp;
+    </form>
+    <form asp-page-handler="approveevaluationcommittee" method="post" hidden="@Model.HideEvaluationCommitteeApprovalButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Advertise and Invite Bids</button>&nbsp;
+    </form>
+    <form asp-page-handler="invitebids" method="post" hidden="@Model.HideBidsInvitationsButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Receive and Open Bids</button>&nbsp;
+    </form>
+    <form asp-page-handler="receivebids" method="post" hidden="@Model.HideReceiveBidsButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Evaluate Bids</button>&nbsp;
+    </form>
+    <form asp-page-handler="evaluatebids" method="post" hidden="@Model.HideEvaluateBidsButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Award Contract</button>&nbsp;
+    </form>
+    <form asp-page-handler="awardcontract" method="post" hidden="@Model.HideAwardContractButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">BEB Price Review</button>&nbsp;
+    </form>
+    <form asp-page-handler="reviewbebprice" method="post" hidden="@Model.HideBEBPriceReviewButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Start Administrative Review</button>&nbsp;
+    </form>
+    <form asp-page-handler="administrativereview" method="post" hidden="@Model.HideAdministrativeReviewButton">
+        <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+        <button class="btn btn-primary">Sign Contract</button>&nbsp;
+    </form>
+    <form asp-page-handler="signcontract" method="post" hidden="@Model.HideIssueContractButton">
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
         <button class="btn btn-success">Issue Contract</button>&nbsp;
     </form>

@@ -25,7 +25,7 @@
 
         public static ProcurementStatus BIDDING_DOCUMENTS_PREPARATION { get { return new ProcurementStatus("REVIEW AND PREPARATION OF BIDDING DOCUMENTS"); } }
 
-        public static ProcurementStatus PMBDEV_APPROVAL { get { return new ProcurementStatus("APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE"); } }
+        public static ProcurementStatus PMBDEC_APPROVAL { get { return new ProcurementStatus("APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE"); } }
 
         public static ProcurementStatus BIDS_INVITATION { get { return new ProcurementStatus("ADVERTISING AND INVITATION OF BIDS"); } }
 
