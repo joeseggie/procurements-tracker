@@ -69,7 +69,7 @@
         <input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
         <button class="btn btn-secondary">Abandon</button>&nbsp;
     </form>
-    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id" class="btn btn-default"><i class="fas fa-box-open"></i> Bids submitted</a>
+    <a asp-page="../bids/index" asp-route-procurementid="@Model.Procurement.Id" class="btn btn-default" hidden=@Model.HideBidsViewButton><i class="fas fa-box-open"></i> Bids submitted</a>
 </div>
 
 <br />

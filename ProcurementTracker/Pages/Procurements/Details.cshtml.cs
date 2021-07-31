@@ -51,6 +51,8 @@ namespace ProcurementTracker.Pages.Procurements
 
         public bool HideAdministrativeReviewButton { get; set; } = true;
 
+        public bool HideBidsViewButton { get; set; } = true;
+
         public bool DisableProcurementEdit { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
@@ -91,6 +93,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "ASSESSMENT OF MARKET PRICE":
                     HideStartButton = true;
@@ -107,6 +110,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "PROCUREMENT REQUISITIONS":
                     HideStartButton = true;
@@ -123,6 +127,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "CONFIRMATION OF AVAILABILITY OF FUNDS":
                     HideStartButton = true;
@@ -139,6 +144,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "REVIEW AND PREPARATION OF BIDDING DOCUMENTS":
                     HideStartButton = true;
@@ -155,6 +161,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "APPROVAL OF PROCUREMENT METHOD, BIDDING DOCUMENTS AND EVALUATION COMMITTEE":
                     HideStartButton = true;
@@ -171,6 +178,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "ADVERTISING AND INVITATION OF BIDS":
                     HideStartButton = true;
@@ -187,6 +195,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = true;
                     break;
                 case "RECEIPT AND OPENING OF BIDS":
                     HideStartButton = true;
@@ -203,6 +212,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = false;
                     break;
                 case "EVALUATION OF BIDS":
                     HideStartButton = true;
@@ -220,6 +230,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = false;
                     break;
                 case "AWARD OF CONTRACT":
                     HideStartButton = true;
@@ -237,6 +248,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = false;
                     break;
                 case "BEB PRICE REASSESSMENT":
                     HideStartButton = true;
@@ -254,6 +266,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = false;
                     break;
                 case "ADMINISTRATIVE REVIEW":
                     HideStartButton = true;
@@ -271,6 +284,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = false;
                     DisableProcurementEdit = false;
+                    HideBidsViewButton = false;
                     break;
                 case "CONTRACT SIGNING":
                     HideStartButton = true;
@@ -288,6 +302,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = false;
                     HideAbandonButton = false;
                     DisableProcurementEdit = true;
+                    HideBidsViewButton = false;
                     break;
                 case "CONTRACT ISSUED":
                 case "ABANDONED":
@@ -307,6 +322,7 @@ namespace ProcurementTracker.Pages.Procurements
                     HideIssueContractButton = true;
                     HideAbandonButton = true;
                     DisableProcurementEdit = true;
+                    HideBidsViewButton = false;
                     break;
             }
         }
