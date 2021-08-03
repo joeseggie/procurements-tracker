@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProcurementTracker.Pages.Bids.DetailsModel
+
+@{
 
     var procurementsRouteData = new Dictionary<string, string>();
 
@@ -6,26 +8,43 @@
     {
         procurementsRouteData.Add("procurementid", @Model.Bid.Procurement.Id.ToString());
 
-        <p>
+        <div class="row action-bar">
             <a asp-page="./Index"
-               asp-all-route-data="@procurementsRouteData"
-               class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Procurement Bids</a>
-
+           asp-all-route-data="@procurementsRouteData"
+           class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Procurement Bids</a>
+           &nbsp;
             <a asp-page="./Edit"
-               asp-route-id="@Model.Bid.Id"
-               asp-route-procurementid="@Model.Bid.Procurement.Id"
-               class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
-        </p>
+           asp-route-id="@Model.Bid.Id"
+           asp-route-procurementid="@Model.Bid.Procurement.Id"
+           class="btn btn-light btn-outline-secondary @(Model.HideEditButton ? "disabled" : null)"><i class="fas fa-edit"></i> Edit</a>
+           &nbsp;
+            <form asp-page-handler="openbid" method="post" hidden="@Model.HideOpenBidButton">
+                <input type="hidden" id="id" name="id" value="@Model.Bid.Id" />
+                <button class="btn btn-primary">Open Bid</button>&nbsp;
+            </form>
+            <form asp-page-handler="startbidevaluation" method="post" hidden="@Model.HideStartBidEvaluationButton">
+                <input type="hidden" id="id" name="id" value="@Model.Bid.Id" />
+                <button class="btn btn-primary">Start Bid Evaluation</button>&nbsp;
+            </form>
+            <form asp-page-handler="closebidevaluation" method="post" hidden="@Model.HideCloseBidEvaluationButton">
+                <input type="hidden" id="id" name="id" value="@Model.Bid.Id" />
+                <button class="btn btn-primary">Close Bid Evaluation</button>&nbsp;
+            </form>
+            <form asp-page-handler="acceptbid" method="post" hidden="@Model.HideAcceptBidButton">
+                <input type="hidden" id="id" name="id" value="@Model.Bid.Id" />
+                <button class="btn btn-success">Accept Bid</button>&nbsp;
+            </form>
+        </div>
     }
     else
     {
         <p>
             <a asp-page="./Index"
-               class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Bids</a>
+           class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back to Bids</a>
 
             <a asp-page="./Edit"
-               asp-route-id="@Model.Bid.Id"
-               class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
+           asp-route-id="@Model.Bid.Id"
+           class="btn btn-light btn-outline-secondary"><i class="fas fa-edit"></i> Edit</a>
         </p>
     }
 }

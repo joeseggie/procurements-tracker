@@ -23,5 +23,22 @@ namespace ProcurementTracker.Models
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Quoted Fee")]
         public decimal QuotedFee { get; set; }
+
+        public string StatusColorCode
+        {
+            get
+            {
+                string colorCode = Status switch
+                {
+                    "RECEIVED" => "secondary",
+                    "OPENED" => "info",
+                    "UNDER EVALUATION" => "primary",
+                    "EVALUATED" => "warning",
+                    "ACCEPTED" => "success",
+                    _ => "default",
+                };
+                return colorCode;
+            }
+        }
     }
 }

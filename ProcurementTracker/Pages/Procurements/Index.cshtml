@@ -14,19 +14,19 @@
 <table class="table table-sm table-striped table-bordered">
     <thead>
         <tr>
-            <th class="small">
+            <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].Subject)
             </th>
-            <th class="small">
+            <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].Status)
             </th>
-            <th class="small">
+            <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].EstimatedAmount)
             </th>
-            <th class="small">
+            <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].ProcurementMethod)
             </th>
-            <th class="small">
+            <th>
                 @Html.DisplayNameFor(model => model.Procurement[0].IsPlanned)
             </th>
         </tr>
@@ -35,19 +35,19 @@
         @foreach (var item in Model.Procurement)
         {
             <tr>
-                <td class="small">
+                <td>
                     <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
                 </td>
-                <td class="table-@item.StatusColorCode small">
+                <td class="table-@item.StatusColorCode">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td class="small">
+                <td>
                     @Html.DisplayFor(modelItem => item.Currency) @Html.DisplayFor(modelItem => item.EstimatedAmount)
                 </td>
-                <td class="small">
+                <td>
                     @Html.DisplayFor(modelItem => item.ProcurementMethod)
                 </td>
-                <td class="small">
+                <td>
                     @Model.DisplayProcurementPlan(item.IsPlanned)
                 </td>
             </tr>

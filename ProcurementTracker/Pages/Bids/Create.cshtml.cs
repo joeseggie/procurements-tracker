@@ -23,11 +23,14 @@ namespace ProcurementTracker.Pages.Bids
             _supplierManager = supplierManager;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(Guid procurementid)
         {
+            Procurement = _context.Procurement.FirstOrDefault(p => p.Id == procurementid);
             Suppliers = _supplierManager.GetSuppliersSelectList();
             return Page();
         }
+
+        public Procurement Procurement { get; set; }
 
         [BindProperty]
         public Bid Bid { get; set; }
