@@ -1,0 +1,37 @@
+﻿@page
+@model ProcurementTracker.Pages.Bids.RejectModel
+@{
+    ViewData["Title"] = "Reject Bid";
+}
+
+<h1>Reject Bid</h1>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Rejection Reason
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Bid.Id" />
+                    <div class="form-group">
+                        <label class="lead control-label">Please enter the reason for rejection below:</label>
+                        <input asp-for="Bid.ValidPeriod" class="form-control" />
+                        <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Reject Bid" class="btn btn-danger" />
+                        &nbsp;
+                        <a asp-page="./Details"
+                           asp-route-id="@Model.Bid.Id"
+                           asp-route-procurementid="@Model.Bid.Procurement.Id"
+                           class="btn btn-light btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
