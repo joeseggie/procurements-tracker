@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31313.79
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31521.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcurementTracker", "ProcurementTracker\ProcurementTracker.csproj", "{7F34CE39-7776-4874-B757-553DB28F8EC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcurementTracker", "ProcurementTracker\ProcurementTracker.csproj", "{7F34CE39-7776-4874-B757-553DB28F8EC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
