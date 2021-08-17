@@ -5,12 +5,48 @@
     ViewData["Title"] = "Procurements";
 }
 
-<h1>Procurements</h1>
+<h3>Procurements</h1>
 <hr />
 
 <p>
     <a asp-page="Create" class="btn btn-light btn-outline-secondary"><i class="fas fa-plus-square"></i> Add Procurement</a>
 </p>
+<div class="card bg-light mb-2 h-20">
+    <div class="card-body">
+        <form asp-page-handler="search" method="post">
+          <div class="form-row">
+            <div class="form-group col-12">
+              <label><small>Search</small></label>
+              <input type="text" class="form-control form-control-sm" value="@Model.SearchText" name="SearchText" placeholder="Enter search keywords...">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label><small>Plan</small></label>
+              <select id="plan" class="form-control form-control-sm">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-4">
+              <label><small>Procurement Method</small></label>
+              <select id="procurementMethod" class="form-control form-control-sm">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-4">
+              <label><small>Status</small></label>
+              <select id="status" class="form-control form-control-sm">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        </form>
+	</div>
+</div>
 <table class="table table-sm table-striped table-bordered">
     <thead>
         <tr>

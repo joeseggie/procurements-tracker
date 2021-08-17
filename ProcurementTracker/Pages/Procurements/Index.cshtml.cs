@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,6 +23,9 @@ namespace ProcurementTracker.Pages.Procurements
 
         public IList<Procurement> Procurement { get;set; }
 
+        [BindProperty]
+        public string SearchText { get; set; }
+
         public async Task OnGetAsync()
         {
             Procurement = await _context.Procurement.ToListAsync();
@@ -30,6 +34,41 @@ namespace ProcurementTracker.Pages.Procurements
         public string DisplayProcurementPlan(bool isPlanned)
         {
             return isPlanned ? "PROCUREMENT PLAN" : "BUDGET";
+        }
+
+        public async Task OnPostSearch()
+        {
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                var keywordsToSearchFor = SearchText.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                string queryFilter = string.Empty;
+                if (keywordsToSearchFor != null || keywordsToSearchFor.Count > 0)
+                {
+                    int keywordsCount = keywordsToSearchFor.Count;
+
+                    StringBuilder queryFilterBuilder = new StringBuilder().Clear();
+                    queryFilterBuilder.Append("WHERE ");
+
+                    for (int count = 0; count < keywordsCount; count++)
+                    {
+                        if ((count + 1) != keywordsCount)
+                        {
+                            queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%' OR ");
+                        }
+                        else
+                        {
+                            queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%'");
+                        }
+                    }
+
+                    queryFilter = queryFilterBuilder.ToString();
+                }
+
+                Procurement = await _context.Procurement
+                                            .FromSqlRaw($"SELECT * FROM Procurement {queryFilter};")
+                                            .ToListAsync();
+            }
         }
     }
 }
