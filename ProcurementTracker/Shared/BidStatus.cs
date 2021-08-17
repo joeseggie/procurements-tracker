@@ -24,6 +24,8 @@ namespace ProcurementTracker.Shared
 
         public static BidStatus ACCEPTED { get { return new BidStatus("ACCEPTED"); } }
 
+        public static BidStatus REJECTED { get { return new BidStatus("REJECTED"); } }
+
         public override string ToString()
         {
             return Value;

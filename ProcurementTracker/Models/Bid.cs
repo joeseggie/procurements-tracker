@@ -24,6 +24,8 @@ namespace ProcurementTracker.Models
         [Display(Name = "Quoted Fee")]
         public decimal QuotedFee { get; set; }
 
+        public string RejectionReason { get; set; }
+
         public string StatusColorCode
         {
             get
@@ -35,6 +37,7 @@ namespace ProcurementTracker.Models
                     "UNDER EVALUATION" => "primary",
                     "EVALUATED" => "warning",
                     "ACCEPTED" => "success",
+                    "REJECTED" => "danger",
                     _ => "default",
                 };
                 return colorCode;

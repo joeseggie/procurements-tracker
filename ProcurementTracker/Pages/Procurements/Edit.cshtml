@@ -19,7 +19,7 @@
             <input type="hidden" asp-for="Procurement.Id" />
             <input type="hidden" asp-for="Procurement.Status" />
 
-            <p class="lead">Status: <span class="badge bg-@Model.Procurement.StatusColorCode text-white">@Model.Procurement.Status</span></p>
+            <p class="lead">Status: <span class="badge bg-@Model.Procurement.StatusColorCode text-@Model.Procurement.StatusTextColorCode">@Model.Procurement.Status</span></p>
 
             <partial name="Procurements/_EditProcurementBasicData" />            
             <partial name="Procurements/_EditProcurementInitiationAndEoIRequest" />

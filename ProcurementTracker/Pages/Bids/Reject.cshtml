@@ -11,7 +11,7 @@
     <div class="col-8">
         <div class="card">
             <div class="card-header">
-                Rejection Reason
+                Bid Rejection Reason
             </div>
             <div class="card-body">
                 <form method="post">
@@ -19,8 +19,8 @@
                     <input type="hidden" asp-for="Bid.Id" />
                     <div class="form-group">
                         <label class="lead control-label">Please enter the reason for rejection below:</label>
-                        <input asp-for="Bid.ValidPeriod" class="form-control" />
-                        <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
+                        <textarea asp-for="Bid.RejectionReason" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Bid.RejectionReason" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Reject Bid" class="btn btn-danger" />
