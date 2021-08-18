@@ -2,91 +2,101 @@
 @model ProcurementTracker.Pages.Procurements.IndexModel
 
 @{
-    ViewData["Title"] = "Procurements";
+	ViewData["Title"] = "Procurements";
 }
 
-<h3>Procurements</h1>
-<hr />
+<h3>
+	Procurements</h1>
+	<hr />
 
-<p>
-    <a asp-page="Create" class="btn btn-light btn-outline-secondary"><i class="fas fa-plus-square"></i> Add Procurement</a>
-</p>
-<div class="card bg-light mb-2 h-20">
-    <div class="card-body">
-        <form asp-page-handler="search" method="post">
-          <div class="form-row">
-            <div class="form-group col-12">
-              <label><small>Search</small></label>
-              <input type="text" class="form-control form-control-sm" value="@Model.SearchText" name="SearchText" placeholder="Enter search keywords...">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-4">
-              <label><small>Plan</small></label>
-              <select id="plan" class="form-control form-control-sm">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group col-4">
-              <label><small>Procurement Method</small></label>
-              <select id="procurementMethod" class="form-control form-control-sm">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group col-4">
-              <label><small>Status</small></label>
-              <select id="status" class="form-control form-control-sm">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-sm">Search</button>
-        </form>
+	<p>
+		<a asp-page="Create" class="btn btn-light btn-outline-secondary"><i class="fas fa-plus-square"></i> Add Procurement</a>
+	</p>
+	<div class="card bg-light mb-2 h-20">
+		<div class="card-body">
+			<form asp-page-handler="search" method="post">
+				<div class="form-row">
+					<div class="form-group col-12">
+						<label><small>Search</small></label>
+						<input type="text" class="form-control form-control-sm" value="@Model.SearchText" name="SearchText" placeholder="Enter search keywords...">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-4">
+						<label><small>Plan</small></label>
+						<select id="plan" class="form-control form-control-sm">
+							<option selected>Choose...</option>
+							<option>...</option>
+						</select>
+					</div>
+					<div class="form-group col-4">
+						<label><small>Procurement Method</small></label>
+						<select id="procurementMethod" class="form-control form-control-sm">
+							<option selected>Choose...</option>
+							<option>...</option>
+						</select>
+					</div>
+					<div class="form-group col-4">
+						<label><small>Status</small></label>
+						<select id="status" class="form-control form-control-sm">
+							<option selected>Choose...</option>
+							<option>...</option>
+						</select>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary btn-sm">Search</button>
+			</form>
+		</div>
 	</div>
-</div>
-<table class="table table-sm table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].Subject)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].EstimatedAmount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].ProcurementMethod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Procurement[0].IsPlanned)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Procurement)
-        {
-            <tr>
-                <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
-                </td>
-                <td class="bg-@item.StatusColorCode text-@item.StatusTextColorCode">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Currency) @Html.DisplayFor(modelItem => item.EstimatedAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProcurementMethod)
-                </td>
-                <td>
-                    @Model.DisplayProcurementPlan(item.IsPlanned)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+	<table class="table table-sm table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Procurement[0].Subject)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Procurement[0].Status)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Procurement[0].EstimatedAmount)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Procurement[0].ProcurementMethod)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Procurement[0].IsPlanned)
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@if (Model.Procurement == null)
+			{
+				<tr>
+					<td colspan="5"><p class="lead">Enter keyword to search for procurement</p></td>
+				</tr>
+			}
+			else
+			{
+				@foreach (var item in Model.Procurement)
+				{
+					<tr>
+						<td>
+							<a asp-page="./Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Subject)</a>
+						</td>
+						<td class="bg-@item.StatusColorCode text-@item.StatusTextColorCode">
+							@Html.DisplayFor(modelItem => item.Status)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Currency) @Html.DisplayFor(modelItem => item.EstimatedAmount)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.ProcurementMethod)
+						</td>
+						<td>
+							@Model.DisplayProcurementPlan(item.IsPlanned)
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
