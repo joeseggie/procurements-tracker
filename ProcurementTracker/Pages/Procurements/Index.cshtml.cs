@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
@@ -26,6 +27,16 @@ namespace ProcurementTracker.Pages.Procurements
         [BindProperty]
         public string SearchText { get; set; }
 
+        [BindProperty]
+        public string ProcurementMethod { get; set; }
+
+        [BindProperty]
+        public string ProcurementStatus { get; set; }
+
+        public List<SelectListItem> ProcurementStatuses { get; set; } = ChoicesList.Create<ProcurementStatus>();
+
+        public List<SelectListItem> ProcurementMethods { get; set; } = ChoicesList.Create<ProcurementMethod>();
+
         public async Task OnGetAsync()
         {
             Procurement = await _context.Procurement.ToListAsync();
@@ -38,37 +49,65 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task OnPostSearch()
         {
+            string queryFilter = string.Empty;
+            StringBuilder queryFilterBuilder = new StringBuilder().Clear();
+
             if (!string.IsNullOrEmpty(SearchText))
             {
+                queryFilterBuilder.Append(" WHERE ");
                 var keywordsToSearchFor = SearchText.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                string queryFilter = string.Empty;
                 if (keywordsToSearchFor != null || keywordsToSearchFor.Count > 0)
                 {
                     int keywordsCount = keywordsToSearchFor.Count;
-
-                    StringBuilder queryFilterBuilder = new StringBuilder().Clear();
-                    queryFilterBuilder.Append("WHERE ");
 
                     for (int count = 0; count < keywordsCount; count++)
                     {
                         if ((count + 1) != keywordsCount)
                         {
-                            queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%' OR ");
+                            queryFilterBuilder.Append($"(Subject LIKE '%{keywordsToSearchFor[count]}%' OR ");
                         }
                         else
                         {
-                            queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%'");
+							if (keywordsCount > 1)
+								queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%')");
+                            else
+                                queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%'");
                         }
                     }
 
-                    queryFilter = queryFilterBuilder.ToString();
+                    queryFilter += queryFilterBuilder.ToString();
+                    queryFilterBuilder.Clear();
+                }
+            }
+
+			if (!string.IsNullOrEmpty(ProcurementStatus) && ProcurementStatus != "Choose...")
+			{
+				if (!string.IsNullOrEmpty(queryFilter))
+				{
+                    queryFilterBuilder.Append($" AND Status = '{ProcurementStatus}'");
+				}
+				else
+                {
+                    queryFilterBuilder.Append($" WHERE Status = '{ProcurementStatus}'");
                 }
 
-                Procurement = await _context.Procurement
-                                            .FromSqlRaw($"SELECT * FROM Procurement {queryFilter};")
-                                            .ToListAsync();
-            }
+                queryFilter += queryFilterBuilder.ToString();
+                queryFilterBuilder.Clear();
+			}
+
+            Procurement = await _context.Procurement
+                                        .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
+                                        .ToListAsync();
+        }
+
+        public async Task OnPostClearAsync()
+        {
+            SearchText = string.Empty;
+            ProcurementStatus = "Choose...";
+            ProcurementMethod = "Choose...";
+
+            Procurement = await _context.Procurement.ToListAsync();
         }
     }
 }
