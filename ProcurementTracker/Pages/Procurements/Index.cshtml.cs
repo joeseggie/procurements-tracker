@@ -33,6 +33,9 @@ namespace ProcurementTracker.Pages.Procurements
         [BindProperty]
         public string ProcurementStatus { get; set; }
 
+        [BindProperty]
+        public string Plan { get; set; }
+
         public List<SelectListItem> ProcurementStatuses { get; set; } = ChoicesList.Create<ProcurementStatus>();
 
         public List<SelectListItem> ProcurementMethods { get; set; } = ChoicesList.Create<ProcurementMethod>();
@@ -52,6 +55,21 @@ namespace ProcurementTracker.Pages.Procurements
             string queryFilter = string.Empty;
             StringBuilder queryFilterBuilder = new StringBuilder().Clear();
 
+            queryFilter = FilterBySearchKeywords(queryFilter, queryFilterBuilder);
+
+            queryFilter = FilterByProcurementStatus(queryFilter, queryFilterBuilder);
+
+            queryFilter = FilterByProcurementMethod(queryFilter, queryFilterBuilder);
+
+            queryFilter = FilterByProcurementPlan(queryFilter, queryFilterBuilder);
+
+            Procurement = await _context.Procurement
+                                        .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
+                                        .ToListAsync();
+        }
+
+        private string FilterBySearchKeywords(string queryFilter, StringBuilder queryFilterBuilder)
+        {
             if (!string.IsNullOrEmpty(SearchText))
             {
                 queryFilterBuilder.Append(" WHERE ");
@@ -69,8 +87,8 @@ namespace ProcurementTracker.Pages.Procurements
                         }
                         else
                         {
-							if (keywordsCount > 1)
-								queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%')");
+                            if (keywordsCount > 1)
+                                queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%')");
                             else
                                 queryFilterBuilder.Append($"Subject LIKE '%{keywordsToSearchFor[count]}%'");
                         }
@@ -81,21 +99,31 @@ namespace ProcurementTracker.Pages.Procurements
                 }
             }
 
-			if (!string.IsNullOrEmpty(ProcurementStatus) && ProcurementStatus != "Choose...")
-			{
-				if (!string.IsNullOrEmpty(queryFilter))
-				{
+            return queryFilter;
+        }
+
+        private string FilterByProcurementStatus(string queryFilter, StringBuilder queryFilterBuilder)
+        {
+            if (!string.IsNullOrEmpty(ProcurementStatus) && ProcurementStatus != "Choose...")
+            {
+                if (!string.IsNullOrEmpty(queryFilter))
+                {
                     queryFilterBuilder.Append($" AND Status = '{ProcurementStatus}'");
-				}
-				else
+                }
+                else
                 {
                     queryFilterBuilder.Append($" WHERE Status = '{ProcurementStatus}'");
                 }
 
                 queryFilter += queryFilterBuilder.ToString();
                 queryFilterBuilder.Clear();
-			}
+            }
 
+            return queryFilter;
+        }
+
+        private string FilterByProcurementMethod(string queryFilter, StringBuilder queryFilterBuilder)
+        {
             if (!string.IsNullOrEmpty(ProcurementMethod) && ProcurementMethod != "Choose...")
             {
                 if (!string.IsNullOrEmpty(queryFilter))
@@ -111,9 +139,29 @@ namespace ProcurementTracker.Pages.Procurements
                 queryFilterBuilder.Clear();
             }
 
-            Procurement = await _context.Procurement
-                                        .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
-                                        .ToListAsync();
+            return queryFilter;
+        }
+
+        private string FilterByProcurementPlan(string queryFilter, StringBuilder queryFilterBuilder)
+        {
+            if (!string.IsNullOrEmpty(Plan) && Plan != "Choose...")
+            {
+                string isPlanned = Plan == "PROCUREMENT PLAN" ? "1" : "0";
+
+                if (!string.IsNullOrEmpty(queryFilter))
+                {
+                    queryFilterBuilder.Append($" AND IsPlanned = {isPlanned}");
+                }
+                else
+                {
+                    queryFilterBuilder.Append($" WHERE IsPlanned = {isPlanned}");
+                }
+
+                queryFilter += queryFilterBuilder.ToString();
+                queryFilterBuilder.Clear();
+            }
+
+            return queryFilter;
         }
 
         public async Task OnPostClearAsync()
