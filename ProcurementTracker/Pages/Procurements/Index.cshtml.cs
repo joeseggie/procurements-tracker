@@ -96,6 +96,21 @@ namespace ProcurementTracker.Pages.Procurements
                 queryFilterBuilder.Clear();
 			}
 
+            if (!string.IsNullOrEmpty(ProcurementMethod) && ProcurementMethod != "Choose...")
+            {
+                if (!string.IsNullOrEmpty(queryFilter))
+                {
+                    queryFilterBuilder.Append($" AND ProcurementMethod = '{ProcurementMethod}'");
+                }
+                else
+                {
+                    queryFilterBuilder.Append($" WHERE ProcurementMethod = '{ProcurementMethod}'");
+                }
+
+                queryFilter += queryFilterBuilder.ToString();
+                queryFilterBuilder.Clear();
+            }
+
             Procurement = await _context.Procurement
                                         .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
                                         .ToListAsync();
