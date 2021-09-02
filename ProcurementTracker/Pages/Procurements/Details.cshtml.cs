@@ -14,9 +14,9 @@ namespace ProcurementTracker.Pages.Procurements
 {
     public class DetailsModel : PageModel
     {
-        private readonly ProcurementTracker.Data.ProcurementTrackerContext _context;
+        private readonly ProcurementTrackerContext _context;
 
-        public DetailsModel(ProcurementTracker.Data.ProcurementTrackerContext context)
+        public DetailsModel(ProcurementTrackerContext context)
         {
             _context = context;
         }
@@ -327,16 +327,9 @@ namespace ProcurementTracker.Pages.Procurements
             }
         }
 
-        public async Task<IActionResult> OnPostAbandon(Guid id)
+        public IActionResult OnPostAbandon(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
-            if (Procurement != null && Procurement.Status != ProcurementStatus.CONTRACT_ISSUED.Value)
-            {
-                Procurement.Status = ProcurementStatus.ABANDONED.Value;
-                _context.SaveChanges();
-            }
-
-            return RedirectToPage("Details", new { id = Procurement.Id });
+            return RedirectToPage("Abandon", new { id });
         }
 
         public async Task<IActionResult> OnPostStart(Guid id)

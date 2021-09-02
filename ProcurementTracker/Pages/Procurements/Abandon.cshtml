@@ -1,0 +1,38 @@
+﻿@page
+@model ProcurementTracker.Pages.Procurements.AbandonModel
+@{
+}
+
+<section>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<div class="card">
+				<div class="card-header bg-danger text-white">Abandon Procurement</div>
+				<div class="card-body">
+					<h5 class="card-title">Do you want to abandon the procurement?</h5>
+					<p class="card-subtitle mb-2 text-muted alert alert-danger">
+						**Please confirm that you want to abandon the procurement.
+						Once abandoned, you will not be able to make any change to the procurement.**
+					</p>
+					<form method="post">
+						<input type="hidden" id="id" name="id" value="@Model.Procurement.Id" />
+						<div class="form-group">
+							<label class="control-label">Procurement</label>
+							<input asp-for="Procurement.Subject" class="form-control" readonly />
+						</div>
+						<div class="form-group">
+							<label class="control-label">Procurement Cycle Stage</label>
+							<input asp-for="Procurement.Status" class="form-control" readonly />
+						</div>
+						<div class="form-group">
+							<a asp-page="./Details"
+							   asp-route-id="@Model.Procurement.Id"
+							   class="btn btn-light"><i class="fas fa-angle-left"></i> Cancel</a>
+							<input type="submit" value="Abandon Procurement" class="btn btn-primary" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
