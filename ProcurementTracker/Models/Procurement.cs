@@ -87,7 +87,7 @@ namespace ProcurementTracker.Models
         [Display(Name = "Best Evaluated Bidder Notice Date")]
         public DateTime? BEBNoticeDate { get; set; }
 
-        [Display(Name = "Plan")]
+        [Display(Name = "On Procurement Plan")]
         public bool IsPlanned { get; set; }
 
         public List<Bid> Bids { get; set; }

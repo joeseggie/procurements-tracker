@@ -21,6 +21,11 @@
                 <span asp-validation-for="Procurement.Subject" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input type="checkbox" asp-for="Procurement.IsPlanned" />
+                <label asp-for="Procurement.IsPlanned" class="control-label"></label>
+                <span asp-validation-for="Procurement.IsPlanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Procurement.Description" class="control-label"></label>
                 <textarea asp-for="Procurement.Description" class="form-control col-sm-8" rows="3"></textarea>
                 <span asp-validation-for="Procurement.Description" class="text-danger"></span>
