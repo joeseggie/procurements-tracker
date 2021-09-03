@@ -13,7 +13,9 @@ namespace ProcurementTracker.Shared
             var type = typeof(T);
             List<SelectListItem> result = type.GetProperties()
                                               .Where(p => p.Name != "Value")
-                                              .Select(p => new SelectListItem(p.GetValue(null).ToString(), p.GetValue(null).ToString()))
+                                              .Select(p => new SelectListItem(p.GetValue(null).ToString(),
+                                                                              p.GetValue(null).ToString(), 
+                                                                              IsSelected<T>(p.GetValue(null).ToString())))
                                               .OrderBy(p => p.Text)
                                               .ToList();
 
@@ -22,6 +24,15 @@ namespace ProcurementTracker.Shared
                 result.Insert(0, new SelectListItem("Pick an option", ""));
             }
             return result;
+        }
+
+        private static bool IsSelected<T>(string option)
+        {
+            bool optionSelected = false;
+            if (typeof(T) == typeof(Currency))
+                optionSelected = option == "UGX";
+
+            return optionSelected;
         }
     }
 }
