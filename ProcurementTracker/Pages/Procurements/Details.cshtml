@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Procurement Details";
+    string isPlanned = "NO";
 }
 
 <h1>Procurement Details</h1>
@@ -85,6 +86,13 @@
                     </dt>
                     <dd class="col-sm-9">
                         @Html.DisplayFor(model => model.Procurement.Subject)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Procurement.IsPlanned)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @if (Model.Procurement.IsPlanned) isPlanned = "YES";
+                        @isPlanned
                     </dd>
                     <dt class="col-sm-3">
                         @Html.DisplayNameFor(model => model.Procurement.Description)

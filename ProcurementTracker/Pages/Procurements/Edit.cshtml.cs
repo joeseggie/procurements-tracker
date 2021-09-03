@@ -103,7 +103,7 @@ namespace ProcurementTracker.Pages.Procurements
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("Details", new { id = Procurement.Id });
         }
 
         private bool ProcurementExists(Guid id)
