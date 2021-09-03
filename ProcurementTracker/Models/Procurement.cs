@@ -16,6 +16,7 @@ namespace ProcurementTracker.Models
 
         [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "Estimated Amount")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = false)]
         public decimal EstimatedAmount { get; set; }
 
         [Display(Name = "Procurement Method")]

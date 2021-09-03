@@ -22,6 +22,7 @@ namespace ProcurementTracker.Models
 
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Quoted Fee")]
+        [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = false)]
         public decimal QuotedFee { get; set; }
 
         public string RejectionReason { get; set; }
