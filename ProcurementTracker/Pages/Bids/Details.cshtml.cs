@@ -57,6 +57,8 @@ namespace ProcurementTracker.Pages.Bids
             }
 
             ShowHideActionBarButtons(Bid.Status);
+            HideEditButton = Bid.Procurement.Status != ProcurementStatus.BIDS_RECEIPT_AND_OPENING.Value;
+            HideStartBidEvaluationButton = Bid.Procurement.Status != ProcurementStatus.BIDS_EVALUATION.Value;
 
             return Page();
         }
