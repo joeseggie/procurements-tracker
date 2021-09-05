@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data.EntityTypeConfigurations;
 using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Data
 {
-    public class ProcurementTrackerContext : DbContext
+    public class ProcurementTrackerContext : IdentityDbContext
     {
         public ProcurementTrackerContext (DbContextOptions<ProcurementTrackerContext> options)
             : base(options)
@@ -23,6 +24,7 @@ namespace ProcurementTracker.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             new BidEntityTypeConfiguration().Configure(modelBuilder.Entity<Bid>());
         }
     }
