@@ -15,6 +15,18 @@ namespace ProcurementTracker.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
+                services.AddDefaultIdentity<IdentityUser>(options =>
+                    {
+                        options.SignIn.RequireConfirmedAccount = false;
+                        options.SignIn.RequireConfirmedEmail = false;
+                        options.SignIn.RequireConfirmedPhoneNumber = false;
+                        options.Password.RequireDigit = false;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = false;
+                    }
+                )
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ProcurementTrackerContext>();
             });
         }
     }

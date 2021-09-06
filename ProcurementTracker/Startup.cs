@@ -32,8 +32,6 @@ namespace ProcurementTracker
                     options.UseSqlServer(Configuration.GetConnectionString("ProcurementTrackerContext")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ProcurementTrackerContext>();
             services.AddRazorPages();
             services.AddMvc().AddRazorPagesOptions(options =>
             {
