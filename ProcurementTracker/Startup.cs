@@ -36,6 +36,7 @@ namespace ProcurementTracker
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Procurements/Index", "");
+                options.Conventions.AuthorizeFolder("/Procurements");
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddTransient<ISupplierManager, SupplierManager>();
