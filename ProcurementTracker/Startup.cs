@@ -28,8 +28,12 @@ namespace ProcurementTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var dbConnectionString = GetDatabaseConnectionString();
+            if (dbConnectionString == null)
+                throw new NullReferenceException("Database connection string has not been set");
+
             services.AddDbContext<ProcurementTrackerContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProcurementTrackerContext")));
+                    options.UseSqlServer(dbConnectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
@@ -40,6 +44,21 @@ namespace ProcurementTracker
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddTransient<ISupplierManager, SupplierManager>();
+        }
+
+        private static string? GetDatabaseConnectionString()
+        {
+            string? connectionString = null;
+
+            string? dbHost = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_DB_HOST");
+            string? db = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_DB");
+            string? dbUser = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_DB_USER");
+            string? dbPassword = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_DB_PASSWORD");
+
+            if (dbHost is not null && db is not null && dbUser is not null && dbPassword is not null)
+                connectionString = $"Server={dbHost};Initial Catalog={db};User Id={dbUser};Password={dbPassword};Integrated Security=False;";
+
+            return connectionString;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
