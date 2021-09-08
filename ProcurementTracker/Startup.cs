@@ -11,6 +11,7 @@ using ProcurementTracker.Data;
 using ProcurementTracker.Models.Managers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,10 +31,14 @@ namespace ProcurementTracker
         {
             var dbConnectionString = GetDatabaseConnectionString();
             if (dbConnectionString == null)
-                throw new NullReferenceException("Database connection string has not been set");
+            {
+                var appDirectory = Directory.GetCurrentDirectory();
+                var dotenvPath = Path.Combine(appDirectory, ".env");
+                ApplicationConfigurationManager.LoadEnvironmentVariables(dotenvPath);
+                dbConnectionString = GetDatabaseConnectionString();
+            }
 
-            services.AddDbContext<ProcurementTrackerContext>(options =>
-                    options.UseSqlServer(dbConnectionString));
+            services.AddDbContext<ProcurementTrackerContext>(options => options.UseSqlServer(dbConnectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();

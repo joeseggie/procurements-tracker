@@ -47,9 +47,9 @@ namespace ProcurementTracker.Pages.Procurements
             Procurement = await _context.Procurement.ToListAsync();
         }
 
-        public string DisplayProcurementPlan(bool isPlanned)
+        public string DisplayProcurementPlan(bool? isPlanned)
         {
-            return isPlanned ? "PROCUREMENT PLAN" : "BUDGET";
+            return isPlanned.HasValue && isPlanned.Value ? "PROCUREMENT PLAN" : "BUDGET";
         }
 
         public async Task OnPostSearch()

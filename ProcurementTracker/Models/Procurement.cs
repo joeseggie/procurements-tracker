@@ -11,34 +11,34 @@ namespace ProcurementTracker.Models
     public class Procurement
     {
         public Guid Id { get; set; }
-        public string Description { get; set; }
-        public string Subject { get; set; }
+        public string? Description { get; set; }
+        public string? Subject { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         [Display(Name = "Estimated Amount")]
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = false)]
-        public decimal EstimatedAmount { get; set; }
+        public decimal? EstimatedAmount { get; set; }
 
         [Display(Name = "Procurement Method")]
-        public string ProcurementMethod { get; set; }
+        public string? ProcurementMethod { get; set; }
 
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
-        public string Department { get; set; }
+        public string? Department { get; set; }
 
         [Display(Name = "Procurement Type")]
-        public string ProcurementType { get; set; }
+        public string? ProcurementType { get; set; }
 
         [Display(Name = "Exchange Rate")]
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal ExchangeRate { get; set; }
+        public decimal? ExchangeRate { get; set; }
 
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         [Display(Name = "Source of Funding")]
-        public string FundingSource { get; set; }
+        public string? FundingSource { get; set; }
 
         [Display(Name = "Accounting Officers Approval Date")]
         public DateTime? AccountingApprovalDate { get; set; }
@@ -89,11 +89,11 @@ namespace ProcurementTracker.Models
         public DateTime? BEBNoticeDate { get; set; }
 
         [Display(Name = "On Procurement Plan")]
-        public bool IsPlanned { get; set; }
+        public bool? IsPlanned { get; set; }
 
-        public List<Bid> Bids { get; set; }
+        public List<Bid>? Bids { get; set; }
 
-        public string StatusColorCode
+        public string? StatusColorCode
         {
             get
             {
@@ -110,7 +110,7 @@ namespace ProcurementTracker.Models
             }
         }
 
-        public string StatusTextColorCode
+        public string? StatusTextColorCode
         {
             get
             {

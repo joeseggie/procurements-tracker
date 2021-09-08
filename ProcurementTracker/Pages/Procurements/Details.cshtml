@@ -91,7 +91,7 @@
                         @Html.DisplayNameFor(model => model.Procurement.IsPlanned)
                     </dt>
                     <dd class="col-sm-9">
-                        @if (Model.Procurement.IsPlanned) isPlanned = "YES";
+                        @if (Model.Procurement.IsPlanned.HasValue && Model.Procurement.IsPlanned.Value) isPlanned = "YES";
                         @isPlanned
                     </dd>
                     <dt class="col-sm-3">
