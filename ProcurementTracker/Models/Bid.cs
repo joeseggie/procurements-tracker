@@ -15,9 +15,14 @@ namespace ProcurementTracker.Models
         [DataType(DataType.Date)]
         public DateTime? Submitted { get; set; }
 
-        [Display(Name = "Valid Period (Days)")]
-        public int? ValidPeriod { get; set; }
+        [Display(Name = "Bid Validity Expiry Date")]
+        public DateTime? BidValidityExpiryDate { get; set; }
+
+        [Display(Name = "Bid Security Expiry Date")]
+        public DateTime? BidSecurityExpiryDate { get; set; }
+
         public Supplier? Supplier { get; set; }
+
         public Procurement? Procurement { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]

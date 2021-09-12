@@ -24,9 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Bid[0].Submitted)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Bid[0].ValidPeriod)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -46,9 +46,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Submitted)
                 </td>
-                <td>
+               @* <td>
                     @Html.DisplayFor(modelItem => item.ValidPeriod)
-                </td>
+                </td>*@
                 <td>
                     @{
                     Dictionary<string, string> routeData = new Dictionary<string, string>();
