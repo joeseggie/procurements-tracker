@@ -89,7 +89,7 @@ namespace ProcurementTracker.Models
         public DateTime? BEBNoticeDate { get; set; }
 
         [Display(Name = "On Procurement Plan")]
-        public bool? IsPlanned { get; set; }
+        public bool IsPlanned { get; set; }
 
         public List<Bid>? Bids { get; set; }
 

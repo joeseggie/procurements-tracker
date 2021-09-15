@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcurementTracker.Data;
 
 namespace ProcurementTracker.Data.Migrations
 {
     [DbContext(typeof(ProcurementTrackerContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210915141544_ProcurementIsPlannedDefaultValue")]
+    partial class ProcurementIsPlannedDefaultValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,7 +320,7 @@ namespace ProcurementTracker.Data.Migrations
                     b.Property<string>("FundingSource")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsPlanned")
+                    b.Property<bool?>("IsPlanned")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("NegotiationDate")
