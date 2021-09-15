@@ -351,3 +351,6 @@ MigrationBackup/
 
 **/launchSettings.json
 **/.env
+
+# ignore the VS Code settings
+.vscode/
