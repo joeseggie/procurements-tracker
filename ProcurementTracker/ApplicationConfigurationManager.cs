@@ -41,7 +41,7 @@ namespace ProcurementTracker
 
         private static async Task SeedAdminUserRolesAsync(ProcurementTrackerContext context, Guid? adminUserId, Guid? adminRoleId)
         {
-            if(adminUserId.HasValue && adminRoleId.HasValue)
+            if (adminUserId.HasValue && adminRoleId.HasValue)
             {
                 var adminUserRole = await context.UserRoles.FirstOrDefaultAsync(userRole => userRole.UserId == adminUserId.Value.ToString() &&
                                                                                             userRole.RoleId == adminRoleId.Value.ToString());
@@ -65,6 +65,8 @@ namespace ProcurementTracker
             string? username = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_USERNAME");
             string? email = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_EMAIL");
             string? password = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_PASSWORD");
+            string? firstname = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_FIRSTNAME");
+            string? lastname = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_LASTNAME");
 
             if (username is null || email is null || password is null)
                 return null;
@@ -81,6 +83,8 @@ namespace ProcurementTracker
                     Id = adminUserId.ToString(),
                     UserName = username,
                     Email = email,
+                    Firstname = firstname,
+                    Lastname = lastname,
                     NormalizedEmail = email.ToUpper(),
                     NormalizedUserName = username.ToUpper(),
                 };
