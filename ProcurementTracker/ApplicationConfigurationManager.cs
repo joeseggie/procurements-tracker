@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
+using ProcurementTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -75,7 +76,7 @@ namespace ProcurementTracker
             {
                 adminUserId = Guid.NewGuid();
 
-                IdentityUser user = new()
+                ApplicationUser user = new()
                 {
                     Id = adminUserId.ToString(),
                     UserName = username,
@@ -84,7 +85,7 @@ namespace ProcurementTracker
                     NormalizedUserName = username.ToUpper(),
                 };
 
-                var passwordHasher= new PasswordHasher<IdentityUser>();
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
                 user.PasswordHash = passwordHasher.HashPassword(user, password);
 
                 await context.Users.AddAsync(user);

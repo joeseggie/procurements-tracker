@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
+using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Pages.Users
 {
@@ -19,7 +20,7 @@ namespace ProcurementTracker.Pages.Users
             _context = context;
         }
 
-        public IList<IdentityUser>? ApplicationUsers { get; set; }
+        public IList<ApplicationUser>? ApplicationUsers { get; set; }
 
         public async Task OnGet()
         {
