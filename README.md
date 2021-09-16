@@ -1,5 +1,5 @@
 # Procurements Tracking Tool
-![example branch parameter](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
+![example branch parameter](https://github.com/joeseggie/procurements-tracker/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)
 
 
 Procurements tracking tool
