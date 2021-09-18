@@ -9,6 +9,7 @@ using ProcurementTracker.Data;
 using ProcurementTracker.Models;
 using ProcurementTracker.Shared;
 using ProcurementTracker.Models.Managers;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProcurementTracker.Pages.Bids
 {
@@ -17,15 +18,17 @@ namespace ProcurementTracker.Pages.Bids
         private readonly ProcurementTrackerContext _context;
         private readonly ISupplierManager _supplierManager;
 
+        public List<SelectListItem> Currencies { get; set; } = ChoicesList.Create<Currency>();
+
         public CreateModel(ProcurementTrackerContext context, ISupplierManager supplierManager)
         {
             _context = context;
             _supplierManager = supplierManager;
         }
 
-        public IActionResult OnGet(Guid procurementid)
+        public async Task<IActionResult> OnGetAsync(Guid procurementid)
         {
-            Procurement = _context.Procurement.FirstOrDefault(p => p.Id == procurementid);
+            Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == procurementid);
             Suppliers = _supplierManager.GetSuppliersSelectList();
             return Page();
         }
@@ -43,9 +46,9 @@ namespace ProcurementTracker.Pages.Bids
 
         public List<SelectListItem> Suppliers { get; set; }
 
-        private void SetBidProcurement()
+        private async void SetBidProcurement()
         {
-            Bid.Procurement = _context.Procurement.FirstOrDefault(p => p.Id == ProcurementId);
+            Bid.Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == ProcurementId);
         }
 
         private void SetBidStatus()
@@ -65,7 +68,7 @@ namespace ProcurementTracker.Pages.Bids
             Bid.Supplier = await _supplierManager.GetSupplierAsync(SupplierId);
             SetBidStatus();
 
-            _context.Bid.Add(Bid);
+            await _context.Bid.AddAsync(Bid);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Details", new { id = Bid.Id, procurementid = ProcurementId });

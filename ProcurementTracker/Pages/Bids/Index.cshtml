@@ -38,9 +38,12 @@
                     @Html.DisplayFor(modelItem => item.Supplier.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.QuotedFee)
+                    @{
+                        var currency = item.Currency != null ? item.Currency : Currency.UGANDA_SHILLING.Value;
+                    }
+                    @currency @Html.DisplayFor(modelItem => item.QuotedFee)
                 </td>
-                <td class="table-@item.StatusColorCode">
+                <td class="bg-@item.StatusColorCode">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>

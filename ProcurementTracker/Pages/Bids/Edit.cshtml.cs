@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
+using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Bids
 {
@@ -15,13 +16,15 @@ namespace ProcurementTracker.Pages.Bids
     {
         private readonly ProcurementTracker.Data.ProcurementTrackerContext _context;
 
+        public List<SelectListItem>? Currencies { get; set; } = ChoicesList.Create<Currency>();
+
         public EditModel(ProcurementTracker.Data.ProcurementTrackerContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Bid Bid { get; set; }
+        public Bid? Bid { get; set; }
 
         public bool HasProcurementFilter { get; set; } = false;
 
@@ -74,14 +77,8 @@ namespace ProcurementTracker.Pages.Bids
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BidExists(Bid.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                if (!BidExists(Bid.Id)) return NotFound();
+                else throw;
             }
 
             return RedirectToPage("./Details", new { id = Bid.Id, procurementid = Bid.Procurement.Id});

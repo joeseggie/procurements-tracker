@@ -2,7 +2,7 @@
 @model ProcurementTracker.Pages.Bids.CreateModel
 
 @{
-    ViewData["Title"] = "Add Bid";
+	ViewData["Title"] = "Add Bid";
 }
 
 <h1>Add Bid</h1>
@@ -10,40 +10,63 @@
 <hr />
 
 <p>
-    <a asp-page="./Index" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Cancel</a>
+	<a asp-page="./Index" asp-route-procurementid="@Model.ProcurementId" class="btn btn-light btn-outline-secondary"><i
+			class="fas fa-angle-left"></i> Cancel</a>
 </p>
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Bid.Supplier" class="control-label"></label>
-                <select asp-for="SupplierId" class="form-control" asp-items="@Model.Suppliers"></select>
-                <span asp-validation-for="Bid.Supplier" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bid.QuotedFee" class="control-label"></label>
-                <input asp-for="Bid.QuotedFee" class="form-control" />
-                <span asp-validation-for="Bid.QuotedFee" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Bid.Submitted" class="control-label"></label>
-                <input asp-for="Bid.Submitted" class="form-control" />
-                <span asp-validation-for="Bid.Submitted" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="Bid.ValidPeriod" class="control-label"></label>
-                <input asp-for="Bid.ValidPeriod" class="form-control" />
-                <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<form method="post">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="form-group">
+		<label asp-for="Bid.Supplier" class="control-label"></label>
+		<select asp-for="SupplierId" class="form-control" asp-items="@Model.Suppliers"></select>
+		<span asp-validation-for="Bid.Supplier" class="text-danger"></span>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div class="form-group">
+				<label asp-for="Bid.Currency" class="control-label"></label>
+				<select asp-for="Bid.Currency" asp-items="Model.Currencies" class="form-control"></select>
+				<span asp-validation-for="Bid.Currency" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label asp-for="Bid.QuotedFee" class="control-label"></label>
+				<input asp-for="Bid.QuotedFee" class="form-control" />
+				<span asp-validation-for="Bid.QuotedFee" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label asp-for="Bid.Submitted" class="control-label"></label>
+				<input asp-for="Bid.Submitted" class="form-control" />
+				<span asp-validation-for="Bid.Submitted" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div class="form-group">
+				<label asp-for="Bid.BidSecurityExpiryDate" class="control-label"></label>
+				<input asp-for="Bid.BidSecurityExpiryDate" class="form-control" type="date" />
+				<span asp-validation-for="Bid.BidSecurityExpiryDate" class="text-danger"></span>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<label asp-for="Bid.BidValidityExpiryDate" class="control-label"></label>
+				<input asp-for="Bid.BidValidityExpiryDate" class="form-control" type="date" />
+				<span asp-validation-for="Bid.BidValidityExpiryDate" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input type="submit" value="Save" class="btn btn-primary" />
+	</div>
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

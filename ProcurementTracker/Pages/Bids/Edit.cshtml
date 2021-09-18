@@ -5,11 +5,11 @@
     ViewData["Title"] = "Edit";
 
     var routeData = new Dictionary<string, string>()
-    {
-        {"id", Model.Bid.Id.ToString()}
-    };
+{
+{"id", Model.Bid.Id.ToString()}
+};
 
-    if(Model.HasProcurementFilter)
+    if (Model.HasProcurementFilter)
     {
         routeData.Add("procurementid", Model.Bid.Procurement.Id.ToString());
     }
@@ -20,50 +20,71 @@
 <hr />
 
 <div>
-    <a asp-page="./Details" asp-all-route-data="@routeData" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Cancel</a>
+    <a asp-page="./Details" asp-all-route-data="@routeData" class="btn btn-light btn-outline-secondary"><i
+            class="fas fa-angle-left"></i> Cancel</a>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Bid.Id" />
-            <input type="hidden" asp-for="Bid.Status" />
-            <input type="hidden" asp-for="Bid.Submitted" />
-            <input type="hidden" asp-for="Bid.Procurement.Id" />
-            <div class="form-group">
-                <label asp-for="Bid.Supplier.Name" class="control-label"></label>
-                <input asp-for="Bid.Supplier.Name" class="form-control" readonly />
+<br />
+<section>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Bid.Id" />
+        <input type="hidden" asp-for="Bid.Status" />
+        <input type="hidden" asp-for="Bid.Submitted" />
+        <input type="hidden" asp-for="Bid.Procurement.Id" />
+        <div class="form-group">
+            <label asp-for="Bid.Supplier.Name" class="control-label"></label>
+            <input asp-for="Bid.Supplier.Name" class="form-control" readonly />
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <label asp-for="Bid.Status" class="control-label"></label>
+                    <input asp-for="Bid.Status" class="form-control" readonly />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Bid.Status" class="control-label"></label>
-                <input asp-for="Bid.Status" class="form-control" readonly />
+            <div class="col-2">
+                <div class="form-group">
+                    <label asp-for="Bid.Submitted" class="control-label"></label>
+                    <input asp-for="Bid.Submitted" class="form-control" readonly />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Bid.Submitted" class="control-label"></label>
-                <input asp-for="Bid.Submitted" class="form-control" readonly />
+            <div class="col-2">
+                <div class="form-group">
+                    <label asp-for="Bid.Currency" class="control-label"></label>
+                    <select asp-for="Bid.Currency" asp-items="Model.Currencies" class="form-control"></select>
+                    <span asp-validation-for="Bid.Currency" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Bid.Status" class="control-label"></label>
-                <input asp-for="Bid.Status" class="form-control" readonly />
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Bid.QuotedFee" class="control-label"></label>
+                    <input asp-for="Bid.QuotedFee" class="form-control" />
+                    <span asp-validation-for="Bid.QuotedFee" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Bid.QuotedFee" class="control-label"></label>
-                <input asp-for="Bid.QuotedFee" class="form-control" />
-                <span asp-validation-for="Bid.QuotedFee" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Bid.BidSecurityExpiryDate" class="control-label"></label>
+                    <input asp-for="Bid.BidSecurityExpiryDate" class="form-control" type="date" />
+                    <span asp-validation-for="Bid.BidSecurityExpiryDate" class="text-danger"></span>
+                </div>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Bid.ValidPeriod" class="control-label"></label>
-                <input asp-for="Bid.ValidPeriod" class="form-control" />
-                <span asp-validation-for="Bid.ValidPeriod" class="text-danger"></span>
-            </div*@>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Bid.BidValidityExpiryDate" class="control-label"></label>
+                    <input asp-for="Bid.BidValidityExpiryDate" class="form-control" type="date" />
+                    <span asp-validation-for="Bid.BidValidityExpiryDate" class="text-danger"></span>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</section>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

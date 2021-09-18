@@ -32,6 +32,8 @@ namespace ProcurementTracker.Models
 
         public string? RejectionReason { get; set; }
 
+        public string? Currency { get; set; }
+
         public string? StatusColorCode
         {
             get
