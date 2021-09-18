@@ -13,12 +13,15 @@ namespace ProcurementTracker.Models
         public string? Status { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd MMMMM yyyy}")]
         public DateTime? Submitted { get; set; }
 
         [Display(Name = "Bid Validity Expiry Date")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd MMMMM yyyy}")]
         public DateTime? BidValidityExpiryDate { get; set; }
 
         [Display(Name = "Bid Security Expiry Date")]
+        [DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "{0:dd MMMMM yyyy}")]
         public DateTime? BidSecurityExpiryDate { get; set; }
 
         public Supplier? Supplier { get; set; }
