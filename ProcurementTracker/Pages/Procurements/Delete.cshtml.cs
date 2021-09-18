@@ -29,7 +29,7 @@ namespace ProcurementTracker.Pages.Procurements
                 return NotFound();
             }
 
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Procurement == null)
             {
@@ -45,11 +45,11 @@ namespace ProcurementTracker.Pages.Procurements
                 return NotFound();
             }
 
-            Procurement = await _context.Procurement.FindAsync(id);
+            Procurement = await _context.Procurements.FindAsync(id);
 
             if (Procurement != null)
             {
-                _context.Procurement.Remove(Procurement);
+                _context.Procurements.Remove(Procurement);
                 await _context.SaveChangesAsync();
             }
 

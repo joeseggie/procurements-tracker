@@ -35,7 +35,7 @@ namespace ProcurementTracker.Pages.Suppliers
                 return Page();
             }
 
-            _context.Supplier.Add(Supplier);
+            _context.Suppliers.Add(Supplier);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

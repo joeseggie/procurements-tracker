@@ -37,14 +37,14 @@ namespace ProcurementTracker.Pages.Bids
 
             if (procurementid == null)
             {
-                Bid = await _context.Bid
+                Bid = await _context.Bids
                                     .Include(m => m.Supplier)
                                     .Include(m => m.Procurement)
                                     .FirstOrDefaultAsync(m => m.Id == id); 
             }
             else
             {
-                Bid = await _context.Bid
+                Bid = await _context.Bids
                                     .Include(m => m.Supplier)
                                     .Include(m => m.Procurement)
                                     .FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
@@ -86,7 +86,7 @@ namespace ProcurementTracker.Pages.Bids
 
         private bool BidExists(Guid id)
         {
-            return _context.Bid.Any(e => e.Id == id);
+            return _context.Bids.Any(e => e.Id == id);
         }
     }
 }

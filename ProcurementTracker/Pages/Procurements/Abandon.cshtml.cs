@@ -26,7 +26,7 @@ namespace ProcurementTracker.Pages.Procurements
         {
             if (id == null) return NotFound();
 
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == id.Value);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == id.Value);
             if (Procurement == null) return NotFound();
 
             return Page();
@@ -34,7 +34,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostAsync([FromForm]Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == id);
             if (Procurement == null) return NotFound();
 
             Procurement.Status = ProcurementStatus.ABANDONED.Value;

@@ -30,7 +30,7 @@ namespace ProcurementTracker.Pages.Suppliers
                 return NotFound();
             }
 
-            Supplier = await _context.Supplier.FirstOrDefaultAsync(m => m.Id == id);
+            Supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Supplier == null)
             {
@@ -71,7 +71,7 @@ namespace ProcurementTracker.Pages.Suppliers
 
         private bool SupplierExists(Guid id)
         {
-            return _context.Supplier.Any(e => e.Id == id);
+            return _context.Suppliers.Any(e => e.Id == id);
         }
     }
 }

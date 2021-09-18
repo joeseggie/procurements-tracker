@@ -65,7 +65,7 @@ namespace ProcurementTracker.Pages.Procurements
                 return NotFound();
             }
 
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
 
             HideOrDisabledSections();
 
@@ -108,7 +108,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         private bool ProcurementExists(Guid id)
         {
-            return _context.Procurement.Any(e => e.Id == id);
+            return _context.Procurements.Any(e => e.Id == id);
         }
 
         private void HideOrDisabledSections()

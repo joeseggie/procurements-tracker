@@ -28,7 +28,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task OnGetAsync(Guid? procurementid)
         {
-            Bid = await _context.Bid
+            Bid = await _context.Bids
                           .Include(b => b.Supplier)
                           .Include(b => b.Procurement)
                           .ToListAsync();
@@ -40,7 +40,7 @@ namespace ProcurementTracker.Pages.Bids
                          .ToList();
 
                 HasProcurementFilter = true;
-                Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == ProcurementId);
+                Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == ProcurementId);
             }
         }
     }

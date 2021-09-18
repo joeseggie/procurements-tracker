@@ -28,7 +28,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task<IActionResult> OnGetAsync(Guid procurementid)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == procurementid);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == procurementid);
             Suppliers = _supplierManager.GetSuppliersSelectList();
             return Page();
         }
@@ -48,7 +48,7 @@ namespace ProcurementTracker.Pages.Bids
 
         private async void SetBidProcurement()
         {
-            Bid.Procurement = await _context.Procurement.FirstOrDefaultAsync(p => p.Id == ProcurementId);
+            Bid.Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == ProcurementId);
         }
 
         private void SetBidStatus()
@@ -68,7 +68,7 @@ namespace ProcurementTracker.Pages.Bids
             Bid.Supplier = await _supplierManager.GetSupplierAsync(SupplierId);
             SetBidStatus();
 
-            await _context.Bid.AddAsync(Bid);
+            await _context.Bids.AddAsync(Bid);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Details", new { id = Bid.Id, procurementid = ProcurementId });

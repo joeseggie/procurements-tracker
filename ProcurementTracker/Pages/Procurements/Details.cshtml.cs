@@ -62,7 +62,7 @@ namespace ProcurementTracker.Pages.Procurements
                 return NotFound();
             }
 
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Procurement == null)
             {
@@ -334,7 +334,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostStart(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.NOT_STARTED.Value)
             {
                 Procurement.Status = ProcurementStatus.MARKET_PRICE_ASSESSMENT.Value;
@@ -346,7 +346,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostAssessMarket(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.MARKET_PRICE_ASSESSMENT.Value)
             {
                 Procurement.Status = ProcurementStatus.PROCUREMENT_REQUISITIONS.Value;
@@ -358,7 +358,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostProcurementRequisitions(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.PROCUREMENT_REQUISITIONS.Value)
             {
                 Procurement.Status = ProcurementStatus.FUNDS_AVAILABILITY_CONFIRMATION.Value;
@@ -370,7 +370,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostConfirmFunds(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.FUNDS_AVAILABILITY_CONFIRMATION.Value)
             {
                 Procurement.Status = ProcurementStatus.BIDDING_DOCUMENTS_PREPARATION.Value;
@@ -382,7 +382,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostPrepBiddingDocs(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.BIDDING_DOCUMENTS_PREPARATION.Value)
             {
                 Procurement.Status = ProcurementStatus.PMBDEC_APPROVAL.Value;
@@ -394,7 +394,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostApproveEvaluationCommittee(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.PMBDEC_APPROVAL.Value)
             {
                 Procurement.Status = ProcurementStatus.BIDS_INVITATION.Value;
@@ -406,7 +406,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostInviteBids(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.BIDS_INVITATION.Value)
             {
                 Procurement.Status = ProcurementStatus.BIDS_RECEIPT_AND_OPENING.Value;
@@ -418,7 +418,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostReceiveBids(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.BIDS_RECEIPT_AND_OPENING.Value)
             {
                 Procurement.Status = ProcurementStatus.BIDS_EVALUATION.Value;
@@ -430,7 +430,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostEvaluateBids(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.BIDS_EVALUATION.Value)
             {
                 Procurement.Status = ProcurementStatus.CONTRACT_AWARD.Value;
@@ -442,7 +442,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostAwardContract(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.CONTRACT_AWARD.Value)
             {
                 Procurement.Status = ProcurementStatus.BEB_PRICE_REVIEW.Value;
@@ -454,7 +454,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostReviewBEBPrice(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.BEB_PRICE_REVIEW.Value)
             {
                 Procurement.Status = ProcurementStatus.ADMINISTRATIVE_REVIEW.Value;
@@ -466,7 +466,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostAdministrativeReview(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.ADMINISTRATIVE_REVIEW.Value)
             {
                 Procurement.Status = ProcurementStatus.CONTRACT_SIGNING.Value;
@@ -478,7 +478,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task<IActionResult> OnPostSignContract(Guid id)
         {
-            Procurement = await _context.Procurement.FirstOrDefaultAsync(m => m.Id == id);
+            Procurement = await _context.Procurements.FirstOrDefaultAsync(m => m.Id == id);
             if (Procurement != null && Procurement.Status == ProcurementStatus.CONTRACT_SIGNING.Value)
             {
                 Procurement.Status = ProcurementStatus.CONTRACT_ISSUED.Value;

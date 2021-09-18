@@ -29,7 +29,7 @@ namespace ProcurementTracker.Pages.Suppliers
                 return NotFound();
             }
 
-            Supplier = await _context.Supplier.FirstOrDefaultAsync(m => m.Id == id);
+            Supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Supplier == null)
             {
@@ -45,11 +45,11 @@ namespace ProcurementTracker.Pages.Suppliers
                 return NotFound();
             }
 
-            Supplier = await _context.Supplier.FindAsync(id);
+            Supplier = await _context.Suppliers.FindAsync(id);
 
             if (Supplier != null)
             {
-                _context.Supplier.Remove(Supplier);
+                _context.Suppliers.Remove(Supplier);
                 await _context.SaveChangesAsync();
             }
 

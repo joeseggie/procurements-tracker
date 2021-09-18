@@ -44,7 +44,7 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task OnGetAsync()
         {
-            Procurement = await _context.Procurement.ToListAsync();
+            Procurement = await _context.Procurements.ToListAsync();
         }
 
         public string DisplayProcurementPlan(bool? isPlanned)
@@ -65,7 +65,7 @@ namespace ProcurementTracker.Pages.Procurements
 
             queryFilter = FilterByProcurementPlan(queryFilter, queryFilterBuilder);
 
-            Procurement = await _context.Procurement
+            Procurement = await _context.Procurements
                                         .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
                                         .ToListAsync();
         }
@@ -172,7 +172,7 @@ namespace ProcurementTracker.Pages.Procurements
             ProcurementStatus = "Choose...";
             ProcurementMethod = "Choose...";
 
-            Procurement = await _context.Procurement.ToListAsync();
+            Procurement = await _context.Procurements.ToListAsync();
         }
     }
 }

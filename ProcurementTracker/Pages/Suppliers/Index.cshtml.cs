@@ -23,7 +23,7 @@ namespace ProcurementTracker.Pages.Suppliers
 
         public async Task OnGetAsync()
         {
-            Supplier = await _context.Supplier.ToListAsync();
+            Supplier = await _context.Suppliers.ToListAsync();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace ProcurementTracker.Pages.Procurements
 
             Procurement.Status = ProcurementStatus.NOT_STARTED.Value;
 
-            _context.Procurement.Add(Procurement);
+            _context.Procurements.Add(Procurement);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

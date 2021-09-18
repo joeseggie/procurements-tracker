@@ -12,11 +12,13 @@ namespace ProcurementTracker.Data
         {
         }
 
-        public DbSet<Supplier>? Supplier { get; set; }
+        public DbSet<Supplier>? Suppliers { get; set; }
 
-        public DbSet<Bid>? Bid { get; set; }
+        public DbSet<Bid>? Bids { get; set; }
 
-        public DbSet<Procurement>? Procurement { get; set; }
+        public DbSet<Procurement>? Procurements { get; set; }
+
+        public DbSet<ApplicationAction>? ApplicationActions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

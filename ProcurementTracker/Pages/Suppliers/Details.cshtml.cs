@@ -28,7 +28,7 @@ namespace ProcurementTracker.Pages.Suppliers
                 return NotFound();
             }
 
-            Supplier = await _context.Supplier.FirstOrDefaultAsync(m => m.Id == id);
+            Supplier = await _context.Suppliers.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Supplier == null)
             {

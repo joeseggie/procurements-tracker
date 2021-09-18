@@ -43,12 +43,12 @@ namespace ProcurementTracker.Pages.Bids
 
             if (procurementid != null)
             {
-                Bid = await _context.Bid.Include(m => m.Supplier).Include(m => m.Procurement).FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
+                Bid = await _context.Bids.Include(m => m.Supplier).Include(m => m.Procurement).FirstOrDefaultAsync(m => m.Id == id && m.Procurement.Id == procurementid);
                 HasProcurementFilter = true;
             }
             else
             {
-                Bid = await _context.Bid.Include(m => m.Supplier).Include(m => m.Procurement).FirstOrDefaultAsync(m => m.Id == id);
+                Bid = await _context.Bids.Include(m => m.Supplier).Include(m => m.Procurement).FirstOrDefaultAsync(m => m.Id == id);
             }
 
             if (Bid == null)
@@ -108,7 +108,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task<IActionResult> OnPostOpenBid(Guid id)
         {
-            Bid = await _context.Bid.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
+            Bid = await _context.Bids.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
             if (Bid != null && Bid.Status == BidStatus.RECEIVED.ToString())
             {
                 Bid.Status = BidStatus.OPENED.ToString();
@@ -120,7 +120,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task<IActionResult> OnPostStartBidEvaluation(Guid id)
         {
-            Bid = await _context.Bid.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
+            Bid = await _context.Bids.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
             if (Bid != null && Bid.Status == BidStatus.OPENED.ToString())
             {
                 Bid.Status = BidStatus.UNDER_EVALUATION.ToString();
@@ -132,7 +132,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task<IActionResult> OnPostCloseBidEvaluation(Guid id)
         {
-            Bid = await _context.Bid.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
+            Bid = await _context.Bids.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
             if (Bid != null && Bid.Status == BidStatus.UNDER_EVALUATION.ToString())
             {
                 Bid.Status = BidStatus.EVALUATED.ToString();
@@ -144,7 +144,7 @@ namespace ProcurementTracker.Pages.Bids
 
         public async Task<IActionResult> OnPostAcceptBid(Guid id)
         {
-            Bid = await _context.Bid.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
+            Bid = await _context.Bids.Include(b => b.Procurement).FirstOrDefaultAsync(b => b.Id == id);
             if (Bid != null && Bid.Status == BidStatus.EVALUATED.ToString())
             {
                 Bid.Status = BidStatus.ACCEPTED.ToString();

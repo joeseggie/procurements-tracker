@@ -27,7 +27,7 @@ namespace ProcurementTracker.Pages.Bids
             if (id == null)
                 return NotFound();
 
-            Bid = await _context.Bid
+            Bid = await _context.Bids
                                 .Include(b => b.Procurement)
                                 .FirstOrDefaultAsync(b => b.Id == id);
             if (Bid is null)
@@ -67,7 +67,7 @@ namespace ProcurementTracker.Pages.Bids
 
         private bool BidExists(Guid id)
         {
-            return _context.Bid.Any(e => e.Id == id);
+            return _context.Bids.Any(e => e.Id == id);
         }
     }
 }

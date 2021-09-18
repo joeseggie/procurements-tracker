@@ -29,7 +29,7 @@ namespace ProcurementTracker.Pages.Bids
                 return NotFound();
             }
 
-            Bid = await _context.Bid.FirstOrDefaultAsync(m => m.Id == id);
+            Bid = await _context.Bids.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Bid == null)
             {
@@ -45,11 +45,11 @@ namespace ProcurementTracker.Pages.Bids
                 return NotFound();
             }
 
-            Bid = await _context.Bid.FindAsync(id);
+            Bid = await _context.Bids.FindAsync(id);
 
             if (Bid != null)
             {
-                _context.Bid.Remove(Bid);
+                _context.Bids.Remove(Bid);
                 await _context.SaveChangesAsync();
             }
 

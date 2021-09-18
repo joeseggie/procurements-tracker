@@ -18,14 +18,14 @@ namespace ProcurementTracker.Models.Managers
         }
         public List<SelectListItem> GetSuppliersSelectList()
         {
-            return _context.Supplier.OrderBy(s => s.Name)
+            return _context.Suppliers.OrderBy(s => s.Name)
                                     .Select(s => new SelectListItem(s.Name, s.Id.ToString()))
                                     .ToList();
         }
 
         public async Task<Supplier> GetSupplierAsync(Guid supplierId)
         {
-            return await _context.Supplier.FirstOrDefaultAsync(s => s.Id == supplierId);
+            return await _context.Suppliers.FirstOrDefaultAsync(s => s.Id == supplierId);
         }
     }
 }
