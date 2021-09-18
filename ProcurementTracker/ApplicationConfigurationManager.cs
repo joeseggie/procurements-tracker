@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProcurementTracker
@@ -34,6 +32,7 @@ namespace ProcurementTracker
 
             context.Database.Migrate();
 
+            await SeedApplicationActionsAsync(context);
             Guid? adminRoleId = await SeedAdminRolesAsync(context);
             Guid? adminUserId = await SeedAdminUserAsync(context);
             await SeedAdminUserRolesAsync(context, adminUserId, adminRoleId);
@@ -62,18 +61,14 @@ namespace ProcurementTracker
 
         private static async Task<Guid?> SeedAdminUserAsync(ProcurementTrackerContext context)
         {
-            string? username = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_USERNAME");
-            string? email = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_EMAIL");
-            string? password = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_PASSWORD");
-            string? firstname = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_FIRSTNAME");
-            string? lastname = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_ADMIN_LASTNAME");
+            var adminUserCredentials = ApplicationConfigurationData.GetAdminCredentials();
 
-            if (username is null || email is null || password is null)
+            if (adminUserCredentials.username is null || adminUserCredentials.email is null || adminUserCredentials.password is null)
                 return null;
 
             Guid adminUserId;
 
-            var adminUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == username && u.Email == email);
+            var adminUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == adminUserCredentials.username && u.Email == adminUserCredentials.email);
             if (adminUser == null)
             {
                 adminUserId = Guid.NewGuid();
@@ -81,16 +76,16 @@ namespace ProcurementTracker
                 ApplicationUser user = new()
                 {
                     Id = adminUserId.ToString(),
-                    UserName = username,
-                    Email = email,
-                    Firstname = firstname,
-                    Lastname = lastname,
-                    NormalizedEmail = email.ToUpper(),
-                    NormalizedUserName = username.ToUpper(),
+                    UserName = adminUserCredentials.username,
+                    Email = adminUserCredentials.email,
+                    Firstname = adminUserCredentials.firstname,
+                    Lastname = adminUserCredentials.lastname,
+                    NormalizedEmail = adminUserCredentials.email.ToUpper(),
+                    NormalizedUserName = adminUserCredentials.username.ToUpper(),
                 };
 
                 var passwordHasher = new PasswordHasher<ApplicationUser>();
-                user.PasswordHash = passwordHasher.HashPassword(user, password);
+                user.PasswordHash = passwordHasher.HashPassword(user, adminUserCredentials.password);
 
                 await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
@@ -123,6 +118,30 @@ namespace ProcurementTracker
                 await context.SaveChangesAsync();
             }
             return id;
+        }
+
+        private static async Task SeedApplicationActionsAsync(ProcurementTrackerContext context)
+        {
+            var actions = ApplicationConfigurationData.GetApplicationActions();
+            foreach (var action in actions)
+            {
+                await AddActionToDatabaseAsync(context, action);
+            }
+        }
+
+        private static async Task AddActionToDatabaseAsync(ProcurementTrackerContext context, (string action, string area, string description) actionToAdd)
+        {
+            if (await context.ApplicationActions.AnyAsync(a => a.Action == actionToAdd.action)) return;
+            
+            ApplicationAction appAction = new()
+            {
+                Action = actionToAdd.action,
+                Description = actionToAdd.description,
+                Area = actionToAdd.area
+            };
+
+            await context.ApplicationActions.AddAsync(appAction);
+            await context.SaveChangesAsync();
         }
     }
 }
