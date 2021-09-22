@@ -140,7 +140,7 @@ namespace ProcurementTracker
                 Area = actionToAdd.area
             };
 
-            await context.ApplicationActions.AddAsync(appAction);
+            await context.ApplicationActions!.AddAsync(appAction);
             await context.SaveChangesAsync();
         }
     }
