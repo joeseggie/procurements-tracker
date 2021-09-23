@@ -1,37 +1,57 @@
 ﻿@page
 @model ProcurementTracker.Pages.Users.IndexModel
 @{
-	ViewData["Title"] = "Users Management";
+    ViewData["Title"] = "Users Management";
 }
 
 <h3>Users Management</h3>
 <hr />
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUsers[0].UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplicationUsers[0].Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.ApplicationUsers) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
-            </td>
-        </tr>
+@if (Model.ApplicationUsers != null)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUsers![0].Firstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUsers![0]!.Lastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUsers![0].UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUsers![0]!.Email)
+                </th>
+                <th class="col-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ApplicationUsers)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td class="col-1">
+                        <a class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">View <i class="fas fa-clipboard-list"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <h1>No Users have been added to the system</h1>
+}

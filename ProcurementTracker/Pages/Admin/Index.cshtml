@@ -1,0 +1,36 @@
+@page
+@model ProcurementTracker.Pages.Admin.IndexModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin Control Panel</h1>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">List, view and update the users of the application. Click on the link below
+                        to view and manage the users of the system.</p>
+                    <a asp-page="/Users/Index" class="btn btn-primary">View users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body">
+                    <h5 class="card-title">Roles</h5>
+                    <p class="card-text">List, view and update the users of the roles. Click on the link below
+                        to view and manage the roles of the system.</p>
+                    <a href="#" class="btn btn-primary">View roles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

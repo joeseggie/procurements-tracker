@@ -12,9 +12,9 @@ namespace ProcurementTracker.Pages.Bids
 {
     public class IndexModel : PageModel
     {
-        private readonly ProcurementTracker.Data.ProcurementTrackerContext _context;
+        private readonly ProcurementTrackerContext _context;
 
-        public IndexModel(ProcurementTracker.Data.ProcurementTrackerContext context)
+        public IndexModel(ProcurementTrackerContext context)
         {
             _context = context;
         }

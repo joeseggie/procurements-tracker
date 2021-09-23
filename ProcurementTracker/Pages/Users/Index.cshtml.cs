@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
+using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Users
 {
