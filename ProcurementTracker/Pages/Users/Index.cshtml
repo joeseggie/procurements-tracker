@@ -1,11 +1,14 @@
 ﻿@page
 @model ProcurementTracker.Pages.Users.IndexModel
 @{
-    ViewData["Title"] = "Users Management";
+    ViewData["Title"] = "Users";
 }
 
-<h3>Users Management</h3>
+<h3>Users</h3>
 <hr />
+
+<a href="#" class="btn btn-primary">Add User</a>
+<br /><br />
 
 @if (Model.ApplicationUsers != null)
 {
