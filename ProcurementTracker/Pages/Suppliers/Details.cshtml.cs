@@ -19,7 +19,7 @@ namespace ProcurementTracker.Pages.Suppliers
             _context = context;
         }
 
-        public Supplier Supplier { get; set; }
+        public Supplier? Supplier { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
-using ProcurementTracker.Models;
 
-namespace ProcurementTracker.Pages.Users
+namespace ProcurementTracker.Pages.Roles
 {
     public class IndexModel : PageModel
     {
@@ -16,11 +16,11 @@ namespace ProcurementTracker.Pages.Users
             _context = context;
         }
 
-        public IList<ApplicationUser>? ApplicationUsers { get; set; }
+        public IList<IdentityRole>? Roles { get; set; }
 
         public async Task OnGetAsync()
         {
-            ApplicationUsers = await _context.Users.ToListAsync();
+            Roles = await _context.Roles.ToListAsync();
         }
     }
 }

@@ -1,0 +1,38 @@
+@page
+@model ProcurementTracker.Pages.Roles.IndexModel
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h3>Roles</h3>
+<hr />
+
+<a asp-page="Create" class="btn btn-light btn-outline-secondary">Add role</a>
+<br /><br />
+
+@if (Model.Roles != null)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Roles![0].Name)</th>
+                <th class="col-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Roles)
+            {
+                <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td class="col-1">
+                    <a asp-page="./Details" class="text-dark" asp-route-id="@item.Id">Manage <i class="fas fa-clipboard-list"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No Roles have been added to the system</h1>
+}
