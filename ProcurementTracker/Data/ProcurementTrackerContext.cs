@@ -20,11 +20,14 @@ namespace ProcurementTracker.Data
 
         public DbSet<ApplicationAction>? ApplicationActions { get; set; }
 
+        public DbSet<RoleApplicationAction>? RoleApplicationActions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             new BidEntityTypeConfiguration().Configure(modelBuilder.Entity<Bid>());
             new ProcurementEntityTypeConfiguration().Configure(modelBuilder.Entity<Procurement>());
+            new RoleApplicationActionEntityTypeConfiguration().Configure(modelBuilder.Entity<RoleApplicationAction>());
         }
     }
 }

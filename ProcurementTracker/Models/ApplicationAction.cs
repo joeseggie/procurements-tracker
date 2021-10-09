@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ProcurementTracker.Models
 {
@@ -11,5 +12,7 @@ namespace ProcurementTracker.Models
         public string? Description { get; set; }
 
         public string? Area { get; set; }
+
+        public ICollection<RoleApplicationAction>? RoleApplicationActions { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace ProcurementTracker
                 ("add_procurement", "PROCUREMENTS", "Add Procurement"),
                 ("view_procurement_details", "PROCUREMENTS", "View procurement details"),
                 ("edit_procurement", "PROCUREMENTS", "Edit or update procurement details"),
-                ("abandon_procurement", "PROCUREMENTS", "Abandon and active or running procurement"),
+                ("abandon_procurement", "PROCUREMENTS", "Abandon an active or running procurement"),
                 ("list_procurements", "PROCUREMENTS", "List all procurements"),
                 ("list_unabandoned_procurements", "PROCUREMENTS", "List procurements that have not been abandoned"),
                 ("list_abandoned_procurements", "PROCUREMENTS", "List procurements that have been abandoned"),
