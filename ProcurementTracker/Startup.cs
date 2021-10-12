@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models.Managers;
+using ProcurementTracker.Shared.Auth.Handlers;
+using ProcurementTracker.Shared.Auth.Requirements.Procurement;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,6 +45,16 @@ namespace ProcurementTracker
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddRazorPages();
+
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                       .RequireAuthenticatedUser()
+                       .Build();
+                options.AddPolicy("CanReadProcurement", policy =>
+                    policy.Requirements.Add(new ReadProcurementRequirement(canReadProcurement: true)));
+            });
+
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Procurements/Index", "");
@@ -49,6 +62,7 @@ namespace ProcurementTracker
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddTransient<ISupplierManager, SupplierManager>();
+            services.AddScoped<IAuthorizationHandler, ProcurementAccessHandler>();
         }
 
         private static string? GetDatabaseConnectionString()
