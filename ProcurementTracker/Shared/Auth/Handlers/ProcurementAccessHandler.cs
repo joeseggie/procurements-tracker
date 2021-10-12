@@ -50,9 +50,50 @@ namespace ProcurementTracker.Shared.Auth.Handlers
                         context.Succeed(requirement);
                     }
                 }
+                else if (requirement is EditProcurementRequirement)
+                {
+                    if ((CanEditProcurement(context.User, requirement)).Result)
+                    {
+                        context.Succeed(requirement);
+                    }
+                }
             }
 
             return Task.CompletedTask;
+        }
+
+        private async Task<bool> CanEditProcurement(ClaimsPrincipal principalUser, IAuthorizationRequirement? requirement)
+        {
+            bool canEditProcurement = false;
+
+            if (requirement is not EditProcurementRequirement editProcurementRequirement)
+                return canEditProcurement;
+
+            if (_userManager is not null && _dbContext is not null)
+            {
+                ApplicationUser user = await _userManager.GetUserAsync(principalUser);
+
+                if (user is not null)
+                {
+                    var userRoles = await _dbContext.UserRoles.Where(r => r.UserId == user.Id).ToListAsync();
+                    userRoles.ForEach(x => ExtractUserRoleIds(x.RoleId));
+
+                    if (UserRoleIds is not null)
+                    {
+                        var roleApplicationActionsQuery = _dbContext.RoleApplicationActions?.Include(a => a.ApplicationAction)
+                                                                                            .Where(a => UserRoleIds.Contains(a.RoleId));
+                        if (roleApplicationActionsQuery is not null)
+                        {
+                            var roleApplicationActions = await roleApplicationActionsQuery.ToListAsync();
+                            canEditProcurement = roleApplicationActions
+                                                    .Any(a => a.ApplicationAction?.Action == "edit_procurement") &&
+                                                              editProcurementRequirement.CanEditRequirement;
+                        }
+                    }
+                }
+            }
+
+            return canEditProcurement;
         }
 
         private async Task<bool> CanCreateProcurement(ClaimsPrincipal principalUser, IAuthorizationRequirement? requirement)
