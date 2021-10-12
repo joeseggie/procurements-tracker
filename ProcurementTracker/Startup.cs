@@ -53,6 +53,8 @@ namespace ProcurementTracker
                        .Build();
                 options.AddPolicy("CanReadProcurement", policy =>
                     policy.Requirements.Add(new ReadProcurementRequirement(canReadProcurement: true)));
+                options.AddPolicy("CanCreateProcurement", policy => 
+                    policy.Requirements.Add(new CreateProcurementRequirement(canCreateProcurement: true)));
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>

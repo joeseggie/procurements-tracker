@@ -43,9 +43,50 @@ namespace ProcurementTracker.Shared.Auth.Handlers
                         context.Succeed(requirement);
                     }
                 }
+                else if (requirement is CreateProcurementRequirement)
+                {
+                    if ((CanCreateProcurement(context.User, requirement)).Result)
+                    {
+                        context.Succeed(requirement);
+                    }
+                }
             }
 
             return Task.CompletedTask;
+        }
+
+        private async Task<bool> CanCreateProcurement(ClaimsPrincipal principalUser, IAuthorizationRequirement? requirement)
+        {
+            bool canCreateProcurement = false;
+
+            if (requirement is not CreateProcurementRequirement createProcurementRequirement)
+                return canCreateProcurement;
+
+            if (_userManager is not null && _dbContext is not null)
+            {
+                ApplicationUser user = await _userManager.GetUserAsync(principalUser);
+
+                if (user is not null)
+                {
+                    var userRoles = await _dbContext.UserRoles.Where(r => r.UserId == user.Id).ToListAsync();
+                    userRoles.ForEach(x => ExtractUserRoleIds(x.RoleId));
+
+                    if (UserRoleIds is not null)
+                    {
+                        var roleApplicationActionsQuery = _dbContext.RoleApplicationActions?.Include(a => a.ApplicationAction)
+                                                                                            .Where(a => UserRoleIds.Contains(a.RoleId));
+                        if (roleApplicationActionsQuery is not null)
+                        {
+                            var roleApplicationActions = await roleApplicationActionsQuery.ToListAsync();
+                            canCreateProcurement = roleApplicationActions
+                                                    .Any(a => a.ApplicationAction?.Action == "add_procurement") &&
+                                                              createProcurementRequirement.CanCreateProcurement;
+                        }
+                    }
+                }
+            }
+
+            return canCreateProcurement;
         }
 
         private async Task<bool> CanReadProcurement(ClaimsPrincipal principalUser, IAuthorizationRequirement? requirement)
@@ -74,7 +115,8 @@ namespace ProcurementTracker.Shared.Auth.Handlers
                             canReadProcurement = roleApplicationActions
                                                     .Any(a => a.ApplicationAction?.Action == "list_procurements" ||
                                                               a.ApplicationAction?.Action == "list_unabandoned_procurements" ||
-                                                              a.ApplicationAction?.Action == "list_abandoned_procurements") &&
+                                                              a.ApplicationAction?.Action == "list_abandoned_procurements" ||
+                                                              a.ApplicationAction?.Action == "view_procurement_details") &&
                                                               readProcurementRequirement.CanReadProcurement;
                         }
                     } 
