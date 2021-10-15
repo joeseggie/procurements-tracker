@@ -2,13 +2,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ProcurementTracker.Shared.Auth.Requirements.Procurement
 {
-    public class EditProcurementRequirement : IAuthorizationRequirement
+    public class EditProcurementRequirement : BaseRequirement, IAuthorizationRequirement
     {
-        public bool CanEditRequirement { get; }
-
-        public EditProcurementRequirement(bool canEditProcurement)
+        public EditProcurementRequirement(bool isAuthorized)
         {
-            CanEditRequirement = canEditProcurement;
+            IsAuthorized = isAuthorized;
         }
     }
 }

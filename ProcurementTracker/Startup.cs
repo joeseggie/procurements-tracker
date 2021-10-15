@@ -52,11 +52,13 @@ namespace ProcurementTracker
                        .RequireAuthenticatedUser()
                        .Build();
                 options.AddPolicy("CanReadProcurement", policy =>
-                    policy.Requirements.Add(new ReadProcurementRequirement(canReadProcurement: true)));
+                    policy.Requirements.Add(new ReadProcurementRequirement(isAuthorized: true)));
                 options.AddPolicy("CanCreateProcurement", policy =>
-                    policy.Requirements.Add(new CreateProcurementRequirement(canCreateProcurement: true)));
+                    policy.Requirements.Add(new CreateProcurementRequirement(isAuthorized: true)));
                 options.AddPolicy("CanEditProcurement", policy =>
-                    policy.Requirements.Add(new EditProcurementRequirement(canEditProcurement: true)));
+                    policy.Requirements.Add(new EditProcurementRequirement(isAuthorized: true)));
+                options.AddPolicy("CanAbandonProcurement", policy =>
+                    policy.Requirements.Add(new AbandonProcurementRequirement(isAuthorized: true)));
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Procurements
 {
+    [Authorize(Policy = "CanAbandonProcurement")]
     public class AbandonModel : PageModel
     {
         private readonly ProcurementTrackerContext _context;
