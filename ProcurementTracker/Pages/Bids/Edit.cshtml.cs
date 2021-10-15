@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Bids
 {
+    [Authorize(Policy = "CanEditBid")]
     public class EditModel : PageModel
     {
         private readonly ProcurementTracker.Data.ProcurementTrackerContext _context;

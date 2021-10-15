@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models.Managers;
 using ProcurementTracker.Shared.Auth.Handlers;
+using ProcurementTracker.Shared.Auth.Requirements.Bid;
 using ProcurementTracker.Shared.Auth.Requirements.Procurement;
 using System;
 using System.IO;
@@ -45,10 +46,17 @@ namespace ProcurementTracker
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
                        .RequireAuthenticatedUser()
                        .Build();
+
                 options.AddPolicy("CanReadProcurement", policy => policy.Requirements.Add(new ReadProcurementRequirement(isAuthorized: true)));
                 options.AddPolicy("CanCreateProcurement", policy => policy.Requirements.Add(new CreateProcurementRequirement(isAuthorized: true)));
                 options.AddPolicy("CanEditProcurement", policy => policy.Requirements.Add(new EditProcurementRequirement(isAuthorized: true)));
                 options.AddPolicy("CanAbandonProcurement", policy => policy.Requirements.Add(new AbandonProcurementRequirement(isAuthorized: true)));
+
+                options.AddPolicy("CanReadBid", policy => policy.Requirements.Add(new ReadBidRequirement(isAuthorized: true)));
+                options.AddPolicy("CanCreateBid", policy => policy.Requirements.Add(new CreateBidRequirement(isAuthorized: true)));
+                options.AddPolicy("CanEditBid", policy => policy.Requirements.Add(new EditBidRequirement(isAuthorized: true)));
+                options.AddPolicy("CanAcceptBid", policy => policy.Requirements.Add(new AcceptBidRequirement(isAuthorized: true)));
+                options.AddPolicy("CanRejectBid", policy => policy.Requirements.Add(new RejectBidRequirement(isAuthorized: true)));
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>

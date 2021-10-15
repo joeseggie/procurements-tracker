@@ -10,9 +10,11 @@ using ProcurementTracker.Models;
 using ProcurementTracker.Shared;
 using ProcurementTracker.Models.Managers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProcurementTracker.Pages.Bids
 {
+    [Authorize(Policy = "CanCreateBid")]
     public class CreateModel : PageModel
     {
         private readonly ProcurementTrackerContext _context;
