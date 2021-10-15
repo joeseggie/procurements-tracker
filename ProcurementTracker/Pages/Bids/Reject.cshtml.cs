@@ -11,7 +11,7 @@ using ProcurementTracker.Shared;
 
 namespace ProcurementTracker.Pages.Bids
 {
-    [Authorize(Policy = "CanReadBid")]
+    [Authorize(Policy = "CanRejectBid")]
     public class RejectModel : PageModel
     {
         public readonly ProcurementTracker.Data.ProcurementTrackerContext _context;
