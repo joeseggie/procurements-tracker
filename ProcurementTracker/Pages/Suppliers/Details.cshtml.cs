@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Pages.Suppliers
 {
+    [Authorize(Policy = "CanReadSupplier")]
     public class DetailsModel : PageModel
     {
         private readonly ProcurementTracker.Data.ProcurementTrackerContext _context;

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProcurementTracker.Pages.Suppliers
 {
+    [Authorize(Policy = "CanReadSupplier")]
     public class IndexModel : PageModel
     {
         private readonly ProcurementTrackerContext _context;

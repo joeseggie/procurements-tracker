@@ -10,6 +10,7 @@ using ProcurementTracker.Models.Managers;
 using ProcurementTracker.Shared.Auth.Handlers;
 using ProcurementTracker.Shared.Auth.Requirements.Bid;
 using ProcurementTracker.Shared.Auth.Requirements.Procurement;
+using ProcurementTracker.Shared.Auth.Requirements.Supplier;
 using System;
 using System.IO;
 
@@ -36,6 +37,12 @@ namespace ProcurementTracker
                 dbConnectionString = GetDatabaseConnectionString();
             }
 
+            services.AddTransient<IAuthorizationHandler, ProcurementAccessHandler>();
+            services.AddTransient<IAuthorizationHandler, BidAccessHandler>();
+            services.AddTransient<IAuthorizationHandler, SupplierAccessHandler>();
+
+            services.AddTransient<ISupplierManager, SupplierManager>();
+
             services.AddDbContext<ProcurementTrackerContext>(options => options.UseSqlServer(dbConnectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -57,6 +64,10 @@ namespace ProcurementTracker
                 options.AddPolicy("CanEditBid", policy => policy.Requirements.Add(new EditBidRequirement(isAuthorized: true)));
                 options.AddPolicy("CanAcceptBid", policy => policy.Requirements.Add(new AcceptBidRequirement(isAuthorized: true)));
                 options.AddPolicy("CanRejectBid", policy => policy.Requirements.Add(new RejectBidRequirement(isAuthorized: true)));
+
+                options.AddPolicy("CanReadSupplier", policy => policy.Requirements.Add(new ReadSupplierRequirement(isAuthorized: true)));
+                options.AddPolicy("CanEditSupplier", policy => policy.Requirements.Add(new EditSupplierRequirement(isAuthorized: true)));
+                options.AddPolicy("CanCreateSupplier", policy => policy.Requirements.Add(new CreateSupplierRequirement(isAuthorized: true)));
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>
@@ -64,9 +75,6 @@ namespace ProcurementTracker
                 options.Conventions.AddPageRoute("/Procurements/Index", "");
                 options.Conventions.AuthorizeFolder("/Procurements");
             }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
-
-            services.AddTransient<ISupplierManager, SupplierManager>();
-            services.AddScoped<IAuthorizationHandler, ProcurementAccessHandler>();
         }
 
         private static string? GetDatabaseConnectionString()

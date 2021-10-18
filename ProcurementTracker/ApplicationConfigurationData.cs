@@ -26,6 +26,7 @@ namespace ProcurementTracker
                 ("add_supplier", "SUPPLIERS", "Add supplier"),
                 ("edit_supplier", "SUPPLIERS", "Edit or update supplier details"),
                 ("list_suppliers", "SUPPLIERS", "List suppliers"),
+                ("view_supplier", "SUPPLIERS", "View supplier details"),
                 ("add_user", "USERS", "Add user"),
                 ("view_user", "USERS", "View user profile"),
                 ("edit_user", "USERS", "Edit or update user profile"),
