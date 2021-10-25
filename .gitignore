@@ -354,3 +354,4 @@ MigrationBackup/
 
 # ignore the VS Code settings
 .vscode/
+/.idea/.idea.ProcurementTracker/.idea
