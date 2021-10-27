@@ -3,42 +3,42 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
-    {
-        Layout = (string)parentLayout;
-    }
-    else
-    {
-        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
-    }
+	if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+	{
+		Layout = (string)parentLayout;
+	}
+	else
+	{
+		Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+	}
 
-    string? username = Context.Request.Query["username"].FirstOrDefault() ?? User.Identity?.Name;
-    string? fullname = null;
+	string? username = Context.Request.Query["username"].FirstOrDefault() ?? User.Identity?.Name;
+	string? fullname = null;
 
-    if(username != null)
-    {
-        var user = await UserManager.FindByNameAsync(username);
-        fullname = $"{user?.Firstname} {user?.Lastname}";
-    }
+	if (username != null)
+	{
+		var user = await UserManager.FindByNameAsync(username);
+		fullname = $"{user?.Firstname} {user?.Lastname}";
+	}
 }
 
 <h2 class="pt-2">@fullname</h2>
 
 <div>
-    <hr />
+	<hr />
 
-    <p>
-        <a asp-page="/Users/Index" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back</a>
-    </p>
+	<p>
+		<a asp-page="/Users/Index" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back</a>
+	</p>
 
-    <div class="row">
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-md-9">
+			@RenderBody()
+		</div>
+		<div class="col-md-3">
+			<partial name="_ManageNav" />
+		</div>
+	</div>
 </div>
 
 @section Scripts {

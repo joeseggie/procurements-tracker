@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProcurementTracker.Data;
 
 namespace ProcurementTracker.Pages.Admin
 {
-    public class IndexModel : PageModel
+	[Authorize(Policy = "IsAdmin")]
+	public class IndexModel : PageModel
     {
         public IActionResult OnGet()
         {

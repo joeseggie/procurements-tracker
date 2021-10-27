@@ -17,7 +17,7 @@ using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Policy = "IsAdmin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -49,6 +49,10 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account
             public string? Email { get; set; }
 
             [Required]
+            [Display(Name = "Username")]
+            public string? UserName { get; set; }
+
+            [Required]
             [StringLength(50, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "First name")]
             public string? Firstname { get; set; }
@@ -70,23 +74,20 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account
             public string? ConfirmPassword { get; set; }
         }
 
-        public async Task OnGetAsync(string? returnUrl = null)
-        {
-            if (returnUrl is not null)
-                ReturnUrl = returnUrl;
+		public void OnGet(string? returnUrl = null)
+		{
+			if (returnUrl is not null)
+				ReturnUrl = returnUrl;
+		}
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        }
-
-        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
+		public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             returnUrl ??= Url.Content("~/Users/Index");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser 
                 { 
-                    UserName = Input.Email, 
+                    UserName = Input.UserName, 
                     Email = Input.Email, 
                     LockoutEnabled = false, 
                     Firstname = Input.Firstname, 

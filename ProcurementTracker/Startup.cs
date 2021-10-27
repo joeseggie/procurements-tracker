@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using ProcurementTracker.Data;
 using ProcurementTracker.Models.Managers;
 using ProcurementTracker.Shared.Auth.Handlers;
+using ProcurementTracker.Shared.Auth.Requirements.Admin;
 using ProcurementTracker.Shared.Auth.Requirements.Bid;
 using ProcurementTracker.Shared.Auth.Requirements.Procurement;
 using ProcurementTracker.Shared.Auth.Requirements.Supplier;
@@ -68,6 +69,8 @@ namespace ProcurementTracker
                 options.AddPolicy("CanReadSupplier", policy => policy.Requirements.Add(new ReadSupplierRequirement(isAuthorized: true)));
                 options.AddPolicy("CanEditSupplier", policy => policy.Requirements.Add(new EditSupplierRequirement(isAuthorized: true)));
                 options.AddPolicy("CanCreateSupplier", policy => policy.Requirements.Add(new CreateSupplierRequirement(isAuthorized: true)));
+
+                options.AddPolicy("IsAdmin", policy => policy.Requirements.Add(new AdminAccessRequirement(isAuthorized: true)));
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>

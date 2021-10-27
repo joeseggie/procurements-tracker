@@ -4,6 +4,7 @@
     {
         Bid,
         Procurement,
-        Supplier
+        Supplier,
+        Admin
     }
 }

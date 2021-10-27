@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
 {
+	[Authorize(Policy = "IsAdmin")]
 	public class UserRoleModel : PageModel
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
@@ -89,7 +91,7 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
 
 		private static bool IsDefaultOption(string name, IList<string>? roles)
 		{
-			if (roles == null)
+			if (roles == null || roles.Count < 1)
 			{
 				return name == "Procurement Officer PDU";
 			}

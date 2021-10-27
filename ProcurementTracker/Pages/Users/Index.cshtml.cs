@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ProcurementTracker.Data;
@@ -7,7 +8,8 @@ using ProcurementTracker.Models;
 
 namespace ProcurementTracker.Pages.Users
 {
-    public class IndexModel : PageModel
+	[Authorize(Policy = "IsAdmin")]
+	public class IndexModel : PageModel
     {
         private readonly ProcurementTrackerContext _context;
 
