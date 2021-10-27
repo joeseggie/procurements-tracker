@@ -1,0 +1,34 @@
+﻿@page
+@model UserRoleModel
+@{
+	ViewData["Title"] = "User Role";
+	ViewData["ActivePage"] = ManageNavPages.UserRole;
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+	<div class="col-md-6 pb-2">
+		<form id="change-password-form" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<input type="hidden" asp-for="@Model.Username" />
+
+			<div class="form-group">
+				<label asp-for="AssignedRole"></label>
+				<input asp-for="AssignedRole" class="form-control" disabled />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Input!.RoleId"></label>
+				<select asp-for="Input!.RoleId" value="Input.RoleId" class="form-control form-control-sm" asp-items="@Model.RoleSelectList">
+					<option>Choose...</option>C
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Save Changes</button>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

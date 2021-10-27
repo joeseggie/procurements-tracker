@@ -63,9 +63,14 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string? username)
         {
-            var user = await _userManager.GetUserAsync(User);
+            ApplicationUser user;
+            if (username is null)
+                user = await _userManager.GetUserAsync(User);
+            else
+                user = await _userManager.FindByNameAsync(username);
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");

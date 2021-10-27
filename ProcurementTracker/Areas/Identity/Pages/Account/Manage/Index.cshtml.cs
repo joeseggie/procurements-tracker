@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProcurementTracker.Models;
+using ProcurementTracker.Shared.Extensions;
 
 namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
 {
@@ -23,7 +24,8 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
-        public string Username { get; set; }
+        [BindProperty]
+        public string? Username { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -33,39 +35,48 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            [Display(Name = "First name")]
+            public string? Firstname { get; set; }
+
+            [Display(Name = "Last name")]
+            public string? Lastname { get; set; }
+
+            [DataType(DataType.EmailAddress)]
+            public string Email { get; set; }
         }
 
-        private async Task LoadAsync(ApplicationUser user)
+        private void LoadUser(ApplicationUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-            Username = userName;
-
+            Username = user.UserName;
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Email = user.Email,
             };
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string? username)
         {
-            var user = await _userManager.GetUserAsync(User);
+            ApplicationUser user;
+
+            if(username is null)
+                user = await _userManager.GetUserAsync(User);
+            else
+                user = await _userManager.FindByNameAsync(username);
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync(user);
+            LoadUser(user);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.FindByNameAsync(Username);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -73,24 +84,25 @@ namespace ProcurementTracker.Areas.Identity.Pages.Account.Manage
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync(user);
+                LoadUser(user);
                 return Page();
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            if (Input.Firstname != user.Firstname || Input.Lastname != user.Lastname || Input.Email != user.Email)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                user.Firstname = Input.Firstname;
+                user.Lastname = Input.Lastname;
+                user.Email = Input.Email;
+
+                var userUpdateResult = await _userManager.UpdateAsync(user);
+                if (userUpdateResult.Succeeded is not true)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
+                    StatusMessage = "Unexpected error when trying to set first name or last name.";
+                    return RedirectToPage(new { username = Username });
                 }
             }
-
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
+            StatusMessage = "Profile has been updated";
+            return RedirectToPage(new { username = Username});
         }
     }
 }

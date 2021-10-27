@@ -31,23 +31,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ApplicationUsers)
+            @foreach (var applicationUser in Model.ApplicationUsers)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Firstname)
+                        @Html.DisplayFor(modelItem => applicationUser.Firstname)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Lastname)
+                        @Html.DisplayFor(modelItem => applicationUser.Lastname)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
+                        @Html.DisplayFor(modelItem => applicationUser.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                        @Html.DisplayFor(modelItem => applicationUser.Email)
                     </td>
                     <td class="col-1">
-                        <a class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">Manage <i class="fas fa-clipboard-list"></i></a>
+                        <a class="text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-username="@applicationUser.UserName">Manage <i class="fas fa-clipboard-list"></i></a>
                     </td>
                 </tr>
             }

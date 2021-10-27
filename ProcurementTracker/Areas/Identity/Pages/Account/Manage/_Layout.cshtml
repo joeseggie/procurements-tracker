@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string)parentLayout;
@@ -7,19 +11,32 @@
     {
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
+
+    string? username = Context.Request.Query["username"].FirstOrDefault() ?? User.Identity?.Name;
+    string? fullname = null;
+
+    if(username != null)
+    {
+        var user = await UserManager.FindByNameAsync(username);
+        fullname = $"{user?.Firstname} {user?.Lastname}";
+    }
 }
 
-<h2>Manage your account</h2>
+<h2 class="pt-2">@fullname</h2>
 
 <div>
-    <h4>Change your account settings</h4>
     <hr />
+
+    <p>
+        <a asp-page="/Users/Index" class="btn btn-light btn-outline-secondary"><i class="fas fa-angle-left"></i> Back</a>
+    </p>
+
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
         <div class="col-md-9">
             @RenderBody()
+        </div>
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
         </div>
     </div>
 </div>
