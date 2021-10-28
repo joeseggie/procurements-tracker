@@ -29,19 +29,20 @@
 
                 @if (Model.ProcurementActions != null)
                 {
-                    <h6>Permitted actions on procurements</h6>
+                    <h6 class="lead pt-3">Permitted actions on procurements</h6>
                     <hr />
-                    <div class="form-inline">
+                    <div class="form-row ml-4">
                         @foreach (var applicationAction in Model.ProcurementActions)
                         {
                             var isChecked = applicationAction.ApplicationActionId != null && applicationAction.RoleId == Guid.Parse(Model.Role!.Id);
-                            <div class="form-check">
+                            <div class="form-check form-switch col-6">
                                 <input 
                                     type="checkbox"
                                     value="@applicationAction.ApplicationAction?.Id"
                                     name="SelectedActions"
+                                    class="form-check-input"
                                     checked=@isChecked />&nbsp;
-                                <label class="pr-3 pt-2 pb-2">@applicationAction.ApplicationAction?.Description</label>&nbsp;
+                                <label class="form-check-label pr-2">@applicationAction.ApplicationAction?.Description</label>&nbsp;
                             </div>
                         }
                     </div>
@@ -49,19 +50,20 @@
 
                 @if (Model.BidActions != null)
                 {
-                    <h6 class="pt-2">Permitted actions on bids</h6>
+                    <h6 class="lead pt-3">Permitted actions on bids</h6>
                     <hr />
-                    <div class="form-inline">
+                    <div class="form-row ml-4">
                         @foreach (var bidAction in Model.BidActions)
                         {
                             var isChecked = bidAction.ApplicationActionId != null && bidAction.RoleId == Guid.Parse(Model.Role!.Id);
-                            <div class="form-check">
+                            <div class="form-check form-switch col-6">
                                 <input 
                                     type="checkbox"
                                     value="@bidAction.ApplicationAction?.Id"
                                     name="SelectedActions"
+                                    class="form-check-input"
                                     checked=@isChecked />&nbsp;
-                                <label class="pr-3 pt-2 pb-2">@bidAction.ApplicationAction?.Description</label>&nbsp;
+                                <label class="form-check-label pr-2">@bidAction.ApplicationAction?.Description</label>&nbsp;
                             </div>
                         }
                     </div>
@@ -69,19 +71,20 @@
 
                 @if (Model.SupplierActions != null)
                 {
-                    <h6 class="pt-2">Permitted actions on suppliers</h6>
+                    <h6 class="lead pt-3">Permitted actions on suppliers</h6>
                     <hr />
-                    <div class="form-inline">
+                    <div class="form-row ml-4">
                         @foreach (var supplierAction in Model.SupplierActions)
                         {
                             var isChecked = supplierAction.ApplicationActionId != null && supplierAction.RoleId == Guid.Parse(Model.Role!.Id);
-                            <div class="form-check">
+                            <div class="form-check form-switch col-6">
                                 <input 
                                     type="checkbox"
                                     value="@supplierAction.ApplicationAction?.Id"
                                     name="SelectedActions"
+                                    class="form-check-input"
                                     checked=@isChecked />&nbsp;
-                                <label class="pr-3 pt-2 pb-2">@supplierAction.ApplicationAction?.Description</label>&nbsp;
+                                <label class="form-check-label pr-2">@supplierAction.ApplicationAction?.Description</label>&nbsp;
                             </div>
                         }
                     </div>
@@ -89,19 +92,20 @@
 
                 @if (Model.UserActions != null)
                 {
-                    <h6 class="pt-2">Permitted actions on users</h6>
+                    <h6 class="lead pt-3">Permitted actions on users</h6>
                     <hr />
-                    <div class="form-inline">
+                    <div class="form-row ml-4">
                         @foreach (var userAction in Model.UserActions)
                         {
                             var isChecked = userAction.ApplicationActionId != null && userAction.RoleId == Guid.Parse(Model.Role!.Id);
-                            <div class="form-check">
+                            <div class="form-check form-switch col-6">
                                 <input 
                                     type="checkbox"
                                     value="@userAction.ApplicationAction?.Id"
                                     name="SelectedActions"
+                                    class="form-check-input"
                                     checked=@isChecked />&nbsp;
-                                <label class="pr-3 pt-2 pb-2">@userAction.ApplicationAction?.Description</label>&nbsp;
+                                <label class="form-check-label pr-2">@userAction.ApplicationAction?.Description</label>&nbsp;
                             </div>
                         }
                     </div>
@@ -109,25 +113,26 @@
 
                 @if (Model.RoleActions != null)
                 {
-                    <h6 class="pt-2">Permitted actions on roles</h6>
+                    <h6 class="lead pt-3">Permitted actions on roles</h6>
                     <hr />
-                    <div class="form-inline">
+                    <div class="form-row ml-4">
                         @foreach (var roleAction in Model.RoleActions)
                         {
                             var isChecked = roleAction.ApplicationActionId != null && roleAction.RoleId == Guid.Parse(Model.Role!.Id);
-                            <div class="form-check">
+                            <div class="form-check form-switch col-6">
                                 <input 
                                     type="checkbox"
                                     value="@roleAction.ApplicationAction?.Id"
                                     name="SelectedActions"
+                                    class="form-check-input"
                                     checked=@isChecked />&nbsp;
-                                <label class="pr-3 pt-2 pb-2">@roleAction.ApplicationAction?.Description</label>&nbsp;
+                                <label class="form-check-label pr-2">@roleAction.ApplicationAction?.Description</label>&nbsp;
                             </div>
                         }
                     </div>
                 }
 
-                <div class="form-group">
+                <div class="form-group pt-4">
                     <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
             </form>
