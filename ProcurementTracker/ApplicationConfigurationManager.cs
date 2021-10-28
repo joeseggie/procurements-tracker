@@ -4,6 +4,7 @@ using ProcurementTracker.Data;
 using ProcurementTracker.Models;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProcurementTracker
@@ -36,6 +37,40 @@ namespace ProcurementTracker
             Guid? adminRoleId = await SeedAdminRolesAsync(context);
             Guid? adminUserId = await SeedAdminUserAsync(context);
             await SeedAdminUserRolesAsync(context, adminUserId, adminRoleId);
+            await SeedAdminUserRoleActions(context, adminRoleId);
+        }
+
+        private static async Task SeedAdminUserRoleActions(ProcurementTrackerContext context, Guid? adminRoleId)
+        {
+            var adminApplicationActions = GetAdminApplicationActions();
+
+            foreach (var (action, area, description) in adminApplicationActions)
+            {
+                bool isActionAssigned = await context.RoleApplicationActions.AnyAsync(a => a.ApplicationAction.Action == action);
+
+                if (isActionAssigned is false)
+                {
+                    var adminAction = await context.ApplicationActions.FirstOrDefaultAsync(a => a.Action == action);
+                    if (adminAction is not null)
+                    {
+                        await context.RoleApplicationActions!.AddAsync(new RoleApplicationAction
+                        {
+                            RoleId = adminRoleId,
+                            ApplicationActionId = adminAction.Id
+                        });
+                    }
+                }
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        private static System.Collections.Generic.List<(string action, string area, string description)> GetAdminApplicationActions()
+        {
+            return ApplicationConfigurationData
+                        .GetApplicationActions()
+                        .Where(a => a.area == "USERS" || a.area == "ROLES" || a.area == "ACTIONS")
+                        .ToList();
         }
 
         private static async Task SeedAdminUserRolesAsync(ProcurementTrackerContext context, Guid? adminUserId, Guid? adminRoleId)
@@ -132,7 +167,7 @@ namespace ProcurementTracker
         private static async Task AddActionToDatabaseAsync(ProcurementTrackerContext context, (string action, string area, string description) actionToAdd)
         {
             if (await context.ApplicationActions.AnyAsync(a => a.Action == actionToAdd.action)) return;
-            
+
             ApplicationAction appAction = new()
             {
                 Action = actionToAdd.action,

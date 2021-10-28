@@ -41,6 +41,7 @@ namespace ProcurementTracker
             services.AddTransient<IAuthorizationHandler, ProcurementAccessHandler>();
             services.AddTransient<IAuthorizationHandler, BidAccessHandler>();
             services.AddTransient<IAuthorizationHandler, SupplierAccessHandler>();
+            services.AddTransient<IAuthorizationHandler, AdminAccessHandler>();
 
             services.AddTransient<ISupplierManager, SupplierManager>();
 

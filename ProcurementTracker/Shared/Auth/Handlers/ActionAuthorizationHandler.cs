@@ -58,6 +58,7 @@ namespace ProcurementTracker.Shared.Auth.Handlers
         {
             if (!string.IsNullOrEmpty(roleId))
             {
+                UserRoleIds?.Clear();
                 UserRoleIds?.Add(Guid.Parse(roleId));
             }
         }
