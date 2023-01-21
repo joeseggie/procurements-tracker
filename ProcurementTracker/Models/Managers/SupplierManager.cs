@@ -8,24 +8,44 @@ using System.Threading.Tasks;
 
 namespace ProcurementTracker.Models.Managers
 {
+    /// <summary>
+    /// Manages operations to add, edit and query the Supplier entity.
+    /// </summary>
     public class SupplierManager : ISupplierManager
     {
-        private readonly ProcurementTrackerContext _context;
+        private readonly ProcurementTrackerContext context;
 
+        /// <summary>
+        /// Initializes <see cref="SupplierManager"/>
+        /// </summary>
+        /// <param name="context">Database context.</param>
         public SupplierManager(ProcurementTrackerContext context)
         {
-            _context = context;
+            this.context = context;
         }
+
+        /// <inheritdoc/>
         public List<SelectListItem> GetSuppliersSelectList()
         {
-            return _context.Suppliers.OrderBy(s => s.Name)
+            if (context.Suppliers is null)
+            {
+                return new List<SelectListItem>();
+            }
+
+            return context.Suppliers.OrderBy(s => s.Name)
                                     .Select(s => new SelectListItem(s.Name, s.Id.ToString()))
                                     .ToList();
         }
 
-        public async Task<Supplier> GetSupplierAsync(Guid supplierId)
+        /// <inheritdoc/>
+        public async Task<Supplier?> GetSupplierAsync(Guid supplierId)
         {
-            return await _context.Suppliers.FirstOrDefaultAsync(s => s.Id == supplierId);
+            if (context.Suppliers is null)
+            {
+                return null;
+            }
+
+            return await context.Suppliers.FirstOrDefaultAsync(s => s.Id == supplierId);
         }
     }
 }

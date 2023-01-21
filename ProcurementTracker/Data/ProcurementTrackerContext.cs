@@ -22,7 +22,7 @@ namespace ProcurementTracker.Data
 
         public DbSet<RoleApplicationAction>? RoleApplicationActions { get; set; }
 
-        public DbSet<ProcurementOfficerAssignment> ProcurementOfficerAssignments { get; set; }
+        public DbSet<ProcurementOfficerAssignment>? ProcurementOfficerAssignments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

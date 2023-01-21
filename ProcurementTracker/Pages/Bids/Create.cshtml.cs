@@ -17,45 +17,54 @@ namespace ProcurementTracker.Pages.Bids
     [Authorize(Policy = "CanCreateBid")]
     public class CreateModel : PageModel
     {
-        private readonly ProcurementTrackerContext _context;
-        private readonly ISupplierManager _supplierManager;
+        private readonly ProcurementTrackerContext context;
+        private readonly ISupplierManager supplierManager;
 
-        public List<SelectListItem> Currencies { get; set; } = ChoicesList.Create<Currency>();
+        public List<SelectListItem>? Currencies { get; set; } = ChoicesList.Create<Currency>();
+
+        public Procurement? Procurement { get; set; }
+
+        [BindProperty]
+        public Bid? Bid { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public Guid? ProcurementId { get; set; }
+
+        [BindProperty]
+        public Guid? SupplierId { get; set; }
+
+        public List<SelectListItem>? Suppliers { get; set; }
 
         public CreateModel(ProcurementTrackerContext context, ISupplierManager supplierManager)
         {
-            _context = context;
-            _supplierManager = supplierManager;
+            this.context = context;
+            this.supplierManager = supplierManager;
         }
 
-        public async Task<IActionResult> OnGetAsync(Guid procurementid)
+        public async Task<IActionResult> OnGetAsync(Guid procurementId)
         {
-            Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == procurementid);
-            Suppliers = _supplierManager.GetSuppliersSelectList();
+            if (context.Procurements is not null)
+            {
+                Procurement = await context.Procurements.FirstOrDefaultAsync(p => p.Id == procurementId);
+            }
+            Suppliers = supplierManager.GetSuppliersSelectList();
             return Page();
         }
 
-        public Procurement Procurement { get; set; }
-
-        [BindProperty]
-        public Bid Bid { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public Guid ProcurementId { get; set; }
-
-        [BindProperty]
-        public Guid SupplierId { get; set; }
-
-        public List<SelectListItem> Suppliers { get; set; }
-
         private async void SetBidProcurement()
         {
-            Bid.Procurement = await _context.Procurements.FirstOrDefaultAsync(p => p.Id == ProcurementId);
+            if (context.Procurements is not null && Bid is not null)
+            {
+                Bid.Procurement = await context.Procurements.FirstOrDefaultAsync(p => p.Id == ProcurementId);
+            }
         }
 
         private void SetBidStatus()
         {
-            Bid.Status = BidStatus.RECEIVED.Value;
+            if (Bid is not null)
+            {
+                Bid.Status = BidStatus.RECEIVED.Value; 
+            }
         }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -67,13 +76,19 @@ namespace ProcurementTracker.Pages.Bids
             }
 
             SetBidProcurement();
-            Bid.Supplier = await _supplierManager.GetSupplierAsync(SupplierId);
+            if (Bid is not null && SupplierId.HasValue)
+            {
+                Bid.Supplier = await supplierManager.GetSupplierAsync(SupplierId.Value);
+            }
             SetBidStatus();
 
-            await _context.Bids.AddAsync(Bid);
-            await _context.SaveChangesAsync();
+            if (context.Bids is not null && Bid is not null)
+            {
+                await context.Bids.AddAsync(Bid);
+            }
+            await context.SaveChangesAsync();
 
-            return RedirectToPage("Details", new { id = Bid.Id, procurementid = ProcurementId });
+            return RedirectToPage("Details", new { id = Bid?.Id, procurementid = ProcurementId });
         }
     }
 }
