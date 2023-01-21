@@ -22,12 +22,15 @@ namespace ProcurementTracker.Data
 
         public DbSet<RoleApplicationAction>? RoleApplicationActions { get; set; }
 
+        public DbSet<ProcurementOfficerAssignment> ProcurementOfficerAssignments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             new BidEntityTypeConfiguration().Configure(modelBuilder.Entity<Bid>());
             new ProcurementEntityTypeConfiguration().Configure(modelBuilder.Entity<Procurement>());
             new RoleApplicationActionEntityTypeConfiguration().Configure(modelBuilder.Entity<RoleApplicationAction>());
+            new ProcurementOfficerAssignmentEntityTypeConfiguration().Configure(modelBuilder.Entity<ProcurementOfficerAssignment>());
         }
     }
 }

@@ -91,7 +91,7 @@ namespace ProcurementTracker
             string? dbPassword = Environment.GetEnvironmentVariable("PROCUREMENT_TRACKER_DB_PASSWORD");
 
             if (dbHost is not null && db is not null && dbUser is not null && dbPassword is not null)
-                connectionString = $"Server={dbHost};Initial Catalog={db};User Id={dbUser};Password={dbPassword};Integrated Security=False;";
+                connectionString = $"Server={dbHost};Initial Catalog={db};User Id={dbUser};Password={dbPassword};Integrated Security=False;Trust Server Certificate=true;";
 
             return connectionString;
         }

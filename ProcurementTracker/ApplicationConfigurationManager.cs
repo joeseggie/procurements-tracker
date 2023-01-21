@@ -46,11 +46,11 @@ namespace ProcurementTracker
 
             foreach (var (action, area, description) in adminApplicationActions)
             {
-                bool isActionAssigned = await context.RoleApplicationActions.AnyAsync(a => a.ApplicationAction.Action == action);
+                bool isActionAssigned = await context.RoleApplicationActions?.AnyAsync(a => a.ApplicationAction.Action == action);
 
                 if (isActionAssigned is false)
                 {
-                    var adminAction = await context.ApplicationActions.FirstOrDefaultAsync(a => a.Action == action);
+                    var adminAction = await context.ApplicationActions?.FirstOrDefaultAsync(a => a.Action == action);
                     if (adminAction is not null)
                     {
                         await context.RoleApplicationActions!.AddAsync(new RoleApplicationAction

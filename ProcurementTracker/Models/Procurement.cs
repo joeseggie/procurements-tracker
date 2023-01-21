@@ -110,6 +110,8 @@ namespace ProcurementTracker.Models
 
         public List<Bid>? Bids { get; set; }
 
+        public List<ProcurementOfficerAssignment>? ProcurementOfficerAssignments { get; set; }
+
         public string? StatusColorCode
         {
             get

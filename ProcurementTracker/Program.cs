@@ -23,14 +23,16 @@ namespace ProcurementTracker
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
+            var logger = services.GetRequiredService<ILogger<Program>>();
+
             try
             {
                 var context = services.GetService<ProcurementTrackerContext>();
                 ApplicationConfigurationManager.InitializeDatabase(context);
+                logger.LogInformation("Database initialization completed");
             }
             catch (Exception ex)
             {
-                var logger = services.GetRequiredService<ILogger<Program>>();
                 logger.LogError(ex, "An error occurred while initializing the database.");
             }
                 

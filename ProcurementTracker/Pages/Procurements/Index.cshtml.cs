@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
 using ProcurementTracker.Data;
 using ProcurementTracker.Models;
 using ProcurementTracker.Shared;
@@ -18,10 +21,12 @@ namespace ProcurementTracker.Pages.Procurements
     public class IndexModel : PageModel
     {
         private readonly ProcurementTrackerContext _context;
+        private readonly ILogger<IndexModel> logger;
 
-        public IndexModel(ProcurementTrackerContext context)
+        public IndexModel(ProcurementTrackerContext context, ILogger<IndexModel> logger)
         {
             _context = context;
+            this.logger = logger;
         }
 
         public IList<Procurement> Procurement { get;set; }
@@ -54,6 +59,8 @@ namespace ProcurementTracker.Pages.Procurements
 
         public async Task OnPostSearch()
         {
+            logger.LogInformation($"Search/keyword:{SearchText}");
+
             string queryFilter = string.Empty;
             StringBuilder queryFilterBuilder = new StringBuilder().Clear();
 
@@ -66,7 +73,7 @@ namespace ProcurementTracker.Pages.Procurements
             queryFilter = FilterByProcurementPlan(queryFilter, queryFilterBuilder);
 
             Procurement = await _context.Procurements
-                                        .FromSqlRaw($"SELECT * FROM Procurement{queryFilter};")
+                                        .FromSqlRaw($"SELECT * FROM Procurements{queryFilter};")
                                         .ToListAsync();
         }
 
