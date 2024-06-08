@@ -107,7 +107,7 @@ namespace ProcurementTracker.Pages.Roles
                     SelectedActions.ForEach(ConvertStringIdToGuid);
                     if (SelectedActionsIdsAsGuid is not null)
                     {
-                        var roleApplicationActionsToRemove = _context.RoleApplicationActions?.Where(r => !SelectedActionsIdsAsGuid.Contains(r.ApplicationActionId));
+                        var roleApplicationActionsToRemove = _context.RoleApplicationActions?.Where(r => !SelectedActionsIdsAsGuid.Contains(r.ApplicationActionId) && r.RoleId == roleId);
                         _context.RoleApplicationActions?.RemoveRange(roleApplicationActionsToRemove);
                     }
                 }
